@@ -17,11 +17,4 @@ autoreconf --install --force --warnings=all "$project_dir" &&
   mkdir -p "$project_build_variant_dir" &&
   cd "$project_build_variant_dir" &&
   CONFIG_SITE=~/config.site."$build_variant".clang "$project_dir"/configure --prefix=$HOME/usr/local &&
-  make -j prefix=$HOME/usr/local/stow/"$project_name" V=1 check
-
-if [ $? -eq 0 ];
-then
-  say --voice=Vicki "build complete"
-else
-  say --voice=Vicki "build failed"
-fi
+  "${project_dir}"/build.sh "$@"
