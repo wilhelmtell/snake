@@ -14,6 +14,7 @@ echo "project_build_variant_dir=\"$project_build_variant_dir\"";
 
 if [ ! -d "$project_build_variant_dir" ]
 then
+  echo "NOTE: Build directory doesn't exist. Rebuilding."
   "${project_dir}"/rebuild.sh "$@"
 else
   cd "$project_build_variant_dir" &&
