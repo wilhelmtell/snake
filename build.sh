@@ -6,12 +6,6 @@ build_variant="debug"
 project_build_dir="$(realpath "${1:-"${project_dir}/../build_${project_name}"}")"
 project_build_variant_dir="$project_build_dir/$build_variant";
 
-echo "project_dir=\"$project_dir\"";
-echo "project_name=\"$project_name\"";
-echo "build_variant=\"$build_variant\"";
-echo "project_build_dir=\"$project_build_dir\"";
-echo "project_build_variant_dir=\"$project_build_variant_dir\"";
-
 if [ ! -d "$project_build_variant_dir" ]
 then
   echo "NOTE: Build directory doesn't exist. Rebuilding."
