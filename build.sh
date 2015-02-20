@@ -18,10 +18,13 @@ then
 else
   cd "$project_build_variant_dir" &&
     make -j prefix=$HOME/usr/local/stow/"$project_name" V=1 check
-  if [ $? -eq 0 ];
+  build_success=$?
+  if [ $build_success -eq 0 ];
   then
-    say --voice=Vicki "build complete"
+    echo "build complete"
+    [ "$(uname -s)" = Darwin ] && say --voice=Vicki "build complete"
   else
-    say --voice=Vicki "build failed"
+    echo "build failed"
+    [ "$(uname -s)" = Darwin ] && say --voice=Vicki "build failed"
   fi
 fi
