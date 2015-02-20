@@ -3,6 +3,7 @@ AM_INIT_AUTOMAKE([1.14.1 foreign -Wall -Werror])
 AC_PROG_CXX
 AC_PROG_RANLIB
 AM_PROG_AR
+PKG_CHECK_MODULES([SDL2], [sdl2 >= 2.0.3])
 AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_FILES([Makefile src/Makefile test/Makefile])
 AC_OUTPUT
