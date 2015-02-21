@@ -41,5 +41,8 @@ int main(int /*argc*/, char * /*argv*/ []) {
     while(SDL_PollEvent(&e)) {
       quit = e.type == SDL_QUIT;
     }
+    SDL_SetRenderDrawColor(renderer.get(), 0xff, 0xff, 0xff, 0xff);
+    SDL_RenderClear(renderer.get());
+    SDL_RenderPresent(renderer.get());
   }
 }
