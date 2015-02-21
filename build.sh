@@ -31,9 +31,7 @@ else
   if [ $build_success -eq 0 ];
   then
     echo "build complete"
-    [ "$(uname -s)" = Darwin ] && say --voice=Vicki "build complete"
   else
     echo "build failed"
-    [ "$(uname -s)" = Darwin ] && say --voice=Vicki "build failed"
   fi
 fi
