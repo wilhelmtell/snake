@@ -25,7 +25,7 @@ then
 else
   cd "$project_build_variant_dir"
   [ "$V" -ge 1 ] && echo "Building ..."
-  make -j prefix=$HOME/usr/local/stow/"$project_name" V=1 check
+  make -j prefix=$HOME/usr/local/stow/"$project_name" V="$V" check
   build_success=$?
   if [ $build_success -eq 0 ];
   then
