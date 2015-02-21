@@ -22,6 +22,14 @@ project_build_dir="$(realpath "${1:-"${project_dir}/../build_${project_name}"}")
 [ "$V" = 2 ] && echo "Setting project_build_variant_dir ..."
 project_build_variant_dir="$project_build_dir/$build_variant";
 [ "$V" = 1 ] && echo "project_build_variant_dir=\"${project_build_variant_dir}\""
+[ "$V" = 2 ] && echo "Setting CONFIG_SITE ..."
+CONFIG_SITE="$HOME/config.site.${build_variant}.clang"
+[ "$V" = 1 ] && echo "CONFIG_SITE=\"${CONFIG_SITE}\""
+
+if [[ -d "$CONFIG_SITE" || ! -r "$CONFIG_SITE" ]];
+then
+  error "CONFIG_SITE file unreadable or not found."
+fi
 
 [ "$V" = 1 ] && echo "Autoreconfing ..."
 autoreconf --install --force --warnings=all "$project_dir" ||
@@ -34,6 +42,6 @@ mkdir -p "$project_build_variant_dir" ||
     error "build directory creation failed."
 [ "$V" = 1 ] && echo "Configuring build ..."
 cd "$project_build_variant_dir" &&
-  CONFIG_SITE=~/config.site."$build_variant".clang "$project_dir"/configure --prefix=$HOME/usr/local ||
+  CONFIG_SITE="${CONFIG_SITE}" "$project_dir"/configure --prefix=$HOME/usr/local ||
   error "Build configuration failed."
 "${project_dir}"/build.sh "$@"
