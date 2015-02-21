@@ -34,4 +34,5 @@ int main(int /*argc*/, char * /*argv*/ []) {
     std::cerr << "error: failed creating renderer.\n";
     return 1;
   }
+  SDL_SetRenderDrawColor(renderer.get(), 0xff, 0xff, 0xff, 0xff);
 }
