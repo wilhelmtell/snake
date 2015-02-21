@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # pass V=1 for verbosity
+V=${V:-0}
 
 [ "$V" -ge 2 ] && echo "Setting project_dir ..."
 project_dir="$(dirname "$0")"

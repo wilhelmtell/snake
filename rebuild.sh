@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # pass V=1 for verbosity
+V=${V:-0}
 
 error() {
   echo "Error: $1" >&2
