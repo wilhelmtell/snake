@@ -6,6 +6,7 @@
 
 namespace snk {
 using window = std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)>;
+using renderer = std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)>;
 }
 
 int main(int /*argc*/, char * /*argv*/ []) {
@@ -23,6 +24,14 @@ int main(int /*argc*/, char * /*argv*/ []) {
                      SDL_DestroyWindow};
   if(window == nullptr) {
     std::cerr << "error: failed creating window.\n";
+    return 1;
+  }
+  snk::renderer renderer{
+    SDL_CreateRenderer(
+      window.get(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC),
+    SDL_DestroyRenderer};
+  if(renderer == nullptr) {
+    std::cerr << "error: failed creating renderer.\n";
     return 1;
   }
 }
