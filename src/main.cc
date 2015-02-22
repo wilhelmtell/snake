@@ -12,6 +12,8 @@ using renderer = std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)>;
 int main(int /*argc*/, char * /*argv*/ []) {
   auto const WINDOW_W = 640;
   auto const WINDOW_H = 480;
+  auto const BERRY_W = 10;
+  auto const BERRY_H = 10;
   snk::sdl app;
   if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
     std::cerr << "error: linear texturing filtering not enabled.\n";
@@ -37,7 +39,7 @@ int main(int /*argc*/, char * /*argv*/ []) {
     return 1;
   }
   SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
-  SDL_Rect berry = {320, 240, 10, 10};
+  SDL_Rect berry = {320, 240, BERRY_W, BERRY_H};
   while(true) {
     for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
       switch(e.type) {
