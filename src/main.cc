@@ -55,6 +55,7 @@ int main(int /*argc*/, char * /*argv*/ []) {
     return y - (y % BERRY_H);
   };
   SDL_Rect berry = {random_x(), random_y(), BERRY_W, BERRY_H};
+  SDL_Rect snake = {random_x(), random_y(), BERRY_W, BERRY_H};
   while(true) {
     for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
       if(e.type == SDL_QUIT) return 0;
@@ -68,6 +69,8 @@ int main(int /*argc*/, char * /*argv*/ []) {
     }
     SDL_SetRenderDrawColor(renderer.get(), 0x7f, 0x00, 0xff, 0xff);
     SDL_RenderFillRect(renderer.get(), &berry);
+    SDL_SetRenderDrawColor(renderer.get(), 0x7f, 0x7f, 0x00, 0xff);
+    SDL_RenderFillRect(renderer.get(), &snake);
     SDL_RenderPresent(renderer.get());
   }
 }
