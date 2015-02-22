@@ -37,8 +37,7 @@ int main(int /*argc*/, char * /*argv*/ []) {
   SDL_SetRenderDrawColor(renderer.get(), 0xff, 0xff, 0xff, 0xff);
   bool quit = false;
   while(!quit) {
-    SDL_Event e;
-    while(SDL_PollEvent(&e)) {
+    for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
       quit = e.type == SDL_QUIT;
     }
     SDL_SetRenderDrawColor(renderer.get(), 0xff, 0xff, 0xff, 0xff);
