@@ -14,6 +14,8 @@ struct berry {
 }
 
 int main(int /*argc*/, char * /*argv*/ []) {
+  auto const WINDOW_W = 640;
+  auto const WINDOW_H = 480;
   snk::sdl app;
   if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
     std::cerr << "error: linear texturing filtering not enabled.\n";
@@ -22,8 +24,8 @@ int main(int /*argc*/, char * /*argv*/ []) {
   snk::window window{SDL_CreateWindow("Snake",
                                       SDL_WINDOWPOS_UNDEFINED,
                                       SDL_WINDOWPOS_UNDEFINED,
-                                      640,
-                                      480,
+                                      WINDOW_W,
+                                      WINDOW_H,
                                       SDL_WINDOW_SHOWN),
                      SDL_DestroyWindow};
   if(window == nullptr) {
@@ -46,11 +48,11 @@ int main(int /*argc*/, char * /*argv*/ []) {
       case SDL_KEYDOWN:
         if(e.key.keysym.sym == SDLK_LEFT && berry.rect.x - 25 >= 0)
           berry.rect.x -= 25;
-        else if(e.key.keysym.sym == SDLK_RIGHT && berry.rect.x + 25 < 640)
+        else if(e.key.keysym.sym == SDLK_RIGHT && berry.rect.x + 25 < WINDOW_W)
           berry.rect.x += 25;
         else if(e.key.keysym.sym == SDLK_UP && berry.rect.y - 25 >= 0)
           berry.rect.y -= 25;
-        else if(e.key.keysym.sym == SDLK_DOWN && berry.rect.y + 25 < 480)
+        else if(e.key.keysym.sym == SDLK_DOWN && berry.rect.y + 25 < WINDOW_H)
           berry.rect.y += 25;
         break;
       case SDL_QUIT:
