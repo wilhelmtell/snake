@@ -60,14 +60,14 @@ int main(int /*argc*/, char * /*argv*/ []) {
     for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
       switch(e.type) {
       case SDL_KEYDOWN:
-        if(e.key.keysym.sym == SDLK_LEFT && berry.x - 25 >= 0)
-          berry.x -= 25;
-        else if(e.key.keysym.sym == SDLK_RIGHT && berry.x + 25 < WINDOW_W)
-          berry.x += 25;
-        else if(e.key.keysym.sym == SDLK_UP && berry.y - 25 >= 0)
-          berry.y -= 25;
-        else if(e.key.keysym.sym == SDLK_DOWN && berry.y + 25 < WINDOW_H)
-          berry.y += 25;
+        if(e.key.keysym.sym == SDLK_LEFT && snake.x - 10 >= 0)
+          snake.x -= 10;
+        else if(e.key.keysym.sym == SDLK_RIGHT && snake.x + 10 < WINDOW_W)
+          snake.x += 10;
+        else if(e.key.keysym.sym == SDLK_UP && snake.y - 10 >= 0)
+          snake.y -= 10;
+        else if(e.key.keysym.sym == SDLK_DOWN && snake.y + 10 < WINDOW_H)
+          snake.y += 10;
         break;
       case SDL_QUIT:
         return 0;
