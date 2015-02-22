@@ -34,14 +34,14 @@ int main(int /*argc*/, char * /*argv*/ []) {
     std::cerr << "error: failed creating renderer.\n";
     return 1;
   }
-  SDL_SetRenderDrawColor(renderer.get(), 0xff, 0xff, 0xff, 0xff);
+  SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
   while(true) {
     for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
       switch(e.type) {
       case SDL_QUIT: return 0;
       }
     }
-    SDL_SetRenderDrawColor(renderer.get(), 0xff, 0xff, 0xff, 0xff);
+    SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
     SDL_RenderClear(renderer.get());
     SDL_RenderPresent(renderer.get());
   }
