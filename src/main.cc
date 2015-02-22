@@ -35,10 +35,11 @@ int main(int /*argc*/, char * /*argv*/ []) {
     return 1;
   }
   SDL_SetRenderDrawColor(renderer.get(), 0xff, 0xff, 0xff, 0xff);
-  bool quit = false;
-  while(!quit) {
+  while(true) {
     for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
-      quit = e.type == SDL_QUIT;
+      switch(e.type) {
+      case SDL_QUIT: return 0;
+      }
     }
     SDL_SetRenderDrawColor(renderer.get(), 0xff, 0xff, 0xff, 0xff);
     SDL_RenderClear(renderer.get());
