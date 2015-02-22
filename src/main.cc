@@ -21,10 +21,6 @@ int main(int /*argc*/, char * /*argv*/ []) {
   std::uniform_int_distribution<> xdist{0, WINDOW_W};
   std::uniform_int_distribution<> ydist{0, WINDOW_H};
   snk::sdl app;
-  if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
-    std::cerr << "error: linear texturing filtering not enabled.\n";
-    return 1;
-  }
   snk::window window{SDL_CreateWindow("Snake",
                                       SDL_WINDOWPOS_UNDEFINED,
                                       SDL_WINDOWPOS_UNDEFINED,
