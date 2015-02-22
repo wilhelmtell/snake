@@ -46,7 +46,7 @@ int main(int /*argc*/, char * /*argv*/ []) {
     }
     SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
     SDL_RenderClear(renderer.get());
-    SDL_SetRenderDrawColor(renderer.get(), 0x7f, 0x7f, 0x7f, 0x7f);
+    SDL_SetRenderDrawColor(renderer.get(), 0x7f, 0x00, 0xff, 0xff);
     SDL_RenderFillRect(renderer.get(), &berry);
     SDL_RenderPresent(renderer.get());
   }
