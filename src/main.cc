@@ -7,6 +7,10 @@
 namespace snk {
 using window = std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)>;
 using renderer = std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)>;
+
+struct berry {
+  SDL_Rect rect;
+};
 }
 
 int main(int /*argc*/, char * /*argv*/ []) {
@@ -35,6 +39,7 @@ int main(int /*argc*/, char * /*argv*/ []) {
     return 1;
   }
   SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
+  snk::berry berry = {{320, 240, 10, 10}};
   while(true) {
     for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
       switch(e.type) {
@@ -43,6 +48,8 @@ int main(int /*argc*/, char * /*argv*/ []) {
     }
     SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
     SDL_RenderClear(renderer.get());
+    SDL_SetRenderDrawColor(renderer.get(), 0x7f, 0x7f, 0x7f, 0x7f);
+    SDL_RenderFillRect(renderer.get(), &berry.rect);
     SDL_RenderPresent(renderer.get());
   }
 }
