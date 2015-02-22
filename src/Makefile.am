@@ -5,4 +5,5 @@ AM_CXXFLAGS = -std=c++14 ${SDL2_CFLAGS}
 AM_LDFLAGS = ${SDL2_LIBS}
 
 noinst_LIBRARIES = libsnake.a
-libsnake_a_SOURCES = sdl.hh sdl.cc
+libsnake_a_SOURCES = sdl.hh sdl.cc \
+                     game.hh

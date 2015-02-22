@@ -1,5 +1,5 @@
 #include "config.h"
-#include "sdl.hh"
+#include "game.hh"
 #include <SDL2/SDL.h>
 #include <memory>
 #include <iostream>
@@ -21,7 +21,7 @@ int main(int /*argc*/, char * /*argv*/ []) {
   std::mt19937 gen{rd()};
   std::uniform_int_distribution<> xdist{0, WINDOW_W};
   std::uniform_int_distribution<> ydist{0, WINDOW_H};
-  snk::sdl app;
+  snk::game g;
   snk::window window{SDL_CreateWindow("Snake",
                                       SDL_WINDOWPOS_UNDEFINED,
                                       SDL_WINDOWPOS_UNDEFINED,
