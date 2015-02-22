@@ -11,6 +11,7 @@ using renderer = std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)>;
 }
 
 int main(int /*argc*/, char * /*argv*/ []) {
+  // setup
   auto const WINDOW_W = 640;
   auto const WINDOW_H = 480;
   auto const BERRY_W = 10;
@@ -52,6 +53,8 @@ int main(int /*argc*/, char * /*argv*/ []) {
   };
   SDL_Rect berry = {random_x(), random_y(), BERRY_W, BERRY_H};
   SDL_Rect snake = {random_x(), random_y(), BERRY_W, BERRY_H};
+
+  // input
   while(true) {
     for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
       switch(e.type) {
@@ -69,11 +72,15 @@ int main(int /*argc*/, char * /*argv*/ []) {
         return 0;
       }
     }
+
+    // update
     auto const t = SDL_GetTicks();
     if(t - berry_show_time > BERRY_INTERVAL) {
       berry = {random_x(), random_y(), BERRY_W, BERRY_H};
       berry_show_time = t;
     }
+
+    // draw
     SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
     SDL_RenderClear(renderer.get());
     SDL_SetRenderDrawColor(renderer.get(), 0x7f, 0x00, 0xff, 0xff);
