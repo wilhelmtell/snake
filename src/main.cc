@@ -17,6 +17,7 @@ int main(int /*argc*/, char * /*argv*/ []) {
   auto const BERRY_H = 10;
   auto const BERRY_INTERVAL = 30000;  // ms
   std::random_device rd;
+  std::mt19937 gen{rd()};
   std::uniform_int_distribution<> xdist{0, WINDOW_W};
   std::uniform_int_distribution<> ydist{0, WINDOW_H};
   snk::sdl app;
@@ -46,11 +47,11 @@ int main(int /*argc*/, char * /*argv*/ []) {
   auto berry_show_time = SDL_GetTicks();
   SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
   auto const random_x = [&]() {
-    auto const x = xdist(rd);
+    auto const x = xdist(gen);
     return x - (x % BERRY_W);
   };
   auto const random_y = [&]() {
-    auto const y = ydist(rd);
+    auto const y = ydist(gen);
     return y - (y % BERRY_H);
   };
   SDL_Rect berry = {random_x(), random_y(), BERRY_W, BERRY_H};
