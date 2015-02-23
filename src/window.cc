@@ -29,7 +29,9 @@ window& window::operator=(window&& rhs) {
   return *this;
 }
 
-window::~window() { SDL_DestroyWindow(w); }
+window::~window() {
+  if(w != nullptr) SDL_DestroyWindow(w);
+}
 
 SDL_Window* window::get() const { return w; }
 }
