@@ -19,13 +19,10 @@ window::window()
   if(w == nullptr) throw window_creation_error(SDL_GetError());
 }
 
-window::window(window&& rhs) : w(rhs.w) {
-  rhs.w = nullptr;
-}
+window::window(window&& rhs) : w(rhs.release()) {}
 
 window& window::operator=(window&& rhs) {
-  using std::swap;
-  swap(w, rhs.w);
+  reset(rhs.release());
   return *this;
 }
 
@@ -34,4 +31,16 @@ window::~window() {
 }
 
 SDL_Window* window::get() const { return w; }
+
+SDL_Window* window::release() {
+  auto p = get();
+  w = nullptr;
+  return p;
+}
+
+void window::reset(SDL_Window* p) {
+  using std::swap;
+  swap(w, p);
+  if(p != nullptr) SDL_DestroyWindow(p);
+}
 }

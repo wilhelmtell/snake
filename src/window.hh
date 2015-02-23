@@ -16,6 +16,8 @@ struct window {
   ~window();
 
   SDL_Window* get() const;
+  SDL_Window* release();
+  void reset(SDL_Window* p = nullptr);
 
 private:
   SDL_Window* w;
