@@ -69,13 +69,13 @@ int main(int /*argc*/, char * /*argv*/ []) {
         return 0;
       }
     }
-    SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
-    SDL_RenderClear(renderer.get());
     auto const t = SDL_GetTicks();
     if(t - berry_show_time > BERRY_INTERVAL) {
       berry = {random_x(), random_y(), BERRY_W, BERRY_H};
       berry_show_time = t;
     }
+    SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
+    SDL_RenderClear(renderer.get());
     SDL_SetRenderDrawColor(renderer.get(), 0x7f, 0x00, 0xff, 0xff);
     SDL_RenderFillRect(renderer.get(), &berry);
     SDL_SetRenderDrawColor(renderer.get(), 0x7f, 0x7f, 0x00, 0xff);
