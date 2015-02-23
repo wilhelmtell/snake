@@ -1,14 +1,11 @@
 #include "config.h"
 #include "game.hh"
 #include "window.hh"
+#include "renderer.hh"
 #include <SDL2/SDL.h>
 #include <memory>
 #include <iostream>
 #include <random>
-
-namespace snk {
-using renderer = std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)>;
-}
 
 int main(int /*argc*/, char * /*argv*/ []) {
   // setup
@@ -21,14 +18,7 @@ int main(int /*argc*/, char * /*argv*/ []) {
   std::uniform_int_distribution<> ydist{0, snk::WINDOW_H};
   snk::game g;
   snk::window window;
-  snk::renderer renderer{
-    SDL_CreateRenderer(
-      window.get(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC),
-    SDL_DestroyRenderer};
-  if(renderer == nullptr) {
-    std::cerr << "error: failed creating renderer.\n";
-    return 1;
-  }
+  snk::renderer renderer{window};
   auto berry_show_time = SDL_GetTicks();
   SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
   auto const random_x = [&]() {
