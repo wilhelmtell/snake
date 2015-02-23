@@ -11,8 +11,8 @@ struct window {
   window();
   window(window const&) = delete;
   window& operator=(window const&) = delete;
-  window(window&&);
-  window& operator=(window&&);
+  window(window&& rhs);
+  window& operator=(window&& rhs);
   ~window();
 
   SDL_Window* get() const;

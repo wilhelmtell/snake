@@ -1,6 +1,7 @@
 #include "window.hh"
 #include <SDL2/SDL.h>
 #include "window_creation_error.hh"
+#include <utility>
 
 namespace snk {
 auto const WINDOW_W = 640;
@@ -16,6 +17,16 @@ window::window()
                      WINDOW_H,
                      SDL_WINDOW_SHOWN)} {
   if(w == nullptr) throw window_creation_error(SDL_GetError());
+}
+
+window::window(window&& rhs) : w(rhs.w) {
+  rhs.w = nullptr;
+}
+
+window& window::operator=(window&& rhs) {
+  using std::swap;
+  swap(w, rhs.w);
+  return *this;
 }
 
 window::~window() { SDL_DestroyWindow(w); }
