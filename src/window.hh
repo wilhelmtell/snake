@@ -1,7 +1,8 @@
 #ifndef SNK_WINDOW_HH_
 #define SNK_WINDOW_HH_
 
-struct SDL_Window;
+#include <memory>
+#include <SDL2/SDL.h>
 
 namespace snk {
 extern int const WINDOW_W;
@@ -9,18 +10,12 @@ extern int const WINDOW_H;
 
 struct window {
   window();
-  window(window const&) = delete;
-  window& operator=(window const&) = delete;
-  window(window&& rhs);
-  window& operator=(window&& rhs);
-  ~window();
 
   SDL_Window* get() const;
-  SDL_Window* release();
-  void reset(SDL_Window* p = nullptr);
 
 private:
-  SDL_Window* w;
+  using pointer = std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)>;
+  pointer w;
 };
 }
 
