@@ -3,6 +3,7 @@
 #include "window.hh"
 #include "renderer.hh"
 #include "berry.hh"
+#include "snake.hh"
 #include <SDL2/SDL.h>
 #include <memory>
 #include <iostream>
@@ -28,7 +29,7 @@ int main(int /*argc*/, char * /*argv*/ []) {
     return y - (y % snk::BERRY_H);
   };
   snk::berry berry = {random_x(), random_y(), snk::BERRY_W, snk::BERRY_H};
-  SDL_Rect snake = {random_x(), random_y(), snk::BERRY_W, snk::BERRY_H};
+  snk::snake snake = {random_x(), random_y(), snk::BERRY_W, snk::BERRY_H};
 
   // input
   while(true) {

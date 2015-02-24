@@ -6,6 +6,7 @@ AM_LDFLAGS = ${SDL2_LIBS}
 
 noinst_LIBRARIES = libsnake.a
 libsnake_a_SOURCES = sdl.hh sdl.cc \
+                     snake.hh \
                      berry.hh berry.cc \
                      window.hh window.cc \
                      window_creation_error.hh window_creation_error.cc \
