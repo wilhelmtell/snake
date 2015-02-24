@@ -19,7 +19,6 @@ int main(int /*argc*/, char * /*argv*/ []) {
   snk::window window;
   snk::renderer renderer{window};
   auto berry_show_time = SDL_GetTicks();
-  SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
   auto const random_x = [&]() {
     auto const x = xdist(gen);
     return x - (x % snk::BERRY_W);
