@@ -2,9 +2,16 @@
 #define SNK_SNAKE_HH_
 
 #include <SDL2/SDL.h>
+#include "game.hh"
 
 namespace snk {
-using snake = SDL_Rect;
+struct snake {
+  void update(game const& g, SDL_Event const& e);
+  void draw() const;
+
+private:
+  SDL_Rect rect;
+};
 }
 
 #endif
