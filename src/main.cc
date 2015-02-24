@@ -2,6 +2,7 @@
 #include "game.hh"
 #include "window.hh"
 #include "renderer.hh"
+#include "berry.hh"
 #include <SDL2/SDL.h>
 #include <memory>
 #include <iostream>
@@ -9,9 +10,6 @@
 
 int main(int /*argc*/, char * /*argv*/ []) {
   // setup
-  auto const BERRY_W = 10;
-  auto const BERRY_H = 10;
-  auto const BERRY_INTERVAL = 30000;  // ms
   std::random_device rd;
   std::mt19937 gen{rd()};
   std::uniform_int_distribution<> xdist{0, snk::WINDOW_W};
@@ -23,14 +21,14 @@ int main(int /*argc*/, char * /*argv*/ []) {
   SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0);
   auto const random_x = [&]() {
     auto const x = xdist(gen);
-    return x - (x % BERRY_W);
+    return x - (x % snk::BERRY_W);
   };
   auto const random_y = [&]() {
     auto const y = ydist(gen);
-    return y - (y % BERRY_H);
+    return y - (y % snk::BERRY_H);
   };
-  SDL_Rect berry = {random_x(), random_y(), BERRY_W, BERRY_H};
-  SDL_Rect snake = {random_x(), random_y(), BERRY_W, BERRY_H};
+  snk::berry berry = {random_x(), random_y(), snk::BERRY_W, snk::BERRY_H};
+  SDL_Rect snake = {random_x(), random_y(), snk::BERRY_W, snk::BERRY_H};
 
   // input
   while(true) {
@@ -53,8 +51,8 @@ int main(int /*argc*/, char * /*argv*/ []) {
 
     // update
     auto const t = SDL_GetTicks();
-    if(t - berry_show_time > BERRY_INTERVAL) {
-      berry = {random_x(), random_y(), BERRY_W, BERRY_H};
+    if(t - berry_show_time > snk::BERRY_INTERVAL) {
+      berry = {random_x(), random_y(), snk::BERRY_W, snk::BERRY_H};
       berry_show_time = t;
     }
 
