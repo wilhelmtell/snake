@@ -3,17 +3,12 @@
 #include "window_creation_error.hh"
 
 namespace snk {
-auto const WINDOW_W = 640;
-auto const WINDOW_H = 480;
-}
-
-namespace snk {
-window::window()
+window::window(int const& width, int const& height)
 : w{SDL_CreateWindow("Snake",
                      SDL_WINDOWPOS_UNDEFINED,
                      SDL_WINDOWPOS_UNDEFINED,
-                     WINDOW_W,
-                     WINDOW_H,
+                     width,
+                     height,
                      SDL_WINDOW_SHOWN),
     &SDL_DestroyWindow} {
   if(w == nullptr) throw window_creation_error(SDL_GetError());

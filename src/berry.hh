@@ -2,19 +2,19 @@
 #define SNK_BERRY_HH_
 
 #include <SDL2/SDL.h>
-#include "game.hh"
+#include "game_fwd.hh"
+#include "renderer_fwd.hh"
 
 namespace snk {
-extern int const BERRY_H;
-extern int const BERRY_W;
-extern unsigned int const BERRY_INTERVAL;  // in ms
-
 struct berry {
+  berry();
+
   void update(game const& g, SDL_Event const& e);
-  void draw() const;
+  void draw(renderer const& r) const;
 
 private:
   SDL_Rect rect;
+  unsigned int last_berry_time;
 };
 }
 

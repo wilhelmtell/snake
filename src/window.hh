@@ -5,11 +5,8 @@
 #include <SDL2/SDL.h>
 
 namespace snk {
-extern int const WINDOW_W;
-extern int const WINDOW_H;
-
 struct window {
-  window();
+  window(int const& width, int const& height);
 
   SDL_Window* get() const;
 
