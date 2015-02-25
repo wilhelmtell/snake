@@ -12,4 +12,4 @@ libsnake_a_SOURCES = sdl.hh sdl.cc \
                      window_creation_error.hh window_creation_error.cc \
                      renderer.hh renderer.cc \
                      renderer_creation_error.hh renderer_creation_error.cc \
-                     game.hh
+                     game.hh game.cc
