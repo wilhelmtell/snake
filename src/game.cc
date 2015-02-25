@@ -13,7 +13,7 @@ void game::update(SDL_Event const& e) {
 }
 
 void game::draw() const {
-  SDL_SetRenderDrawColor(r.get(), 0, 0, 0, 0);
+  SDL_SetRenderDrawColor(r.get(), 0, 0, 0, 0xff);
   SDL_RenderClear(r.get());
   b.draw(r);
   s.draw(r);
