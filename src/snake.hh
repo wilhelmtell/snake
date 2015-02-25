@@ -9,11 +9,15 @@ namespace snk {
 struct snake {
   snake();
 
-  void update(game const& g, SDL_Event const& e);
+  void handle_event(game const& g, SDL_Event const& e);
+  void update(game const& g);
   void draw(renderer const& r) const;
 
 private:
   SDL_Rect rect;
+  unsigned int last_move_time;
+  int velx;
+  int vely;
 };
 }
 

@@ -7,9 +7,14 @@ game::game() : w{window_w(), window_h()}, r{w} {}
 int game::window_w() const { return 640; }
 int game::window_h() const { return 480; }
 
-void game::update(SDL_Event const& e) {
-  b.update(*this, e);
-  s.update(*this, e);
+void game::handle_event(SDL_Event const& e) {
+  b.handle_event(*this, e);
+  s.handle_event(*this, e);
+}
+
+void game::update() {
+  b.update(*this);
+  s.update(*this);
 }
 
 void game::draw() const {

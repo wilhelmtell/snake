@@ -9,7 +9,8 @@ namespace snk {
 struct berry {
   berry();
 
-  void update(game const& g, SDL_Event const& e);
+  void handle_event(game const& g, SDL_Event const& e);
+  void update(game const& g);
   void draw(renderer const& r) const;
 
 private:

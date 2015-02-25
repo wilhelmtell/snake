@@ -31,7 +31,9 @@ berry::berry()
 : rect{0, 0, BERRY_W, BERRY_H}
 , last_berry_time{SDL_GetTicks() - BERRY_INTERVAL} {}
 
-void berry::update(game const& g, SDL_Event const& /*e*/) {
+void berry::handle_event(game const& /*g*/, SDL_Event const& /*e*/) {}
+
+void berry::update(game const& g) {
   auto const t = SDL_GetTicks();
   if(t - last_berry_time > BERRY_INTERVAL) {
     rect = {random_x(g.window_w()), random_y(g.window_h()), BERRY_W, BERRY_H};

@@ -12,7 +12,8 @@ namespace snk {
 struct game {
   game();
 
-  void update(SDL_Event const& e);
+  void handle_event(SDL_Event const& e);
+  void update();
   void draw() const;
 
   int window_w() const;
