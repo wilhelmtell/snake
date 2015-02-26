@@ -11,10 +11,10 @@ EOF
 }
 
 validate_qualified_name() {
-  test -n "$(echo "$1" |sed '/^\([a-zA-Z_][a-zA-Z0-9_]*\)\?::[a-zA-Z_][a-zA-Z0-9_]*\+$/ ! d')"
+  echo "$1" |sed '/^\([a-zA-Z_][a-zA-Z0-9_]*\)\?::[a-zA-Z_][a-zA-Z0-9_]*\+$/ ! d'
 }
 
-if [ $# -lt 1 -o ! "($(validate_qualified_name "$1"))" ];
+if [ $# -lt 1 -o -z "$(validate_qualified_name "$1")" ];
 then
   usage
   exit 0
