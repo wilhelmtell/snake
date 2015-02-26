@@ -6,6 +6,9 @@ AM_LDFLAGS = ${SDL2_LIBS}
 
 noinst_LIBRARIES = libsnake.a
 libsnake_a_SOURCES = sdl.hh sdl.cc \
+                     snake_view_fwd.hh \
+                     snake_view.hh \
+                     snake_control.hh snake_control.cc \
                      snake.hh snake.cc \
                      berry.hh berry.cc \
                      window.hh window.cc \
