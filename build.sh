@@ -28,7 +28,7 @@ else
   [ "$V" -ge 1 ] && echo "Building ..."
   make -j prefix=$HOME/usr/local/stow/"$project_name" V="$V" check
   build_success=$?
-  if [ $build_success -eq 0 ];
+  if [ "$V" -ge 1 -a $build_success -eq 0 ];
   then
     echo "build complete"
   else
