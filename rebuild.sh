@@ -2,7 +2,8 @@
 
 # pass V=1 for verbosity
 
-source "$(dirname "${0}")/lib/build.bash"
+source "$(dirname "${0}")/lib/log.bash"
+source "$(dirname "${0}")/lib/error.bash"
 
 log 2 "Setting project_dir ..."
 project_dir="$(dirname "$0")"
