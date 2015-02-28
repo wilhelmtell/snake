@@ -22,5 +22,6 @@ libsnake_a_SOURCES = sdl.hh sdl.cc \
                      game_fwd.hh \
                      game_view_fwd.hh \
                      game_view.hh \
+                     game_control_fwd.hh \
                      game_control.hh game_control.cc \
                      game.hh game.cc

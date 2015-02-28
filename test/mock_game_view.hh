@@ -5,7 +5,10 @@
 
 namespace snk {
 namespace test {
-struct mock_game_view : snk::game_view {};
+struct mock_game_view : snk::game_view {
+  void control(game_control* const);
+  void tick();
+};
 }
 }
 

@@ -7,7 +7,12 @@ namespace snk {
 struct game_control {
   explicit game_control(game_view* view);
 
+  void notify_end();
   bool is_on() const;
+  void tick();
+
+private:
+  game_view* view;
 };
 }
 

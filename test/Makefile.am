@@ -1,6 +1,7 @@
 check_PROGRAMS = check_snake
 check_snake_SOURCES = main.cc \
-                      mock_game_view.hh \
+                      quit_game_view.hh quit_game_view.cc \
+                      mock_game_view.hh mock_game_view.cc \
                       game.cc \
                       mock_berry_view.hh mock_berry_view.cc \
                       berry.cc \
