@@ -3,7 +3,7 @@
 
 namespace snk {
 namespace test {
-void quit_game_view::control(game_control* const ctrl) {
+void quit_game_view::controlled_by(game_control* const ctrl) {
   this->ctrl = ctrl;
 }
 
