@@ -27,7 +27,12 @@ then
 else
   cd "$project_build_variant_dir"
   info "Building ..."
-  make -j prefix=$HOME/usr/local/stow/"$project_name" V="$V" check
+  if [ "${V}" -eq 0 ];
+  then
+    make --silent -j prefix=$HOME/usr/local/stow/"$project_name" V="0" check
+  else
+    make -j prefix=$HOME/usr/local/stow/"$project_name" V="$V" check
+  fi
   build_success=$?
   if [ $build_success -eq 0 ];
   then
