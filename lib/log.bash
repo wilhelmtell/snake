@@ -1,7 +1,13 @@
 V=${V:-0}
 
-log() {
-  local LEVEL="$1"
-  local MSG="$2"
-  [ "$V" -ge "${LEVEL}" ] && echo "${MSG}"
+trace() {
+  [ "$V" -ge "3" ] && echo "${1}"
+}
+
+debug() {
+  [ "$V" -ge "2" ] && echo "${1}"
+}
+
+info() {
+  [ "$V" -ge "1" ] && echo "${1}"
 }
