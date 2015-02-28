@@ -5,4 +5,4 @@ AM_CXXFLAGS = ${SDL2_CFLAGS}
 AM_LDFLAGS = ${SDL2_LIBS}
 
 check: check-am
-	./$(check_PROGRAMS)
+	./$(check_PROGRAMS) --reporter=compact
