@@ -1,15 +1,12 @@
 #include "config.h"
-#include "game.hh"
-#include <SDL2/SDL.h>
+#include "sdl_game_view.hh"
+#include "game_control.hh"
+#include "sdl_window_view.hh"
 
 int main(int /*argc*/, char* /*argv*/ []) {
-  snk::game g;
-  while(true) {
-    for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
-      if(e.type == SDL_QUIT) return 0;
-      g.handle_event(e);
-    }
-    g.update();
-    g.draw();
-  }
+  snk::sdl_game_view view;
+  snk::sdl_window_view w_v{640, 480};
+  snk::game_control control{&view, &w_v};
+  view.controlled_by(&control);
+  while(control.is_on()) control.tick();
 }
