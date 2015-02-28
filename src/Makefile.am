@@ -19,6 +19,9 @@ libsnake_a_SOURCES = sdl.hh sdl.cc \
                      window_control.hh window_control.cc \
                      window.hh window.cc \
                      window_creation_error.hh window_creation_error.cc \
+                     renderer_view_fwd.hh \
+                     renderer_view.hh \
+                     renderer_control.hh renderer_control.cc \
                      renderer_fwd.hh \
                      renderer.hh renderer.cc \
                      renderer_creation_error.hh renderer_creation_error.cc \
