@@ -4,7 +4,7 @@
 
 namespace snk {
 game_control::game_control(game_view* view, window_view* w_v)
-: view(view), w_c{w_v} {}
+: view{view}, w_c{w_v} {}
 
 void game_control::notify_end() { view = nullptr; }
 
