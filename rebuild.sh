@@ -30,8 +30,14 @@ then
 fi
 
 info "Autoreconfing ..."
-autoreconf --install --force --warnings=all "$project_dir" ||
-  error "autoreconf failed."
+if [ "${V}" -eq 0 ];
+then
+  autoreconf --install --force --warnings=all "$project_dir" ||
+    error "autoreconf failed."
+else
+  autoreconf --verbose --install --force --warnings=all "$project_dir" ||
+    error "autoreconf failed."
+fi
 info "Wiping build ..."
 rm -rf "$project_build_variant_dir" ||
   error "wiping build failed."
