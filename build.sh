@@ -29,9 +29,9 @@ else
   info "Building ..."
   if [ "${V}" -eq 0 ];
   then
-    make --silent -j prefix=$HOME/usr/local/stow/"$project_name" V="0" check
+    make --silent -j prefix=$HOME/usr/local/stow/"$project_name" check
   else
-    make -j prefix=$HOME/usr/local/stow/"$project_name" V="$V" check
+    make -j prefix=$HOME/usr/local/stow/"$project_name" V="$((V-1))" check
   fi
   build_success=$?
   if [ $build_success -eq 0 ];
