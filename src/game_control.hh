@@ -6,6 +6,8 @@
 namespace snk {
 struct game_control {
   explicit game_control(game_view* view);
+
+  bool is_on() const;
 };
 }
 
