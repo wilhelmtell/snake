@@ -7,7 +7,7 @@
 
 namespace snk {
 struct game_control {
-  explicit game_control(game_view* view, window_view* w_v);
+  game_control(game_view* view, window_view* w_v);
 
   void notify_end();
   bool is_on() const;
