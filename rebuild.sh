@@ -30,12 +30,13 @@ then
 fi
 
 info "Autoreconfing ..."
-if [ "${V}" -eq 0 ];
+if [ "${V}" -ge 2 ];
+then
+  autoreconf --verbose --install --force --warnings=all "$project_dir" ||
+    error "autoreconf failed."
+elif [ "${V}" -ge 0 ];
 then
   autoreconf --install --force --warnings=all "$project_dir" ||
-    error "autoreconf failed."
-else
-  autoreconf --verbose --install --force --warnings=all "$project_dir" ||
     error "autoreconf failed."
 fi
 info "Wiping build ..."
@@ -46,12 +47,13 @@ mkdir -p "$project_build_variant_dir" ||
     error "build directory creation failed."
 info "Configuring build ..."
 cd "$project_build_variant_dir" &&
-  if [ "${V}" -eq 0 ];
+  if [ "${V}" -ge 2 ];
+  then
+    CONFIG_SITE="${CONFIG_SITE}" "$project_dir"/configure --prefix=$HOME/usr/local ||
+      error "Build configuration failed."
+  elif [ "${V}" -ge 0 ];
   then
     CONFIG_SITE="${CONFIG_SITE}" "$project_dir"/configure --silent --prefix=$HOME/usr/local ||
-      error "Build configuration failed."
-  else
-    CONFIG_SITE="${CONFIG_SITE}" "$project_dir"/configure --prefix=$HOME/usr/local ||
       error "Build configuration failed."
   fi
 "${project_dir}"/build.sh "$@"
