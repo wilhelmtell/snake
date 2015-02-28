@@ -15,7 +15,6 @@ struct game_control {
 
 private:
   game_view* view;
-  window_view* w_v;
   window_control w_c;
 };
 }
