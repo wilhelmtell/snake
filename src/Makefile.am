@@ -8,26 +8,31 @@ noinst_LIBRARIES = libsnake.a
 libsnake_a_SOURCES = sdl.hh sdl.cc \
                      snake_view_fwd.hh \
                      snake_view.hh \
+                     sdl_snake_view.hh sdl_snake_view.cc \
                      snake_control.hh snake_control.cc \
                      snake.hh snake.cc \
                      berry_view_fwd.hh \
                      berry_view.hh \
+                     sdl_berry_view.hh sdl_berry_view.cc \
                      berry_control.hh berry_control.cc \
                      berry.hh berry.cc \
                      window_view_fwd.hh \
                      window_view.hh \
                      window_control.hh window_control.cc \
+                     sdl_window_view.hh sdl_window_view.cc \
                      window.hh window.cc \
                      window_creation_error.hh window_creation_error.cc \
                      renderer_view_fwd.hh \
                      renderer_view.hh \
                      renderer_control.hh renderer_control.cc \
+                     sdl_renderer_view.hh sdl_renderer_view.cc \
                      renderer_fwd.hh \
                      renderer.hh renderer.cc \
                      renderer_creation_error.hh renderer_creation_error.cc \
                      game_fwd.hh \
                      game_view_fwd.hh \
                      game_view.hh \
+                     sdl_game_view.hh sdl_game_view.cc \
                      game_control_fwd.hh \
                      game_control.hh game_control.cc \
                      game.hh game.cc
