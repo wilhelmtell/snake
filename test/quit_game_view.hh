@@ -7,11 +7,11 @@
 namespace snk {
 namespace test {
 struct quit_game_view : snk::game_view {
-  void controlled_by(game_control* const ctrl);
+  void controlled_by(game_control* const control);
   void tick();
 
 private:
-  game_control* ctrl;
+  game_control* control;
 };
 }
 }

@@ -3,12 +3,12 @@
 
 namespace snk {
 namespace test {
-void quit_game_view::controlled_by(game_control* const ctrl) {
-  this->ctrl = ctrl;
+void quit_game_view::controlled_by(game_control* const control) {
+  this->control = control;
 }
 
 void quit_game_view::tick() {
-  ctrl->notify_end();
+  control->notify_end();
 }
 }
 }
