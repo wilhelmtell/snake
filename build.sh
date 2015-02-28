@@ -38,7 +38,7 @@ else
     make -j prefix=$HOME/usr/local/stow/"$project_name" V="$((V-1))" check
   elif [ "${V}" -ge 0 ];
   then
-    make --silent -j prefix=$HOME/usr/local/stow/"$project_name" check
+    V= make --silent -j prefix=$HOME/usr/local/stow/"$project_name" check
   fi
   build_success=$?
   if [ $build_success -eq 0 ];
