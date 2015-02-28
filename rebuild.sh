@@ -40,6 +40,12 @@ mkdir -p "$project_build_variant_dir" ||
     error "build directory creation failed."
 info "Configuring build ..."
 cd "$project_build_variant_dir" &&
-  CONFIG_SITE="${CONFIG_SITE}" "$project_dir"/configure --prefix=$HOME/usr/local ||
-  error "Build configuration failed."
+  if [ "${V}" -eq 0 ];
+  then
+    CONFIG_SITE="${CONFIG_SITE}" "$project_dir"/configure --silent --prefix=$HOME/usr/local ||
+      error "Build configuration failed."
+  else
+    CONFIG_SITE="${CONFIG_SITE}" "$project_dir"/configure --prefix=$HOME/usr/local ||
+      error "Build configuration failed."
+  fi
 "${project_dir}"/build.sh "$@"
