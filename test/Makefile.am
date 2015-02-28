@@ -1,5 +1,7 @@
 check_PROGRAMS = check_snake
 check_snake_SOURCES = main.cc \
+                      mock_window_view.hh \
+                      window.cc \
                       quit_game_view.hh quit_game_view.cc \
                       noop_game_view.hh noop_game_view.cc \
                       game.cc \
