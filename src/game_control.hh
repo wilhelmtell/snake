@@ -2,10 +2,12 @@
 #define SNK_GAME_CONTROL_HH_
 
 #include "game_view_fwd.hh"
+#include "window_view_fwd.hh"
+#include "window_control.hh"
 
 namespace snk {
 struct game_control {
-  explicit game_control(game_view* view);
+  explicit game_control(game_view* view, window_view* w_v);
 
   void notify_end();
   bool is_on() const;
@@ -13,6 +15,8 @@ struct game_control {
 
 private:
   game_view* view;
+  window_view* w_v;
+  window_control w_c;
 };
 }
 
