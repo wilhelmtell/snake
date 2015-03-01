@@ -29,6 +29,7 @@ libsnake_a_SOURCES = sdl.hh sdl.cc \
                      renderer_control.hh renderer_control.cc \
                      sdl_renderer_view.hh sdl_renderer_view.cc \
                      renderer_fwd.hh \
+                     sdl_renderer_handle.hh sdl_renderer_handle.cc \
                      renderer.hh renderer.cc \
                      renderer_creation_error.hh renderer_creation_error.cc \
                      game_fwd.hh \
