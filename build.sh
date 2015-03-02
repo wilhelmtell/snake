@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# pass V=1 for verbosity
+# V=1 for verbosity
+# Q=1 for quiet build
 
 source "$(dirname "${0}")/lib/log.bash"
 
@@ -27,17 +28,19 @@ then
 else
   cd "$project_build_variant_dir"
   info "Building ..."
-  if [ "${V}" -ge 3 ];
+  if [ "${Q}" -eq 0 -a "${V}" -ge 3 ];
   then
     make --trace --debug -j prefix=$HOME/usr/local/stow/"$project_name" V="$((V-1))" check
-  elif [ "${V}" -ge 2 ];
+  elif [ "${Q}" -eq 0 -a "${V}" -ge 2 ];
   then
     make --debug -j prefix=$HOME/usr/local/stow/"$project_name" V="$((V-1))" check
-  elif [ "${V}" -ge 1 ];
+  elif [ "${Q}" -eq 0 -a "${V}" -ge 1 ];
   then
     make -j prefix=$HOME/usr/local/stow/"$project_name" V="$((V-1))" check
-  elif [ "${V}" -ge 0 ];
+  elif [ "${Q}" -eq 0 -a "${V}" -ge 0 ];
   then
+    V= make -j prefix=$HOME/usr/local/stow/"$project_name" check
+  else
     V= make --silent -j prefix=$HOME/usr/local/stow/"$project_name" check
   fi
   build_success=$?
