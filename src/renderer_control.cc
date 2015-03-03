@@ -1,5 +1,5 @@
 #include "renderer_control.hh"
 
 namespace snk {
-renderer_control::renderer_control(renderer_view*) {}
+renderer_control::renderer_control(renderer_output*) {}
 }

@@ -1,9 +1,9 @@
 #include <catch/catch.hpp>
-#include "mock_snake_view.hh"
+#include "mock_snake_output.hh"
 #include "../src/snake_control.hh"
 
 TEST_CASE("snake is initially at origin") {
-  snk::test::mock_snake_view view;
-  snk::snake_control control{&view};
-  REQUIRE(view.at_position(0, 0));
+  snk::test::mock_snake_output output;
+  snk::snake_control control{&output};
+  REQUIRE(output.at_position(0, 0));
 }

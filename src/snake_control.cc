@@ -1,6 +1,6 @@
 #include "snake_control.hh"
-#include "snake_view.hh"
+#include "snake_output.hh"
 
 namespace snk {
-snake_control::snake_control(snake_view* view) { view->position(0, 0); }
+snake_control::snake_control(snake_output* output) { output->position(0, 0); }
 }
