@@ -5,6 +5,8 @@
 
 source "$(dirname "${0}")/lib/log.bash"
 
+# any of the following variables might contain whitespace (because they
+# originate from the user)
 trace "Setting project_dir ..."
 project_dir="$(dirname "$0")"
 debug "project_dir=\"${project_dir}\""
@@ -28,16 +30,16 @@ then
 else
   cd "$project_build_variant_dir"
   info "Building ..."
-  if [ "${Q}" -eq 0 -a "${V}" -ge 3 ];
+  if [ ${Q} -eq 0 -a ${V} -ge 3 ];
   then
-    make --trace --debug -j prefix=$HOME/usr/local/stow/"$project_name" V="$((V-1))" check
-  elif [ "${Q}" -eq 0 -a "${V}" -ge 2 ];
+    make --trace --debug -j prefix=$HOME/usr/local/stow/"$project_name" V=$((V-1)) check
+  elif [ ${Q} -eq 0 -a ${V} -ge 2 ];
   then
-    make --debug -j prefix=$HOME/usr/local/stow/"$project_name" V="$((V-1))" check
-  elif [ "${Q}" -eq 0 -a "${V}" -ge 1 ];
+    make --debug -j prefix=$HOME/usr/local/stow/"$project_name" V=$((V-1)) check
+  elif [ ${Q} -eq 0 -a ${V} -ge 1 ];
   then
-    make -j prefix=$HOME/usr/local/stow/"$project_name" V="$((V-1))" check
-  elif [ "${Q}" -eq 0 -a "${V}" -ge 0 ];
+    make -j prefix=$HOME/usr/local/stow/"$project_name" V=$((V-1)) check
+  elif [ ${Q} -eq 0 -a ${V} -ge 0 ];
   then
     V= make -j prefix=$HOME/usr/local/stow/"$project_name" check
   else

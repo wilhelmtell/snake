@@ -6,6 +6,8 @@
 source "$(dirname "${0}")/lib/log.bash"
 source "$(dirname "${0}")/lib/error.bash"
 
+# any of the following variables might contain whitespace (because they
+# originate from the user)
 trace "Setting project_dir ..."
 project_dir="$(dirname "$0")"
 debug "project_dir=\"${project_dir}\""
@@ -31,11 +33,11 @@ then
 fi
 
 info "Autoreconfing ..."
-if [ "${Q}" -eq 0 -a "${V}" -ge 2 ];
+if [ ${Q} -eq 0 -a ${V} -ge 2 ];
 then
   autoreconf --verbose --install --force --warnings=all "$project_dir" ||
     error "autoreconf failed."
-elif [ "${V}" -ge 0 ];
+elif [ ${V} -ge 0 ];
 then
   autoreconf --install --force --warnings=all "$project_dir" ||
     error "autoreconf failed."
@@ -48,7 +50,7 @@ mkdir -p "$project_build_variant_dir" ||
     error "build directory creation failed."
 info "Configuring build ..."
 cd "$project_build_variant_dir" &&
-  if [ "${Q}" -eq 0 ];
+  if [ ${Q} -eq 0 ];
   then
     CONFIG_SITE="${CONFIG_SITE}" "$project_dir"/configure --prefix=$HOME/usr/local ||
       error "Build configuration failed."
