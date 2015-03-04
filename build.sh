@@ -32,18 +32,18 @@ else
   info "Building ..."
   if [ ${Q} -eq 0 -a ${V} -ge 3 ];
   then
-    make --trace --debug -k -j prefix=$HOME/usr/local/stow/"$project_name" V=$((V-1)) check
+    make --trace --debug --keep-going --jobs prefix=$HOME/usr/local/stow/"$project_name" V=$((V-1)) check
   elif [ ${Q} -eq 0 -a ${V} -ge 2 ];
   then
-    make --debug -k -j prefix=$HOME/usr/local/stow/"$project_name" V=$((V-1)) check
+    make --debug --keep-going --jobs prefix=$HOME/usr/local/stow/"$project_name" V=$((V-1)) check
   elif [ ${Q} -eq 0 -a ${V} -ge 1 ];
   then
-    make -k -j prefix=$HOME/usr/local/stow/"$project_name" V=$((V-1)) check
+    make --keep-going --jobs prefix=$HOME/usr/local/stow/"$project_name" V=$((V-1)) check
   elif [ ${Q} -eq 0 -a ${V} -ge 0 ];
   then
-    V= make -k -j prefix=$HOME/usr/local/stow/"$project_name" check
+    V= make --keep-going --jobs prefix=$HOME/usr/local/stow/"$project_name" check
   else
-    V= make --silent -k -j prefix=$HOME/usr/local/stow/"$project_name" check
+    V= make --silent --keep-going --jobs prefix=$HOME/usr/local/stow/"$project_name" check
   fi
   build_success=$?
   if [ $build_success -eq 0 ];
