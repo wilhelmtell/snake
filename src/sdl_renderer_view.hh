@@ -2,14 +2,15 @@
 #define SNK_SDL_RENDERER_VIEW_HH_
 
 #include "renderer_view.hh"
-#include "renderer.hh"
+#include "sdl_window_handle_fwd.hh"
+#include "sdl_renderer_handle.hh"
 
 namespace snk {
 struct sdl_renderer_view : renderer_view {
-  sdl_renderer_view(window const& w);
+  sdl_renderer_view(sdl_window_handle const& w);
 
 private:
-  renderer r;
+  sdl_renderer_handle r;
 };
 }
 
