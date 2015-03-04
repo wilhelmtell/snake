@@ -5,4 +5,6 @@ namespace snk {
 void sdl_window_input::controlled_by(window_control* control) {
   this->control = control;
 }
+
+void sdl_window_input::tick() {}
 }

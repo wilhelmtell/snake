@@ -6,6 +6,7 @@
 namespace snk {
 struct game_input {
   virtual ~game_input() {}
+  virtual void controlled_by(game_control* const control) = 0;
   virtual void tick() = 0;
 };
 }

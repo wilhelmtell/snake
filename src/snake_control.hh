@@ -1,11 +1,18 @@
 #ifndef SNK_SNAKE_CONTROL_HH_
 #define SNK_SNAKE_CONTROL_HH_
 
-#include "snake_output_fwd.hh"
+#include "abstract_factory_fwd.hh"
+#include <memory>
+#include "snake_input.hh"
+#include "snake_output.hh"
 
 namespace snk {
 struct snake_control {
-  explicit snake_control(snake_output* output);
+  explicit snake_control(abstract_factory const&);
+
+private:
+  std::unique_ptr<snake_input> in;
+  std::unique_ptr<snake_output> out;
 };
 }
 

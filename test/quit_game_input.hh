@@ -1,5 +1,5 @@
-#ifndef SNK_QUIT_GAME_INPUT_HH_
-#define SNK_QUIT_GAME_INPUT_HH_
+#ifndef SNK_TEST_QUIT_GAME_INPUT_HH_
+#define SNK_TEST_QUIT_GAME_INPUT_HH_
 
 #include "../src/game_input.hh"
 #include "../src/game_control_fwd.hh"

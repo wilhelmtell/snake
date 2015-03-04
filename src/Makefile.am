@@ -5,8 +5,12 @@ AM_CXXFLAGS = ${SDL2_CFLAGS}
 AM_LDFLAGS = ${SDL2_LIBS}
 
 noinst_LIBRARIES = libsnake.a
-libsnake_a_SOURCES = berry.hh berry.cc \
+libsnake_a_SOURCES = abstract_factory.hh \
+                     abstract_factory_fwd.hh \
+                     berry.hh berry.cc \
                      berry_control.hh berry_control.cc \
+                     berry_input.hh \
+                     berry_input_fwd.hh \
                      berry_output.hh \
                      berry_output_fwd.hh \
                      game.hh game.cc \
@@ -19,16 +23,21 @@ libsnake_a_SOURCES = berry.hh berry.cc \
                      game_output_fwd.hh \
                      renderer.hh renderer.cc \
                      renderer_control.hh renderer_control.cc \
+                     renderer_control_fwd.hh \
                      renderer_creation_error.hh renderer_creation_error.cc \
                      renderer_fwd.hh \
+                     renderer_input.hh \
+                     renderer_input_fwd.hh \
                      renderer_output.hh \
                      renderer_output_fwd.hh \
                      sdl.hh sdl.cc \
                      sdl_berry_output.hh sdl_berry_output.cc \
+                     sdl_factory.hh sdl_factory.cc \
                      sdl_game_input.hh sdl_game_input.cc \
                      sdl_game_output.hh sdl_game_output.cc \
                      sdl_renderer_handle.hh sdl_renderer_handle.cc \
                      sdl_renderer_output.hh sdl_renderer_output.cc \
+                     sdl_snake_input.hh sdl_snake_input.cc \
                      sdl_snake_output.hh sdl_snake_output.cc \
                      sdl_window_handle.hh sdl_window_handle.cc \
                      sdl_window_handle_fwd.hh \
@@ -36,6 +45,9 @@ libsnake_a_SOURCES = berry.hh berry.cc \
                      sdl_window_output.hh sdl_window_output.cc \
                      snake.hh snake.cc \
                      snake_control.hh snake_control.cc \
+                     snake_control_fwd.hh \
+                     snake_input.hh \
+                     snake_input_fwd.hh \
                      snake_output.hh \
                      snake_output_fwd.hh \
                      window.hh window.cc \
