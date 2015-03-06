@@ -41,8 +41,8 @@ void snake::handle_event(game const& g, SDL_Event const& e) {
 }
 
 void snake::update(game const& g) {
-  if(rect.x + velx >= 0 && rect.x + velx < g.window_w()) rect.x += velx;
-  if(rect.y + vely >= 0 && rect.y + vely < g.window_h()) rect.y += vely;
+  if(rect.x + velx >= 0 && rect.x + rect.w + velx < g.window_w()) rect.x += velx;
+  if(rect.y + vely >= 0 && rect.y + rect.h + vely < g.window_h()) rect.y += vely;
 }
 
 void snake::draw(renderer const& r) const {
