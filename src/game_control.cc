@@ -6,11 +6,9 @@
 
 namespace snk {
 game_control::game_control(abstract_factory const& factory)
-: input{factory.make_game_input()}
+: input{factory.make_game_input(this)}
 , output{factory.make_game_output()}
-, w_c{factory} {
-  input->controlled_by(this);
-}
+, w_c{factory} {}
 
 void game_control::notify_end() { output = nullptr; }
 

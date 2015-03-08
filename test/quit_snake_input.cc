@@ -2,9 +2,8 @@
 
 namespace snk {
 namespace test {
-void quit_snake_input::controlled_by(snake_control* control) {
-  this->control = control;
-}
+quit_snake_input::quit_snake_input(snake_control* const control)
+: control{control} {}
 
 void quit_snake_input::tick() {}
 }

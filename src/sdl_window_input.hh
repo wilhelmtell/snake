@@ -6,7 +6,8 @@
 
 namespace snk {
 struct sdl_window_input : window_input {
-  void controlled_by(window_control* control) override;
+  explicit sdl_window_input(window_control* const control);
+
   void tick() override;
 
 private:

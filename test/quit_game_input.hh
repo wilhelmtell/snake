@@ -7,7 +7,8 @@
 namespace snk {
 namespace test {
 struct quit_game_input : snk::game_input {
-  void controlled_by(snk::game_control* control) override;
+  explicit quit_game_input(snk::game_control* const control);
+
   void tick() override;
 
 private:

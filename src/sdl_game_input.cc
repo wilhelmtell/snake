@@ -3,9 +3,8 @@
 #include <SDL2/SDL.h>
 
 namespace snk {
-void sdl_game_input::controlled_by(game_control* const control) {
-  this->control = control;
-}
+sdl_game_input::sdl_game_input(game_control* const control)
+: control{control} {}
 
 void sdl_game_input::tick() {
   for(SDL_Event e; SDL_PollEvent(&e) != 0;) {

@@ -3,9 +3,8 @@
 
 namespace snk {
 namespace test {
-void mock_window_input::controlled_by(snk::window_control* control) {
-  this->control = control;
-}
+mock_window_input::mock_window_input(snk::window_control* const control)
+: control{control} {}
 
 void mock_window_input::tick() {}
 }

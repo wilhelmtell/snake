@@ -2,9 +2,8 @@
 
 namespace snk {
 namespace test {
-void mock_snake_input::controlled_by(snake_control* control) {
-  this->control = control;
-}
+mock_snake_input::mock_snake_input(snake_control* const control)
+: control{control} {}
 
 void mock_snake_input::tick() {}
 }

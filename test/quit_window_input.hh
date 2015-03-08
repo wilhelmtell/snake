@@ -7,7 +7,8 @@
 namespace snk {
 namespace test {
 struct quit_window_input : snk::window_input {
-  void controlled_by(snk::window_control* control) override;
+  explicit quit_window_input(snk::window_control* const control);
+
   void tick() override;
 
 private:

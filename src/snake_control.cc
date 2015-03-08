@@ -3,5 +3,5 @@
 
 namespace snk {
 snake_control::snake_control(abstract_factory const& factory)
-: in{factory.make_snake_input()}, out{factory.make_snake_output()} {}
+: in{factory.make_snake_input(this)}, out{factory.make_snake_output()} {}
 }

@@ -6,7 +6,8 @@
 
 namespace snk {
 struct sdl_snake_input : snake_input {
-  void controlled_by(snake_control* control) override;
+  explicit sdl_snake_input(snake_control* const control);
+
   void tick() override;
 
 private:

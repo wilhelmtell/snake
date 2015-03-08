@@ -6,7 +6,6 @@
 namespace snk {
 struct snake_input {
   virtual ~snake_input(){};
-  virtual void controlled_by(snake_control* control) = 0;
   virtual void tick() = 0;
 };
 }

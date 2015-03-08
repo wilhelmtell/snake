@@ -7,7 +7,8 @@
 namespace snk {
 namespace test {
 struct quit_snake_input : snk::snake_input {
-  void controlled_by(snake_control* control) override;
+  explicit quit_snake_input(snake_control* const control);
+
   void tick() override;
 
 private:
