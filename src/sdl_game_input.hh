@@ -6,8 +6,8 @@
 
 namespace snk {
 struct sdl_game_input : game_input {
-  void controlled_by(game_control* const control);
-  void tick();
+  void controlled_by(game_control* const control) override;
+  void tick() override;
 
 private:
   game_control* control;
