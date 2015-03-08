@@ -7,13 +7,11 @@ AM_LDFLAGS = ${SDL2_LIBS}
 noinst_LIBRARIES = libsnake.a
 libsnake_a_SOURCES = abstract_factory.hh \
                      abstract_factory_fwd.hh \
-                     berry.hh berry.cc \
                      berry_control.hh berry_control.cc \
                      berry_input.hh \
                      berry_input_fwd.hh \
                      berry_output.hh \
                      berry_output_fwd.hh \
-                     game.hh game.cc \
                      game_control.hh game_control.cc \
                      game_control_fwd.hh \
                      game_fwd.hh \
@@ -21,7 +19,6 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      game_input_fwd.hh \
                      game_output.hh \
                      game_output_fwd.hh \
-                     renderer.hh renderer.cc \
                      renderer_control.hh renderer_control.cc \
                      renderer_control_fwd.hh \
                      renderer_creation_error.hh renderer_creation_error.cc \
@@ -30,7 +27,6 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      renderer_input_fwd.hh \
                      renderer_output.hh \
                      renderer_output_fwd.hh \
-                     sdl.hh sdl.cc \
                      sdl_berry_output.hh sdl_berry_output.cc \
                      sdl_factory.hh sdl_factory.cc \
                      sdl_game_input.hh sdl_game_input.cc \
@@ -43,14 +39,12 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      sdl_window_handle_fwd.hh \
                      sdl_window_input.hh sdl_window_input.cc \
                      sdl_window_output.hh sdl_window_output.cc \
-                     snake.hh snake.cc \
                      snake_control.hh snake_control.cc \
                      snake_control_fwd.hh \
                      snake_input.hh \
                      snake_input_fwd.hh \
                      snake_output.hh \
                      snake_output_fwd.hh \
-                     window.hh window.cc \
                      window_control.hh window_control.cc \
                      window_control_fwd.hh \
                      window_creation_error.hh window_creation_error.cc \
