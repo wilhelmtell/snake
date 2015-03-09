@@ -7,7 +7,10 @@
 namespace snk {
 namespace test {
 struct mock_snake_input : snk::snake_input {
+  mock_snake_input() = default;
   explicit mock_snake_input(snake_control* const control);
+
+  void controlled_by(snake_control* const control);
 
   void tick() override;
 
