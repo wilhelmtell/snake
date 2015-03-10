@@ -2,8 +2,7 @@
 #include "window_control.hh"
 
 namespace snk {
-sdl_window_input::sdl_window_input(window_control* const control)
-: control{control} {}
+sdl_window_input::sdl_window_input(window_control* const) {}
 
 void sdl_window_input::tick() {}
 }

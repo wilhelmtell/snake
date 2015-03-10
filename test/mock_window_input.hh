@@ -10,9 +10,6 @@ struct mock_window_input : snk::window_input {
   explicit mock_window_input(snk::window_control* const control);
 
   void tick() override;
-
-private:
-  window_control* control;
 };
 }
 }

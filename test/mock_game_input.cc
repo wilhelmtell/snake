@@ -2,8 +2,7 @@
 
 namespace snk {
 namespace test {
-mock_game_input::mock_game_input(game_control* const control)
-: control{control} {}
+mock_game_input::mock_game_input(game_control* const) {}
 
 void mock_game_input::tick() {}
 }
