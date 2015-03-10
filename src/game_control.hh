@@ -2,14 +2,17 @@
 #define SNK_GAME_CONTROL_HH_
 
 #include <memory>
-#include "game_output_fwd.hh"
-#include "game_input_fwd.hh"
+#include "game_output.hh"
+#include "game_input.hh"
 #include "abstract_factory_fwd.hh"
 #include "window_control.hh"
 
 namespace snk {
 struct game_control {
   explicit game_control(abstract_factory const& factory);
+  game_control(std::unique_ptr<game_input> input,
+               std::unique_ptr<game_output> output,
+               abstract_factory const& factory);
 
   void notify_end();
   bool is_on() const;
