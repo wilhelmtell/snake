@@ -5,5 +5,5 @@
 int main(int /*argc*/, char* /*argv*/ []) {
   snk::sdl_factory factory;
   snk::game_control control{factory};
-  while(control.is_on()) control.tick();
+  while(!control.quit_requested()) control.tick();
 }

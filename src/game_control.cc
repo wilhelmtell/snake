@@ -18,7 +18,7 @@ game_control::game_control(std::unique_ptr<game_input> input,
 
 void game_control::notify_end() { output = nullptr; }
 
-bool game_control::is_on() const { return output != nullptr; }
+bool game_control::quit_requested() const { return output == nullptr; }
 
 void game_control::tick() { input->tick(); }
 }

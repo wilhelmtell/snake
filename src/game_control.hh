@@ -15,7 +15,7 @@ struct game_control {
                abstract_factory const& factory);
 
   void notify_end();
-  bool is_on() const;
+  bool quit_requested() const;
   void tick();
 
 private:
