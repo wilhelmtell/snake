@@ -4,7 +4,5 @@
 namespace snk {
 namespace test {
 quit_window_input::quit_window_input(snk::window_control* const) {}
-
-void quit_window_input::tick() {}
 }
 }

@@ -3,6 +3,4 @@
 
 namespace snk {
 sdl_window_input::sdl_window_input(window_control* const) {}
-
-void sdl_window_input::tick() {}
 }

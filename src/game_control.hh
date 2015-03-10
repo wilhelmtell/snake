@@ -6,6 +6,7 @@
 #include "game_input.hh"
 #include "abstract_factory_fwd.hh"
 #include "window_control.hh"
+#include "event_fwd.hh"
 
 namespace snk {
 struct game_control {
@@ -14,9 +15,7 @@ struct game_control {
                std::unique_ptr<game_output> output,
                abstract_factory const& factory);
 
-  void notify_end();
-  bool quit_requested() const;
-  void tick();
+  void handle_event(event const& e);
 
 private:
   std::unique_ptr<game_input> input;

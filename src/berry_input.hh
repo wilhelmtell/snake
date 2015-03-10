@@ -4,7 +4,6 @@
 namespace snk {
 struct berry_input {
   virtual ~berry_input() {}
-  virtual void tick() = 0;
 };
 }
 

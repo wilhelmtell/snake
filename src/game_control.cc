@@ -16,9 +16,5 @@ game_control::game_control(std::unique_ptr<game_input> input,
                            abstract_factory const& factory)
 : input{std::move(input)}, output{std::move(output)}, w_c{factory} {}
 
-void game_control::notify_end() { output = nullptr; }
-
-bool game_control::quit_requested() const { return output == nullptr; }
-
-void game_control::tick() { input->tick(); }
+void game_control::handle_event(event const& /*e*/) {}
 }

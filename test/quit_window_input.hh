@@ -8,8 +8,6 @@ namespace snk {
 namespace test {
 struct quit_window_input : snk::window_input {
   explicit quit_window_input(snk::window_control* const control);
-
-  void tick() override;
 };
 }
 }

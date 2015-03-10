@@ -4,7 +4,6 @@
 namespace snk {
 struct game_input {
   virtual ~game_input() {}
-  virtual void tick() = 0;
 };
 }
 

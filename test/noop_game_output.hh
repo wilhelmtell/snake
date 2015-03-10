@@ -5,9 +5,7 @@
 
 namespace snk {
 namespace test {
-struct noop_game_output : snk::game_output {
-  void tick();
-};
+struct noop_game_output : snk::game_output {};
 }
 }
 

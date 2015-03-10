@@ -3,7 +3,5 @@
 namespace snk {
 namespace test {
 quit_snake_input::quit_snake_input(snake_control* const) {}
-
-void quit_snake_input::tick() {}
 }
 }

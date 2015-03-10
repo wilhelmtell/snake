@@ -12,8 +12,6 @@ struct mock_snake_input : snk::snake_input {
 
   void controlled_by(snake_control* const control);
 
-  void tick() override;
-
 private:
   snake_control* control;
 };

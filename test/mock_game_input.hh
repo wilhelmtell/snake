@@ -8,8 +8,6 @@ namespace snk {
 namespace test {
 struct mock_game_input : snk::game_input {
   explicit mock_game_input(game_control* const control);
-
-  void tick() override;
 };
 }
 }

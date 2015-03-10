@@ -5,9 +5,7 @@
 
 namespace snk {
 namespace test {
-struct noop_game_input : snk::game_input {
-  void tick() override;
-};
+struct noop_game_input : snk::game_input {};
 }
 }
 

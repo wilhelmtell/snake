@@ -6,7 +6,6 @@
 namespace snk {
 struct window_input {
   virtual ~window_input() {}
-  virtual void tick() = 0;
 };
 }
 

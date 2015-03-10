@@ -8,7 +8,5 @@ mock_snake_input::mock_snake_input(snake_control* const control)
 void mock_snake_input::controlled_by(snake_control* const control) {
   this->control = control;
 }
-
-void mock_snake_input::tick() {}
 }
 }

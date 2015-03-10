@@ -9,8 +9,6 @@ namespace test {
 struct quit_game_input : snk::game_input {
   explicit quit_game_input(snk::game_control* const control);
 
-  void tick() override;
-
 private:
   snk::game_control* control;
 };
