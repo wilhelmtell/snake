@@ -8,8 +8,10 @@
 int main(int /*argc*/, char* /*argv*/ []) {
   snk::sdl_factory factory;
   snk::game_control control{factory};
-  for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
-    if(e.type == SDL_QUIT) return 0;
-    control.handle_event(snk::to_event(e));
+  while(true) {
+    for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
+      if(e.type == SDL_QUIT) return 0;
+      control.handle_event(snk::to_event(e));
+    }
   }
 }
