@@ -33,6 +33,7 @@ void snake_control::update() {
 }
 
 void snake_control::draw() {
+  out->set_colour(0x7f, 0x7f, 0x7f, 0xff);
   out->draw_rect(x, y, 25, 25);
 }
 }

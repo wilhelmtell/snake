@@ -8,6 +8,7 @@ namespace snk {
 struct sdl_snake_output : snake_output {
   explicit sdl_snake_output(SDL_Renderer* r);
 
+  void set_colour(int r, int g, int b, int a) override;
   void draw_rect(int x, int y, int w, int h) override;
 
 private:
