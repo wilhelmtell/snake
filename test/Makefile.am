@@ -9,11 +9,6 @@ check_snake_SOURCES = berry.cc \
                       mock_snake_output.hh mock_snake_output.cc \
                       mock_window_output.hh mock_window_output.cc \
                       noop_game_output.hh noop_game_output.cc \
-                      quit_factory.hh quit_factory.cc \
-                      quit_game_output.hh quit_game_output.cc \
-                      quit_snake_output.hh quit_snake_output.cc \
-                      quit_berry_output.hh quit_berry_output.cc \
-                      quit_window_output.hh quit_window_output.cc \
                       renderer.cc \
                       snake.cc \
                       window.cc
