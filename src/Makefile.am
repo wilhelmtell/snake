@@ -25,13 +25,8 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      sdl_snake_output.hh sdl_snake_output.cc \
                      sdl_window.hh sdl_window.cc \
                      sdl_window_fwd.hh \
-                     sdl_window_output.hh sdl_window_output.cc \
                      snake_control.hh snake_control.cc \
                      snake_control_fwd.hh \
                      snake_output.hh \
                      snake_output_fwd.hh \
-                     window_control.hh window_control.cc \
-                     window_control_fwd.hh \
-                     window_creation_error.hh window_creation_error.cc \
-                     window_output.hh \
-                     window_output_fwd.hh
+                     window_creation_error.hh window_creation_error.cc

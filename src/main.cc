@@ -6,7 +6,12 @@
 #include "event.hh"
 
 int main(int /*argc*/, char* /*argv*/ []) {
-  snk::sdl_factory factory;
+  snk::sdl_factory factory{snk::sdl_window{"Snake",
+                                           SDL_WINDOWPOS_UNDEFINED,
+                                           SDL_WINDOWPOS_UNDEFINED,
+                                           640,
+                                           480,
+                                           SDL_WINDOW_SHOWN}};
   snk::game_control control{factory};
   while(true) {
     for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
