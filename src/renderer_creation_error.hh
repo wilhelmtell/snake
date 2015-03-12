@@ -5,7 +5,6 @@
 
 namespace snk {
 struct renderer_creation_error : std::runtime_error {
-  renderer_creation_error() = default;
   renderer_creation_error(char const* const m);
 };
 }
