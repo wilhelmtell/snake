@@ -12,6 +12,7 @@ check_snake_SOURCES = berry.cc \
                       quit_factory.hh quit_factory.cc \
                       quit_game_output.hh quit_game_output.cc \
                       quit_snake_output.hh quit_snake_output.cc \
+                      quit_berry_output.hh quit_berry_output.cc \
                       quit_window_output.hh quit_window_output.cc \
                       renderer.cc \
                       snake.cc \

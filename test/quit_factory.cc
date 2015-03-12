@@ -3,6 +3,7 @@
 #include "quit_game_output.hh"
 #include "quit_window_output.hh"
 #include "quit_snake_output.hh"
+#include "quit_berry_output.hh"
 
 namespace snk {
 namespace test {
@@ -16,6 +17,10 @@ std::unique_ptr<snk::window_output> quit_factory::make_window_output() const {
 
 std::unique_ptr<snk::snake_output> quit_factory::make_snake_output() const {
   return std::make_unique<quit_snake_output>();
+}
+
+std::unique_ptr<snk::berry_output> quit_factory::make_berry_output() const {
+  return std::make_unique<quit_berry_output>();
 }
 }
 }
