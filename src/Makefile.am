@@ -21,7 +21,7 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      sdl_event_to_event.hh sdl_event_to_event.cc \
                      sdl_factory.hh sdl_factory.cc \
                      sdl_game_output.hh sdl_game_output.cc \
-                     sdl_renderer_handle.hh sdl_renderer_handle.cc \
+                     sdl_renderer.hh sdl_renderer.cc \
                      sdl_snake_output.hh sdl_snake_output.cc \
                      sdl_window_handle.hh sdl_window_handle.cc \
                      sdl_window_handle_fwd.hh \
