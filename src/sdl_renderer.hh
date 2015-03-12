@@ -3,10 +3,7 @@
 
 #include <memory>
 #include <SDL2/SDL.h>
-
-namespace snk {
-struct sdl_window;
-}
+#include "sdl_window_fwd.hh"
 
 namespace snk {
 struct sdl_renderer {
