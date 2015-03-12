@@ -4,6 +4,8 @@
 namespace snk {
 struct game_output {
   virtual ~game_output() {}
+
+  virtual void present() = 0;
 };
 }
 

@@ -18,5 +18,6 @@ void game_control::update() {
 
 void game_control::draw() {
   snake.draw();
+  out->present();
 }
 }

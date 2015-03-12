@@ -6,7 +6,12 @@
 
 namespace snk {
 struct sdl_game_output : game_output {
-  explicit sdl_game_output(SDL_Renderer* renderer);
+  explicit sdl_game_output(SDL_Renderer* r);
+
+  void present() override;
+
+private:
+  SDL_Renderer* r;
 };
 }
 
