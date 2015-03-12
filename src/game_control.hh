@@ -17,7 +17,7 @@ struct game_control {
   void draw();
 
 private:
-  std::unique_ptr<game_output> output;
+  std::unique_ptr<game_output> out;
   snake_control snake;
 };
 }

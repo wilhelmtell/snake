@@ -6,7 +6,7 @@
 
 namespace snk {
 game_control::game_control(abstract_factory const& factory)
-: output{factory.make_game_output()}, snake{factory} {}
+: out{factory.make_game_output()}, snake{factory} {}
 
 void game_control::handle_event(event const& e) {
   snake.handle_event(e);
