@@ -19,6 +19,7 @@ private:
   std::unique_ptr<snake_output> out;
   int direction;  // 0=up, 1=right, 2=down, 3=left
   int x, y;
+  int w, h;
 };
 }
 

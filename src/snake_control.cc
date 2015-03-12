@@ -4,7 +4,7 @@
 
 namespace snk {
 snake_control::snake_control(abstract_factory const& factory)
-: out{factory.make_snake_output()}, direction{1}, x{0}, y{0} {}
+: out{factory.make_snake_output()}, direction{1}, x{0}, y{0}, w{25}, h{25} {}
 
 snake_control::snake_control(std::unique_ptr<snake_output> out)
 : out{std::move(out)} {}
@@ -34,6 +34,6 @@ void snake_control::update() {
 
 void snake_control::draw() {
   out->set_colour(0x7f, 0x7f, 0x7f, 0xff);
-  out->draw_rect(x, y, 25, 25);
+  out->draw_rect(x, y, w, h);
 }
 }
