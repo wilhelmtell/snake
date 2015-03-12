@@ -5,6 +5,7 @@
 #include <memory>
 #include "../src/game_output.hh"
 #include "../src/window_output.hh"
+#include "../src/snake_output.hh"
 #include "../src/berry_output.hh"
 
 namespace snk {
