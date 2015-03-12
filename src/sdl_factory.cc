@@ -20,10 +20,10 @@ std::unique_ptr<game_output> sdl_factory::make_game_output() const {
 }
 
 std::unique_ptr<snake_output> sdl_factory::make_snake_output() const {
-  return std::make_unique<sdl_snake_output>();
+  return std::make_unique<sdl_snake_output>(r.get());
 }
 
 std::unique_ptr<berry_output> sdl_factory::make_berry_output() const {
-  return std::make_unique<sdl_berry_output>();
+  return std::make_unique<sdl_berry_output>(r.get());
 }
 }
