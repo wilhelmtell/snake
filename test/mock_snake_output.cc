@@ -6,9 +6,11 @@ bool mock_snake_output::at_position(int x, int y) const {
   return x == this->x && y == this->y;
 }
 
-void mock_snake_output::position(int x, int y) {
+void mock_snake_output::draw_rect(int x, int y, int w, int h) {
   this->x = x;
   this->y = y;
+  this->w = w;
+  this->h = h;
 }
 }
 }

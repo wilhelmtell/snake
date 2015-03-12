@@ -8,10 +8,11 @@ namespace test {
 struct mock_snake_output : snk::snake_output {
   bool at_position(int x, int y) const;
 
-  void position(int x, int y) override;
+  void draw_rect(int x, int y, int w, int h) override;
 
 private:
   int x, y;
+  int w, h;
 };
 }
 }

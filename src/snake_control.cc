@@ -32,5 +32,7 @@ void snake_control::update() {
     ++y;
 }
 
-void snake_control::draw() {}
+void snake_control::draw() {
+  out->draw_rect(x, y, 25, 25);
+}
 }

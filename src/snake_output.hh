@@ -5,7 +5,7 @@ namespace snk {
 struct snake_output {
   virtual ~snake_output() {}
 
-  virtual void position(int x, int y) = 0;
+  virtual void draw_rect(int x, int y, int w, int h) = 0;
 };
 }
 
