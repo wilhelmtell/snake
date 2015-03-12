@@ -1,10 +1,10 @@
 #include "sdl_renderer.hh"
 #include <SDL2/SDL.h>
 #include "renderer_creation_error.hh"
-#include "sdl_window_handle.hh"
+#include "sdl_window.hh"
 
 namespace snk {
-sdl_renderer::sdl_renderer(sdl_window_handle const& w,
+sdl_renderer::sdl_renderer(sdl_window const& w,
                            int const& index,
                            int const& flags)
 : r{SDL_CreateRenderer(w.get(), index, flags), &SDL_DestroyRenderer} {

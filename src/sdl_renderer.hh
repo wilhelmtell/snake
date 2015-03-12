@@ -5,12 +5,12 @@
 #include <SDL2/SDL.h>
 
 namespace snk {
-struct sdl_window_handle;
+struct sdl_window;
 }
 
 namespace snk {
 struct sdl_renderer {
-  sdl_renderer(sdl_window_handle const& w, int const& index, int const& flags);
+  sdl_renderer(sdl_window const& w, int const& index, int const& flags);
 
   SDL_Renderer* get() const;
 

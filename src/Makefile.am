@@ -23,8 +23,8 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      sdl_game_output.hh sdl_game_output.cc \
                      sdl_renderer.hh sdl_renderer.cc \
                      sdl_snake_output.hh sdl_snake_output.cc \
-                     sdl_window_handle.hh sdl_window_handle.cc \
-                     sdl_window_handle_fwd.hh \
+                     sdl_window.hh sdl_window.cc \
+                     sdl_window_fwd.hh \
                      sdl_window_output.hh sdl_window_output.cc \
                      snake_control.hh snake_control.cc \
                      snake_control_fwd.hh \

@@ -5,13 +5,13 @@
 #include <SDL2/SDL.h>
 
 namespace snk {
-struct sdl_window_handle {
-  sdl_window_handle(char const* const title,
-                    int const& x,
-                    int const& y,
-                    int const& width,
-                    int const& height,
-                    int const& flags);
+struct sdl_window {
+  sdl_window(char const* const title,
+             int const& x,
+             int const& y,
+             int const& width,
+             int const& height,
+             int const& flags);
 
   SDL_Window* get() const;
 
