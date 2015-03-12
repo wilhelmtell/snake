@@ -6,8 +6,13 @@
 #include "sdl_berry_output.hh"
 
 namespace snk {
-sdl_factory::sdl_factory(sdl_window w)
-: w{std::move(w)}
+sdl_factory::sdl_factory()
+: w{"Snake",
+    SDL_WINDOWPOS_UNDEFINED,
+    SDL_WINDOWPOS_UNDEFINED,
+    640,
+    480,
+    SDL_WINDOW_SHOWN}
 , r{this->w, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC} {}
 
 std::unique_ptr<game_output> sdl_factory::make_game_output() const {

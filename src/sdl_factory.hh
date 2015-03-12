@@ -11,7 +11,7 @@
 
 namespace snk {
 struct sdl_factory : abstract_factory {
-  explicit sdl_factory(sdl_window w);
+  sdl_factory();
 
   std::unique_ptr<game_output> make_game_output() const override;
   std::unique_ptr<snake_output> make_snake_output() const override;
