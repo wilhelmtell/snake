@@ -6,13 +6,15 @@
 
 namespace snk {
 struct sdl_snake_output : snake_output {
-  explicit sdl_snake_output(SDL_Renderer* r);
+  sdl_snake_output(SDL_Renderer* r, SDL_Window* w);
 
+  void get_drawable_size(int* w, int* h) override;
   void set_colour(int r, int g, int b, int a) override;
   void draw_rect(int x, int y, int w, int h) override;
 
 private:
   SDL_Renderer* r;
+  SDL_Window* w;
 };
 }
 

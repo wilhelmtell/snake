@@ -22,13 +22,15 @@ void snake_control::handle_event(event const& e) {
 }
 
 void snake_control::update() {
-  if(direction == 1)
+  int drawable_w, drawable_h;
+  out->get_drawable_size(&drawable_w, &drawable_h);
+  if(direction == 1 && x + w < drawable_w)
     ++x;
-  else if(direction == 3)
+  else if(direction == 3 && x > 0)
     --x;
-  if(direction == 0)
+  if(direction == 0 && y > 0)
     --y;
-  else if(direction == 2)
+  else if(direction == 2 && y + h < drawable_h)
     ++y;
 }
 

@@ -6,6 +6,8 @@ bool mock_snake_output::at_position(int x, int y) const {
   return x == this->x && y == this->y;
 }
 
+void mock_snake_output::get_drawable_size(int* /*w*/, int* /*h*/) {}
+
 void mock_snake_output::set_colour(int /*r*/,
                                    int /*g*/,
                                    int /*b*/,
