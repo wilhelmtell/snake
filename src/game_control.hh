@@ -14,6 +14,8 @@ struct game_control {
                abstract_factory const& factory);
 
   void handle_event(event const& e);
+  void update();
+  void draw();
 
 private:
   std::unique_ptr<game_output> output;

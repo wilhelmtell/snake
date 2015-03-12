@@ -12,6 +12,8 @@ int main(int /*argc*/, char* /*argv*/ []) {
     for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
       if(e.type == SDL_QUIT) return 0;
       control.handle_event(snk::to_event(e));
+      control.update();
+      control.draw();
     }
   }
 }

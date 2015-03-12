@@ -4,11 +4,16 @@
 #include "abstract_factory_fwd.hh"
 #include <memory>
 #include "snake_output.hh"
+#include "event_fwd.hh"
 
 namespace snk {
 struct snake_control {
   explicit snake_control(abstract_factory const&);
   explicit snake_control(std::unique_ptr<snake_output> out);
+
+  void handle_event(event const& e);
+  void update();
+  void draw();
 
 private:
   std::unique_ptr<snake_output> out;

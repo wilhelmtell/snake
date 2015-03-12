@@ -13,4 +13,8 @@ game_control::game_control(std::unique_ptr<game_output> output,
 : output{std::move(output)}, w_c{factory} {}
 
 void game_control::handle_event(event const& /*e*/) {}
+
+void game_control::update() {}
+
+void game_control::draw() {}
 }

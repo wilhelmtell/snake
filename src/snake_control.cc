@@ -7,4 +7,10 @@ snake_control::snake_control(abstract_factory const& factory)
 
 snake_control::snake_control(std::unique_ptr<snake_output> out)
 : out{std::move(out)} {}
+
+void snake_control::handle_event(event const& /*e*/) {}
+
+void snake_control::update() {}
+
+void snake_control::draw() {}
 }
