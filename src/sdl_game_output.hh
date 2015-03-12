@@ -8,6 +8,7 @@ namespace snk {
 struct sdl_game_output : game_output {
   explicit sdl_game_output(SDL_Renderer* r);
 
+  void clear(int r, int g, int b, int a) override;
   void present() override;
 
 private:

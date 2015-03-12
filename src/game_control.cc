@@ -17,6 +17,7 @@ void game_control::update() {
 }
 
 void game_control::draw() {
+  out->clear(0x00, 0x00, 0x00, 0xff);
   snake.draw();
   out->present();
 }

@@ -6,6 +6,7 @@
 namespace snk {
 namespace test {
 struct mock_game_output : snk::game_output {
+  void clear(int r, int g, int b, int a) override;
   void present() override;
 };
 }
