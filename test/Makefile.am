@@ -5,11 +5,9 @@ check_snake_SOURCES = berry.cc \
                       mock_berry_output.hh mock_berry_output.cc \
                       mock_factory.hh mock_factory.cc \
                       mock_game_output.hh mock_game_output.cc \
-                      mock_renderer_output.hh mock_renderer_output.cc \
                       mock_snake_output.hh mock_snake_output.cc \
                       mock_window_output.hh mock_window_output.cc \
                       noop_game_output.hh noop_game_output.cc \
-                      renderer.cc \
                       snake.cc \
                       window.cc
 check_snake_LDADD = ../src/libsnake.a

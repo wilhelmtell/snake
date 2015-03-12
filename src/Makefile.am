@@ -16,17 +16,12 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      game_control_fwd.hh \
                      game_output.hh \
                      game_output_fwd.hh \
-                     renderer_control.hh renderer_control.cc \
-                     renderer_control_fwd.hh \
                      renderer_creation_error.hh renderer_creation_error.cc \
-                     renderer_output.hh \
-                     renderer_output_fwd.hh \
                      sdl_berry_output.hh sdl_berry_output.cc \
                      sdl_event_to_event.hh sdl_event_to_event.cc \
                      sdl_factory.hh sdl_factory.cc \
                      sdl_game_output.hh sdl_game_output.cc \
                      sdl_renderer_handle.hh sdl_renderer_handle.cc \
-                     sdl_renderer_output.hh sdl_renderer_output.cc \
                      sdl_snake_output.hh sdl_snake_output.cc \
                      sdl_window_handle.hh sdl_window_handle.cc \
                      sdl_window_handle_fwd.hh \
