@@ -6,7 +6,6 @@
 namespace snk {
 namespace test {
 struct noop_game_output : snk::game_output {
-  void controlled_by(game_control* const);
   void tick();
 };
 }

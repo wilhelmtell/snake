@@ -3,9 +3,8 @@
 
 namespace snk {
 namespace test {
-void quit_game_input::controlled_by(snk::game_control* control) {
-  this->control = control;
-}
+quit_game_input::quit_game_input(snk::game_control* const control)
+: control{control} {}
 
 void quit_game_input::tick() { control->notify_end(); }
 }

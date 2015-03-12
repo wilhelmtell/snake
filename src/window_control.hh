@@ -1,16 +1,18 @@
 #ifndef SNK_WINDOW_CONTROL_HH_
 #define SNK_WINDOW_CONTROL_HH_
 
-#include "window_output_fwd.hh"
-#include "window_control_fwd.hh"
+#include "abstract_factory_fwd.hh"
+#include <memory>
+#include "window_input.hh"
+#include "window_output.hh"
 
 namespace snk {
 struct window_control {
-  explicit window_control(window_output* output);
-  void controlled_by(window_control* control);
+  explicit window_control(abstract_factory const& factory);
 
 private:
-  window_output* output;
+  std::unique_ptr<window_input> in;
+  std::unique_ptr<window_output> out;
 };
 }
 

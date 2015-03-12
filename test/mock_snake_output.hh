@@ -8,7 +8,7 @@ namespace test {
 struct mock_snake_output : snk::snake_output {
   bool at_position(int x, int y) const;
 
-  void position(int x, int y);
+  void position(int x, int y) override;
 
 private:
   int x, y;
