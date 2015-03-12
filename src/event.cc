@@ -1,5 +1,5 @@
 #include "event.hh"
 
 namespace snk {
-event::event(event::type const& t) : t{t} {}
+event::event(event::type_t const& t) : type{t} {}
 }

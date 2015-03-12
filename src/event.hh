@@ -3,7 +3,7 @@
 
 namespace snk {
 struct event {
-  enum type {
+  enum type_t {
     unknown = -1,
     keydown_left,
     keydown_right,
@@ -11,10 +11,10 @@ struct event {
     keydown_down,
   };
 
-  explicit event(type const& t);
+  explicit event(type_t const& t);
 
 public:
-  type t;
+  type_t type;
 };
 }
 
