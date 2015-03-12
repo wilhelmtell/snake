@@ -5,6 +5,8 @@
 #include "game_output.hh"
 #include "abstract_factory_fwd.hh"
 #include "event_fwd.hh"
+#include "snake_control.hh"
+#include "berry_control.hh"
 
 namespace snk {
 struct game_control {
@@ -16,6 +18,7 @@ struct game_control {
 
 private:
   std::unique_ptr<game_output> output;
+  snake_control snake;
 };
 }
 
