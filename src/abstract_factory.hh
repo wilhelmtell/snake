@@ -2,11 +2,8 @@
 #define SNK_ABSTRACT_FACTORY_HH_
 
 #include <memory>
-#include "game_control_fwd.hh"
 #include "game_output_fwd.hh"
-#include "window_control_fwd.hh"
 #include "window_output_fwd.hh"
-#include "snake_control_fwd.hh"
 #include "snake_output_fwd.hh"
 
 namespace snk {
