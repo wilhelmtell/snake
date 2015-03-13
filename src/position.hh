@@ -10,6 +10,9 @@ public:
   int x;
   int y;
 };
+
+bool operator==(position const& lhs, position const& rhs);
+bool operator!=(position const& lhs, position const& rhs);
 }
 
 #endif

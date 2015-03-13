@@ -2,6 +2,7 @@
 #define SNK_SDL_SNAKE_OUTPUT_HH_
 
 #include "snake_output.hh"
+#include "position_fwd.hh"
 #include <SDL2/SDL.h>
 
 namespace snk {
@@ -10,7 +11,7 @@ struct sdl_snake_output : snake_output {
 
   void get_drawable_size(int* w, int* h) override;
   void set_colour(int r, int g, int b, int a) override;
-  void draw_rect(int x, int y, int w, int h) override;
+  void draw_rect(position pos, int w, int h) override;
 
 private:
   SDL_Renderer* r;

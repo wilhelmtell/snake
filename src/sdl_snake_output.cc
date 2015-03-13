@@ -1,4 +1,5 @@
 #include "sdl_snake_output.hh"
+#include "position.hh"
 #include <SDL2/SDL.h>
 
 namespace snk {
@@ -13,8 +14,8 @@ void sdl_snake_output::set_colour(int r, int g, int b, int a) {
   SDL_SetRenderDrawColor(this->r, r, g, b, a);
 }
 
-void sdl_snake_output::draw_rect(int x, int y, int w, int h) {
-  SDL_Rect rect{x, y, w, h};
+void sdl_snake_output::draw_rect(position pos, int w, int h) {
+  SDL_Rect rect{pos.x, pos.y, w, h};
   SDL_RenderFillRect(r, &rect);
 }
 }

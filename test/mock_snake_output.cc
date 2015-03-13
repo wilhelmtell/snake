@@ -5,8 +5,8 @@ namespace snk {
 namespace test {
 mock_snake_output::mock_snake_output() : position_initialized{false} {}
 
-bool mock_snake_output::at_position(int x, int y) const {
-  return position_initialized && x == this->x && y == this->y;
+bool mock_snake_output::at_position(position const& pos) const {
+  return position_initialized && this->pos == pos;
 }
 
 void mock_snake_output::get_drawable_size(int* w, int* h) {
@@ -21,10 +21,10 @@ void mock_snake_output::set_colour(int /*r*/,
                                    int /*b*/,
                                    int /*a*/) {}
 
-void mock_snake_output::draw_rect(int x, int y, int w, int h) {
+void mock_snake_output::draw_rect(position pos, int w, int h) {
   position_initialized = true;
-  this->x = x;
-  this->y = y;
+  this->pos.x = pos.x;
+  this->pos.y = pos.y;
   this->w = w;
   this->h = h;
 }

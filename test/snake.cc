@@ -12,8 +12,7 @@ TEST_CASE("snake is initially at origin") {
   control.update();
   control.draw();
   REQUIRE(out->position_initialized);
-  REQUIRE(out->x == 0);
-  REQUIRE(out->y == 0);
+  REQUIRE(out->pos == snk::position(0, 0));
 }
 
 TEST_CASE("snake originally doesn't move") {
@@ -22,12 +21,10 @@ TEST_CASE("snake originally doesn't move") {
   snk::snake_control control{std::move(control_out)};
   control.update();
   control.draw();
-  REQUIRE(out->x == 0);
-  REQUIRE(out->y == 0);
+  REQUIRE(out->pos == snk::position(0, 0));
   control.update();
   control.draw();
-  REQUIRE(out->x == 0);
-  REQUIRE(out->y == 0);
+  REQUIRE(out->pos == snk::position(0, 0));
 }
 
 TEST_CASE("snake moving right won't move left") {
@@ -40,8 +37,7 @@ TEST_CASE("snake moving right won't move left") {
   control.handle_event(snk::event::keydown_left);
   control.update();
   control.draw();
-  REQUIRE(out->x == 2);  // because we moved to the right again
-  REQUIRE(out->y == 0);
+  REQUIRE(out->pos == snk::position(2, 0));  // snake moved to the right again
 }
 
 TEST_CASE("snake moving right can move down") {
@@ -53,8 +49,7 @@ TEST_CASE("snake moving right can move down") {
   control.handle_event(snk::event::keydown_down);
   control.update();
   control.draw();
-  REQUIRE(out->x == 0);
-  REQUIRE(out->y == 1);
+  REQUIRE(out->pos == snk::position(0, 1));
 }
 
 TEST_CASE("pressing left-arrow key moves snake left") {
@@ -64,8 +59,7 @@ TEST_CASE("pressing left-arrow key moves snake left") {
   control.handle_event(snk::event::keydown_left);
   control.update();
   control.draw();
-  REQUIRE(out->x == 0);
-  REQUIRE(out->y == 0);
+  REQUIRE(out->pos == snk::position(0, 0));
 }
 
 TEST_CASE("pressing right-arrow key moves snake right") {
@@ -75,8 +69,7 @@ TEST_CASE("pressing right-arrow key moves snake right") {
   control.handle_event(snk::event::keydown_right);
   control.update();
   control.draw();
-  REQUIRE(out->x == 1);
-  REQUIRE(out->y == 0);
+  REQUIRE(out->pos == snk::position(1, 0));
 }
 
 TEST_CASE("pressing down-arrow key moves snake down") {
@@ -86,6 +79,5 @@ TEST_CASE("pressing down-arrow key moves snake down") {
   control.handle_event(snk::event::keydown_down);
   control.update();
   control.draw();
-  REQUIRE(out->x == 0);
-  REQUIRE(out->y == 1);
+  REQUIRE(out->pos == snk::position(0, 1));
 }
