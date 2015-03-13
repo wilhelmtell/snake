@@ -7,7 +7,7 @@ snake_control::snake_control(abstract_factory const& factory)
 : out{factory.make_snake_output()}, direction{1}, x{0}, y{0}, w{25}, h{25} {}
 
 snake_control::snake_control(std::unique_ptr<snake_output> out)
-: out{std::move(out)} {}
+: out{std::move(out)}, direction{1}, x{0}, y{0}, w{25}, h{25} {}
 
 void snake_control::handle_event(event const& e) {
   if(e.type == event::keydown_left && direction != 1) {
