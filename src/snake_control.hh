@@ -3,18 +3,23 @@
 
 #include "abstract_factory_fwd.hh"
 #include <memory>
-#include "snake_input.hh"
 #include "snake_output.hh"
+#include "event_fwd.hh"
 
 namespace snk {
 struct snake_control {
   explicit snake_control(abstract_factory const&);
-  snake_control(std::unique_ptr<snake_input> in,
-                std::unique_ptr<snake_output> out);
+  explicit snake_control(std::unique_ptr<snake_output> out);
+
+  void handle_event(event const& e);
+  void update();
+  void draw();
 
 private:
-  std::unique_ptr<snake_input> in;
   std::unique_ptr<snake_output> out;
+  int direction;  // 0=up, 1=right, 2=down, 3=left
+  int x, y;
+  int w, h;
 };
 }
 

@@ -3,25 +3,22 @@
 
 #include <memory>
 #include "game_output.hh"
-#include "game_input.hh"
 #include "abstract_factory_fwd.hh"
-#include "window_control.hh"
+#include "event_fwd.hh"
+#include "snake_control.hh"
+#include "berry_control.hh"
 
 namespace snk {
 struct game_control {
   explicit game_control(abstract_factory const& factory);
-  game_control(std::unique_ptr<game_input> input,
-               std::unique_ptr<game_output> output,
-               abstract_factory const& factory);
 
-  void notify_end();
-  bool quit_requested() const;
-  void tick();
+  void handle_event(event const& e);
+  void update();
+  void draw();
 
 private:
-  std::unique_ptr<game_input> input;
-  std::unique_ptr<game_output> output;
-  window_control w_c;
+  std::unique_ptr<game_output> out;
+  snake_control snake;
 };
 }
 
