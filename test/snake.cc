@@ -4,6 +4,7 @@
 #include "mock_snake_output.hh"
 #include "event.hh"
 #include "../src/position.hh"
+#include "position_to_string.hh"
 
 TEST_CASE("snake is initially at origin") {
   auto control_out = std::make_unique<snk::test::mock_snake_output>();
