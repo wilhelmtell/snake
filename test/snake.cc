@@ -6,7 +6,7 @@
 #include "../src/position.hh"
 #include "position_to_string.hh"
 
-TEST_CASE("snake is initially at origin") {
+TEST_CASE("snake by default is initially at origin") {
   auto control_out = std::make_unique<snk::test::mock_snake_output>();
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out)};
