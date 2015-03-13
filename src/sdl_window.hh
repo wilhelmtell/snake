@@ -3,12 +3,12 @@
 
 #include <memory>
 #include <SDL2/SDL.h>
+#include "position_fwd.hh"
 
 namespace snk {
 struct sdl_window {
   sdl_window(char const* const title,
-             int const& x,
-             int const& y,
+             position const& pos,
              int const& width,
              int const& height,
              int const& flags);

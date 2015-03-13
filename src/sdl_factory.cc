@@ -4,12 +4,12 @@
 #include "sdl_game_output.hh"
 #include "sdl_snake_output.hh"
 #include "sdl_berry_output.hh"
+#include "position.hh"
 
 namespace snk {
 sdl_factory::sdl_factory()
 : w{"Snake",
-    SDL_WINDOWPOS_UNDEFINED,
-    SDL_WINDOWPOS_UNDEFINED,
+    snk::position{SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED},
     640,
     480,
     SDL_WINDOW_SHOWN}
