@@ -15,15 +15,17 @@ TEST_CASE("snake is initially at origin") {
   REQUIRE(out->y == 0);
 }
 
-TEST_CASE("snake initially moves right") {
+TEST_CASE("snake originally doesn't move") {
   auto control_out = std::make_unique<snk::test::mock_snake_output>();
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out)};
   control.update();
   control.draw();
+  REQUIRE(out->x == 0);
+  REQUIRE(out->y == 0);
   control.update();
   control.draw();
-  REQUIRE(out->x == 1);
+  REQUIRE(out->x == 0);
   REQUIRE(out->y == 0);
 }
 
@@ -31,13 +33,13 @@ TEST_CASE("snake moving right won't move left") {
   auto control_out = std::make_unique<snk::test::mock_snake_output>();
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out)};
+  control.handle_event(snk::event{snk::event::keydown_right});
   control.update();
   control.draw();
-  snk::event e{snk::event::keydown_left};
-  control.handle_event(e);
+  control.handle_event(snk::event{snk::event::keydown_left});
   control.update();
   control.draw();
-  REQUIRE(out->x == 1);
+  REQUIRE(out->x == 2);
   REQUIRE(out->y == 0);
 }
 
