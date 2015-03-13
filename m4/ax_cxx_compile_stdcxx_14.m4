@@ -22,6 +22,8 @@
 #   'optional', then configuration proceeds regardless, after defining
 #   HAVE_CXX14 if and only if a supporting mode is found.
 #
+#   Based on am_cxx_compile_stdcxx_11.m4.
+#
 # LICENSE
 #
 #   Copyright (c) 2008 Benjamin Kosnik <bkoz@redhat.com>
@@ -51,7 +53,7 @@ AC_DEFUN([AX_CXX_COMPILE_STDCXX_14], [dnl
         [m4_fatal([invalid second argument `$2' to AX_CXX_COMPILE_STDCXX_14])])
   AC_LANG_PUSH([C++])dnl
   ac_success=no
-  AC_CACHE_CHECK(whether $CXX supports C++14 features by default,
+  AC_CACHE_CHECK(whether $CXX compiles C++14 by default,
   ax_cv_cxx_compile_cxx14,
   [AC_COMPILE_IFELSE([AC_LANG_SOURCE([_AX_CXX_COMPILE_STDCXX_14_testbody])],
     [ax_cv_cxx_compile_cxx14=yes],
@@ -102,16 +104,16 @@ AC_DEFUN([AX_CXX_COMPILE_STDCXX_14], [dnl
   AC_LANG_POP([C++])
   if test x$ax_cxx_compile_cxx14_required = xtrue; then
     if test x$ac_success = xno; then
-      AC_MSG_ERROR([*** A compiler with support for C++14 language features is required.])
+      AC_MSG_ERROR([*** A C++14 compiler is required.])
     fi
   else
     if test x$ac_success = xno; then
       HAVE_CXX14=0
-      AC_MSG_NOTICE([No compiler with C++14 support was found])
+      AC_MSG_NOTICE([No C++14 compiler was found])
     else
       HAVE_CXX14=1
       AC_DEFINE(HAVE_CXX14,1,
-                [define if the compiler supports basic C++14 syntax])
+                [define if the compiler supports C++14])
     fi
 
     AC_SUBST(HAVE_CXX14)

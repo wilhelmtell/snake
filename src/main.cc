@@ -1,15 +1,19 @@
 #include "config.h"
-#include "game.hh"
+#include "sdl_factory.hh"
+#include "game_control.hh"
 #include <SDL2/SDL.h>
+#include "sdl_event_to_event.hh"
+#include "event.hh"
 
 int main(int /*argc*/, char* /*argv*/ []) {
-  snk::game g;
+  snk::sdl_factory factory;
+  snk::game_control control{factory};
   while(true) {
     for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
       if(e.type == SDL_QUIT) return 0;
-      g.handle_event(e);
+      control.handle_event(snk::to_event(e));
     }
-    g.update();
-    g.draw();
+    control.update();
+    control.draw();
   }
 }

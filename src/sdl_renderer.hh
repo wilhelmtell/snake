@@ -1,16 +1,13 @@
-#ifndef SNK_RENDERER_HH_
-#define SNK_RENDERER_HH_
+#ifndef SNK_SDL_RENDERER_HH_
+#define SNK_SDL_RENDERER_HH_
 
 #include <memory>
 #include <SDL2/SDL.h>
+#include "sdl_window_fwd.hh"
 
 namespace snk {
-struct window;
-}
-
-namespace snk {
-struct renderer {
-  renderer(window const& w);
+struct sdl_renderer {
+  sdl_renderer(sdl_window const& w, int const& index, int const& flags);
 
   SDL_Renderer* get() const;
 
