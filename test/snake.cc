@@ -39,7 +39,7 @@ TEST_CASE("snake moving right won't move left") {
   control.handle_event(snk::event::keydown_left);
   control.update();
   control.draw();
-  REQUIRE(out->x == 2);
+  REQUIRE(out->x == 2);  // because we moved to the right again
   REQUIRE(out->y == 0);
 }
 
