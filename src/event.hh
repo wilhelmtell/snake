@@ -11,7 +11,7 @@ struct event {
     keydown_down,
   };
 
-  explicit event(type_t const& t);
+  event(type_t const& t);
 
 public:
   type_t type;

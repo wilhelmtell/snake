@@ -33,10 +33,10 @@ TEST_CASE("snake moving right won't move left") {
   auto control_out = std::make_unique<snk::test::mock_snake_output>();
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out)};
-  control.handle_event(snk::event{snk::event::keydown_right});
+  control.handle_event(snk::event::keydown_right);
   control.update();
   control.draw();
-  control.handle_event(snk::event{snk::event::keydown_left});
+  control.handle_event(snk::event::keydown_left);
   control.update();
   control.draw();
   REQUIRE(out->x == 2);
@@ -49,7 +49,7 @@ TEST_CASE("snake moving right can move down") {
   snk::snake_control control{std::move(control_out)};
   control.update();
   control.draw();
-  control.handle_event(snk::event{snk::event::keydown_down});
+  control.handle_event(snk::event::keydown_down);
   control.update();
   control.draw();
   REQUIRE(out->x == 0);
