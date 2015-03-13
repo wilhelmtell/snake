@@ -10,7 +10,7 @@ bool mock_snake_output::at_position(position const& pos) const {
 }
 
 void mock_snake_output::get_drawable_size(int* w, int* h) {
-  assert(w != nullptr);
+  assert(w != nullptr);  // SDL allows for nulls, but I don't
   assert(h != nullptr);
   *w = 640;
   *h = 480;
