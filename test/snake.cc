@@ -3,6 +3,7 @@
 #include "../src/snake_control.hh"
 #include "mock_snake_output.hh"
 #include "event.hh"
+#include "../src/position.hh"
 
 TEST_CASE("snake is initially at origin") {
   auto control_out = std::make_unique<snk::test::mock_snake_output>();
@@ -54,6 +55,17 @@ TEST_CASE("snake moving right can move down") {
   control.draw();
   REQUIRE(out->x == 0);
   REQUIRE(out->y == 1);
+}
+
+TEST_CASE("pressing left-arrow key moves snake left") {
+  auto control_out = std::make_unique<snk::test::mock_snake_output>();
+  auto out = control_out.get();
+  snk::snake_control control{std::move(control_out), snk::position{1, 0}};
+  control.handle_event(snk::event::keydown_left);
+  control.update();
+  control.draw();
+  REQUIRE(out->x == 0);
+  REQUIRE(out->y == 0);
 }
 
 TEST_CASE("pressing right-arrow key moves snake right") {

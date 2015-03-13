@@ -1,13 +1,17 @@
 #include "snake_control.hh"
 #include "abstract_factory.hh"
 #include "event.hh"
+#include "position.hh"
 
 namespace snk {
 snake_control::snake_control(abstract_factory const& factory)
 : snake_control{factory.make_snake_output()} {}
 
 snake_control::snake_control(std::unique_ptr<snake_output> out)
-: out{std::move(out)}, direction{-1}, x{0}, y{0}, w{25}, h{25} {}
+: snake_control{std::move(out), position{0, 0}} {}
+
+snake_control::snake_control(std::unique_ptr<snake_output> out, position pos)
+: out{std::move(out)}, direction{-1}, x{pos.x}, y{pos.y}, w{25}, h{25} {}
 
 void snake_control::handle_event(event const& e) {
   if(e.type == event::keydown_left && direction != 1) {

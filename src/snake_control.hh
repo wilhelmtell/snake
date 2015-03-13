@@ -5,11 +5,13 @@
 #include <memory>
 #include "snake_output.hh"
 #include "event_fwd.hh"
+#include "position_fwd.hh"
 
 namespace snk {
 struct snake_control {
   explicit snake_control(abstract_factory const&);
   explicit snake_control(std::unique_ptr<snake_output> out);
+  snake_control(std::unique_ptr<snake_output> out, position pos);
 
   void handle_event(event const& e);
   void update();
