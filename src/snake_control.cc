@@ -11,7 +11,7 @@ snake_control::snake_control(std::unique_ptr<snake_output> out)
 : snake_control{std::move(out), position{0, 0}} {}
 
 snake_control::snake_control(std::unique_ptr<snake_output> out, position pos)
-: out{std::move(out)}, direction{-1}, x{pos.x}, y{pos.y}, w{25}, h{25} {}
+: out{std::move(out)}, direction{-1}, pos{std::move(pos)}, w{25}, h{25} {}
 
 void snake_control::handle_event(event const& e) {
   if(e.type == event::keydown_left && direction != 1) {
@@ -28,18 +28,18 @@ void snake_control::handle_event(event const& e) {
 void snake_control::update() {
   int drawable_w, drawable_h;
   out->get_drawable_size(&drawable_w, &drawable_h);
-  if(direction == 1 && x + w < drawable_w)
-    ++x;
-  else if(direction == 3 && x > 0)
-    --x;
-  if(direction == 0 && y > 0)
-    --y;
-  else if(direction == 2 && y + h < drawable_h)
-    ++y;
+  if(direction == 1 && pos.x + w < drawable_w)
+    ++pos.x;
+  else if(direction == 3 && pos.x > 0)
+    --pos.x;
+  if(direction == 0 && pos.y > 0)
+    --pos.y;
+  else if(direction == 2 && pos.y + h < drawable_h)
+    ++pos.y;
 }
 
 void snake_control::draw() {
   out->set_colour(0x7f, 0x7f, 0x7f, 0xff);
-  out->draw_rect(x, y, w, h);
+  out->draw_rect(pos.x, pos.y, w, h);
 }
 }
