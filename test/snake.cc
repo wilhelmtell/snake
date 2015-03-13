@@ -55,3 +55,14 @@ TEST_CASE("snake moving right can move down") {
   REQUIRE(out->x == 0);
   REQUIRE(out->y == 1);
 }
+
+TEST_CASE("pressing down-arrow key moves snake down") {
+  auto control_out = std::make_unique<snk::test::mock_snake_output>();
+  auto out = control_out.get();
+  snk::snake_control control{std::move(control_out)};
+  control.handle_event(snk::event::keydown_down);
+  control.update();
+  control.draw();
+  REQUIRE(out->x == 0);
+  REQUIRE(out->y == 1);
+}
