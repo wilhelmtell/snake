@@ -49,8 +49,7 @@ TEST_CASE("snake moving right can move down") {
   snk::snake_control control{std::move(control_out)};
   control.update();
   control.draw();
-  snk::event e{snk::event::keydown_down};
-  control.handle_event(e);
+  control.handle_event(snk::event{snk::event::keydown_down});
   control.update();
   control.draw();
   REQUIRE(out->x == 0);
