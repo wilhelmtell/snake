@@ -33,13 +33,11 @@ TEST_CASE("snake moving right won't move left") {
   snk::snake_control control{std::move(control_out)};
   control.update();
   control.draw();
-  control.update();
-  control.draw();
   snk::event e{snk::event::keydown_left};
   control.handle_event(e);
   control.update();
   control.draw();
-  REQUIRE(out->x == 2);
+  REQUIRE(out->x == 1);
   REQUIRE(out->y == 0);
 }
 
