@@ -15,8 +15,8 @@ void sdl_snake_output::set_colour(int r, int g, int b, int a) {
   SDL_SetRenderDrawColor(this->r, r, g, b, a);
 }
 
-void sdl_snake_output::draw_rect(position pos, int w, int h) {
-  SDL_Rect rect{pos.x, pos.y, w, h};
-  SDL_RenderFillRect(r, &rect);
+void sdl_snake_output::draw_rect(position pos, rectangle rect) {
+  SDL_Rect sdl_rect{pos.x, pos.y, rect.w, rect.h};
+  SDL_RenderFillRect(r, &sdl_rect);
 }
 }

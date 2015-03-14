@@ -14,7 +14,7 @@ struct mock_snake_output : snk::snake_output {
 
   void get_drawable_size(rectangle* rect) override;
   void set_colour(int r, int g, int b, int a) override;
-  void draw_rect(position pos, int w, int h) override;
+  void draw_rect(position pos, rectangle rect) override;
 
 public:
   bool position_initialized;

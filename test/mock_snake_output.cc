@@ -21,12 +21,12 @@ void mock_snake_output::set_colour(int /*r*/,
                                    int /*b*/,
                                    int /*a*/) {}
 
-void mock_snake_output::draw_rect(position pos, int w, int h) {
+void mock_snake_output::draw_rect(position pos, rectangle rect) {
   position_initialized = true;
   this->pos.x = pos.x;
   this->pos.y = pos.y;
-  this->w = w;
-  this->h = h;
+  this->w = rect.w;
+  this->h = rect.h;
 }
 }
 }
