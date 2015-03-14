@@ -293,3 +293,19 @@ TEST_CASE("up against the wall kills snake") {
   control.draw();
   REQUIRE(control.dead());
 }
+
+TEST_CASE("right against the wall kills snake") {
+  snk::rectangle drawable_rect{10, 10};
+  auto control_out
+    = std::make_unique<snk::test::mock_snake_output>(drawable_rect);
+  auto out = control_out.get();
+  snk::rectangle const snake_rect{2, 2};
+  snk::snake_control control{
+    std::move(control_out),
+    snk::position{out->get_drawable_size().w - snake_rect.w, 0},
+    snake_rect};
+  control.handle_event(snk::event::keydown_right);
+  control.update();
+  control.draw();
+  REQUIRE(control.dead());
+}

@@ -40,6 +40,8 @@ void snake_control::update() {
   auto const drawable_rect = out->get_drawable_size();
   if(direction == 1 && pos.x + rect.w < drawable_rect.w)
     ++pos.x;
+  else if(direction == 1 && pos.x + rect.w == drawable_rect.w)
+    expired = true;
   else if(direction == 3 && pos.x > 0)
     --pos.x;
   else if(direction == 3 && pos.x == 0)
