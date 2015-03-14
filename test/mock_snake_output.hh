@@ -19,7 +19,7 @@ struct mock_snake_output : snk::snake_output {
 public:
   bool position_initialized;
   position pos;
-  rectangle rect;
+  snk::rectangle rect;
 };
 }
 }
