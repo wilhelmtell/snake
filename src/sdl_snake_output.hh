@@ -12,7 +12,7 @@ struct sdl_snake_output : snake_output {
 
   rectangle get_drawable_size() override;
   void set_colour(int r, int g, int b, int a) override;
-  void draw_rect(position pos, rectangle rect) override;
+  void draw_rect(position const& pos, rectangle const& rect) override;
 
 private:
   SDL_Renderer* r;

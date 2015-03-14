@@ -23,7 +23,8 @@ void mock_snake_output::set_colour(int /*r*/,
                                    int /*b*/,
                                    int /*a*/) {}
 
-void mock_snake_output::draw_rect(snk::position pos, snk::rectangle rect) {
+void mock_snake_output::draw_rect(snk::position const& pos,
+                                  snk::rectangle const& rect) {
   position_initialized = true;
   this->pos.x = pos.x;
   this->pos.y = pos.y;
