@@ -13,6 +13,9 @@ struct snake_control {
   explicit snake_control(abstract_factory const&);
   explicit snake_control(std::unique_ptr<snake_output> out);
   snake_control(std::unique_ptr<snake_output> out, position pos);
+  snake_control(std::unique_ptr<snake_output> out,
+                position pos,
+                rectangle rect);
 
   void handle_event(event const& e);
   void update();

@@ -12,10 +12,15 @@ snake_control::snake_control(std::unique_ptr<snake_output> out)
 : snake_control{std::move(out), position{0, 0}} {}
 
 snake_control::snake_control(std::unique_ptr<snake_output> out, position pos)
+: snake_control{std::move(out), std::move(pos), rectangle{25, 25}} {}
+
+snake_control::snake_control(std::unique_ptr<snake_output> out,
+                             position pos,
+                             rectangle rect)
 : out{std::move(out)}
 , direction{-1}
 , pos{std::move(pos)}
-, rect{25, 25}
+, rect{std::move(rect)}
 , expired{false} {}
 
 void snake_control::handle_event(event const& e) {
