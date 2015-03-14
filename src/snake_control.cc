@@ -27,8 +27,7 @@ void snake_control::handle_event(event const& e) {
 }
 
 void snake_control::update() {
-  snk::rectangle drawable_rect;
-  out->get_drawable_size(&drawable_rect);
+  auto const drawable_rect = out->get_drawable_size();
   if(direction == 1 && pos.x + rect.w < drawable_rect.w)
     ++pos.x;
   else if(direction == 3 && pos.x > 0)
