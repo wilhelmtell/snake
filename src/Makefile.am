@@ -18,6 +18,8 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      game_output_fwd.hh \
                      position.hh position.cc \
                      position_fwd.hh \
+                     rectangle.hh rectangle.cc \
+                     rectangle_fwd.hh \
                      renderer_creation_error.hh renderer_creation_error.cc \
                      sdl_berry_output.hh sdl_berry_output.cc \
                      sdl_event_to_event.hh sdl_event_to_event.cc \

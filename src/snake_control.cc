@@ -2,6 +2,7 @@
 #include "abstract_factory.hh"
 #include "event.hh"
 #include "position.hh"
+#include "rectangle.hh"
 
 namespace snk {
 snake_control::snake_control(abstract_factory const& factory)
@@ -26,15 +27,15 @@ void snake_control::handle_event(event const& e) {
 }
 
 void snake_control::update() {
-  int drawable_w, drawable_h;
-  out->get_drawable_size(&drawable_w, &drawable_h);
-  if(direction == 1 && pos.x + w < drawable_w)
+  snk::rectangle drawable_rect;
+  out->get_drawable_size(&drawable_rect);
+  if(direction == 1 && pos.x + w < drawable_rect.w)
     ++pos.x;
   else if(direction == 3 && pos.x > 0)
     --pos.x;
   if(direction == 0 && pos.y > 0)
     --pos.y;
-  else if(direction == 2 && pos.y + h < drawable_h)
+  else if(direction == 2 && pos.y + h < drawable_rect.h)
     ++pos.y;
 }
 

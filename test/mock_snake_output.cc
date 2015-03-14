@@ -1,5 +1,6 @@
 #include "mock_snake_output.hh"
 #include <cassert>
+#include "rectangle.hh"
 
 namespace snk {
 namespace test {
@@ -9,11 +10,10 @@ bool mock_snake_output::at_position(position const& pos) const {
   return position_initialized && this->pos == pos;
 }
 
-void mock_snake_output::get_drawable_size(int* w, int* h) {
-  assert(w != nullptr);  // SDL allows for nulls, but I don't
-  assert(h != nullptr);
-  *w = 640;
-  *h = 480;
+void mock_snake_output::get_drawable_size(rectangle* rect) {
+  assert(rect != nullptr);  // SDL allows for nulls, but I don't
+  rect->w = 640;
+  rect->h = 480;
 }
 
 void mock_snake_output::set_colour(int /*r*/,
