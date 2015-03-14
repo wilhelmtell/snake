@@ -9,6 +9,7 @@ namespace snk {
 namespace test {
 struct mock_snake_output : snk::snake_output {
   mock_snake_output();
+  explicit mock_snake_output(snk::rectangle const& drawable_rect);
 
   bool at_position(position const& pos) const;
 
@@ -18,6 +19,7 @@ struct mock_snake_output : snk::snake_output {
 
 public:
   bool position_initialized;
+  snk::rectangle drawable_rect;
   position pos;
   snk::rectangle rect;
 };
