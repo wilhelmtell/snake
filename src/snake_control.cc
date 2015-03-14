@@ -52,6 +52,8 @@ void snake_control::update() {
     expired = true;  // up turn against the wall: we're dead
   else if(direction == 2 && pos.y + rect.h < drawable_rect.h)
     ++pos.y;
+  else if(direction == 2 && pos.y + rect.h == drawable_rect.h)
+    expired = true;
 }
 
 void snake_control::draw() {
