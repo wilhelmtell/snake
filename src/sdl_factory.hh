@@ -6,7 +6,7 @@
 #include "game_output.hh"
 #include "snake_output.hh"
 #include "berry_output.hh"
-#include "sdl.hh"
+#include "sdl_system.hh"
 #include "sdl_window.hh"
 #include "sdl_renderer.hh"
 
@@ -19,7 +19,7 @@ struct sdl_factory : abstract_factory {
   std::unique_ptr<berry_output> make_berry_output() const override;
 
 private:
-  sdl s;
+  sdl_system s;
   sdl_window w;
   sdl_renderer r;
 };

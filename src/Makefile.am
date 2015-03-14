@@ -21,14 +21,14 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      rectangle.hh rectangle.cc \
                      rectangle_fwd.hh \
                      renderer_creation_error.hh renderer_creation_error.cc \
-                     sdl.hh sdl.cc \
                      sdl_berry_output.hh sdl_berry_output.cc \
                      sdl_event_to_event.hh sdl_event_to_event.cc \
                      sdl_factory.hh sdl_factory.cc \
                      sdl_game_output.hh sdl_game_output.cc \
-                     sdl_init_error.hh sdl_init_error.cc \
                      sdl_renderer.hh sdl_renderer.cc \
                      sdl_snake_output.hh sdl_snake_output.cc \
+                     sdl_system.hh sdl_system.cc \
+                     sdl_system_init_error.hh sdl_system_init_error.cc \
                      sdl_window.hh sdl_window.cc \
                      sdl_window_fwd.hh \
                      snake_control.hh snake_control.cc \
