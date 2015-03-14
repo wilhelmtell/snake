@@ -284,3 +284,12 @@ TEST_CASE("left against the wall kills snake") {
   control.draw();
   REQUIRE(control.dead());
 }
+
+TEST_CASE("up against the wall kills snake") {
+  snk::snake_control control{std::make_unique<snk::test::mock_snake_output>(),
+                             snk::position{0, 0}};
+  control.handle_event(snk::event::keydown_up);
+  control.update();
+  control.draw();
+  REQUIRE(control.dead());
+}
