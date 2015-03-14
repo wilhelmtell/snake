@@ -25,8 +25,8 @@ void mock_snake_output::draw_rect(position pos, rectangle rect) {
   position_initialized = true;
   this->pos.x = pos.x;
   this->pos.y = pos.y;
-  this->w = rect.w;
-  this->h = rect.h;
+  this->rect.w = rect.w;
+  this->rect.h = rect.h;
 }
 }
 }

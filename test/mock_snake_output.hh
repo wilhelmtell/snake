@@ -3,7 +3,7 @@
 
 #include "../src/snake_output.hh"
 #include "../src/position.hh"
-#include "../src/rectangle_fwd.hh"
+#include "../src/rectangle.hh"
 
 namespace snk {
 namespace test {
@@ -19,7 +19,7 @@ struct mock_snake_output : snk::snake_output {
 public:
   bool position_initialized;
   position pos;
-  int w, h;
+  rectangle rect;
 };
 }
 }
