@@ -2,7 +2,7 @@
 #define SNK_TEST_SNAKE_OUTPUT_HH_
 
 #include "../src/snake_output.hh"
-#include "position.hh"
+#include "../src/position.hh"
 
 namespace snk {
 namespace test {
