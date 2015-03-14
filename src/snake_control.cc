@@ -32,7 +32,7 @@ void snake_control::update() {
     ++pos.x;
   else if(direction == 3 && pos.x > 0)
     --pos.x;
-  if(direction == 0 && pos.y > 0)
+  else if(direction == 0 && pos.y > 0)
     --pos.y;
   else if(direction == 2 && pos.y + rect.h < drawable_rect.h)
     ++pos.y;
