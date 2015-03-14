@@ -18,11 +18,14 @@ struct snake_control {
   void update();
   void draw();
 
+  bool dead() const;
+
 private:
   std::unique_ptr<snake_output> out;
   int direction;  // still = -1, 0=up, 1=right, 2=down, 3=left
   position pos;
   rectangle rect;
+  bool expired;
 };
 }
 

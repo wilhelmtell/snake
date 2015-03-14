@@ -275,3 +275,12 @@ TEST_CASE("moving up is a no-op when snake is already moving up") {
   control.draw();
   REQUIRE(out->pos == snk::position(2, 0));
 }
+
+TEST_CASE("left against the wall kills snake") {
+  snk::snake_control control{std::make_unique<snk::test::mock_snake_output>(),
+                             snk::position{0, 0}};
+  control.handle_event(snk::event::keydown_left);
+  control.update();
+  control.draw();
+  REQUIRE(control.dead());
+}

@@ -12,7 +12,11 @@ snake_control::snake_control(std::unique_ptr<snake_output> out)
 : snake_control{std::move(out), position{0, 0}} {}
 
 snake_control::snake_control(std::unique_ptr<snake_output> out, position pos)
-: out{std::move(out)}, direction{-1}, pos{std::move(pos)}, rect{25, 25} {}
+: out{std::move(out)}
+, direction{-1}
+, pos{std::move(pos)}
+, rect{25, 25}
+, expired{false} {}
 
 void snake_control::handle_event(event const& e) {
   if(e.type == event::keydown_left && direction != 1) {
@@ -27,11 +31,14 @@ void snake_control::handle_event(event const& e) {
 }
 
 void snake_control::update() {
+  if(dead()) return;
   auto const drawable_rect = out->get_drawable_size();
   if(direction == 1 && pos.x + rect.w < drawable_rect.w)
     ++pos.x;
   else if(direction == 3 && pos.x > 0)
     --pos.x;
+  else if(direction == 3 && pos.x == 0)
+    expired = true;  // left turn against the wall: we're dead
   else if(direction == 0 && pos.y > 0)
     --pos.y;
   else if(direction == 2 && pos.y + rect.h < drawable_rect.h)
@@ -42,4 +49,6 @@ void snake_control::draw() {
   out->set_colour(0x7f, 0x7f, 0x7f, 0xff);
   out->draw_rect(pos, rect);
 }
+
+bool snake_control::dead() const { return expired; }
 }
