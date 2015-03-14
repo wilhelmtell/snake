@@ -10,7 +10,7 @@ mock_snake_output::mock_snake_output()
 mock_snake_output::mock_snake_output(snk::rectangle const& drawable_rect)
 : position_initialized{false}, drawable_rect{drawable_rect} {}
 
-bool mock_snake_output::at_position(position const& pos) const {
+bool mock_snake_output::at_position(snk::position const& pos) const {
   return position_initialized && this->pos == pos;
 }
 
@@ -23,7 +23,7 @@ void mock_snake_output::set_colour(int /*r*/,
                                    int /*b*/,
                                    int /*a*/) {}
 
-void mock_snake_output::draw_rect(position pos, rectangle rect) {
+void mock_snake_output::draw_rect(snk::position pos, rectangle rect) {
   position_initialized = true;
   this->pos.x = pos.x;
   this->pos.y = pos.y;

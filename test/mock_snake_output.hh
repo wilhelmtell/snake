@@ -11,16 +11,16 @@ struct mock_snake_output : snk::snake_output {
   mock_snake_output();
   explicit mock_snake_output(snk::rectangle const& drawable_rect);
 
-  bool at_position(position const& pos) const;
+  bool at_position(snk::position const& pos) const;
 
   rectangle get_drawable_size() override;
   void set_colour(int r, int g, int b, int a) override;
-  void draw_rect(position pos, rectangle rect) override;
+  void draw_rect(snk::position pos, rectangle rect) override;
 
 public:
   bool position_initialized;
   snk::rectangle drawable_rect;
-  position pos;
+  snk::position pos;
   snk::rectangle rect;
 };
 }
