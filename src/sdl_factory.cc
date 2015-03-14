@@ -8,7 +8,8 @@
 
 namespace snk {
 sdl_factory::sdl_factory()
-: w{"Snake",
+: s{SDL_INIT_VIDEO}
+, w{"Snake",
     snk::position{SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED},
     640,
     480,
