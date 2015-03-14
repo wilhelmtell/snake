@@ -28,31 +28,6 @@ TEST_CASE("snake originally doesn't move") {
   REQUIRE(out->pos == snk::position(0, 0));
 }
 
-TEST_CASE("snake moving right won't move left") {
-  auto control_out = std::make_unique<snk::test::mock_snake_output>();
-  auto out = control_out.get();
-  snk::snake_control control{std::move(control_out)};
-  control.handle_event(snk::event::keydown_right);
-  control.update();
-  control.draw();
-  control.handle_event(snk::event::keydown_left);
-  control.update();
-  control.draw();
-  REQUIRE(out->pos == snk::position(2, 0));  // snake moved to the right again
-}
-
-TEST_CASE("snake moving right can move down") {
-  auto control_out = std::make_unique<snk::test::mock_snake_output>();
-  auto out = control_out.get();
-  snk::snake_control control{std::move(control_out)};
-  control.update();
-  control.draw();
-  control.handle_event(snk::event::keydown_down);
-  control.update();
-  control.draw();
-  REQUIRE(out->pos == snk::position(0, 1));
-}
-
 TEST_CASE("pressing left-arrow key moves snake left") {
   auto control_out = std::make_unique<snk::test::mock_snake_output>();
   auto out = control_out.get();
@@ -77,6 +52,31 @@ TEST_CASE("pressing down-arrow key moves snake down") {
   auto control_out = std::make_unique<snk::test::mock_snake_output>();
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out)};
+  control.handle_event(snk::event::keydown_down);
+  control.update();
+  control.draw();
+  REQUIRE(out->pos == snk::position(0, 1));
+}
+
+TEST_CASE("snake moving right won't move left") {
+  auto control_out = std::make_unique<snk::test::mock_snake_output>();
+  auto out = control_out.get();
+  snk::snake_control control{std::move(control_out)};
+  control.handle_event(snk::event::keydown_right);
+  control.update();
+  control.draw();
+  control.handle_event(snk::event::keydown_left);
+  control.update();
+  control.draw();
+  REQUIRE(out->pos == snk::position(2, 0));  // snake moved to the right again
+}
+
+TEST_CASE("snake moving right can move down") {
+  auto control_out = std::make_unique<snk::test::mock_snake_output>();
+  auto out = control_out.get();
+  snk::snake_control control{std::move(control_out)};
+  control.update();
+  control.draw();
   control.handle_event(snk::event::keydown_down);
   control.update();
   control.draw();
