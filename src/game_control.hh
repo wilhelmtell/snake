@@ -11,14 +11,19 @@
 namespace snk {
 struct game_control {
   explicit game_control(abstract_factory const& factory);
+  game_control(std::unique_ptr<game_output> out,
+               abstract_factory const& factory);
 
   void handle_event(event const& e);
   void update();
   void draw();
 
+  bool game_over() const;
+
 private:
   std::unique_ptr<game_output> out;
   snake_control snake;
+  bool expired;
 };
 }
 

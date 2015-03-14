@@ -9,6 +9,7 @@ event to_keydown_event(SDL_Event const& e) {
   case SDLK_RIGHT: return event{event::keydown_right};
   case SDLK_UP: return event{event::keydown_up};
   case SDLK_DOWN: return event{event::keydown_down};
+  case SDLK_ESCAPE: return event{event::keydown_esc};
   default: return event{event::unknown};
   }
 }

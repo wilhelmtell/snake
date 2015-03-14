@@ -6,9 +6,14 @@
 
 namespace snk {
 game_control::game_control(abstract_factory const& factory)
-: out{factory.make_game_output()}, snake{factory} {}
+: game_control{factory.make_game_output(), factory} {}
+
+game_control::game_control(std::unique_ptr<game_output> out,
+                           abstract_factory const& factory)
+: out{std::move(out)}, snake{factory}, expired{false} {}
 
 void game_control::handle_event(event const& e) {
+  if(e.type == event::keydown_esc) expired = true;
   snake.handle_event(e);
 }
 
@@ -21,4 +26,6 @@ void game_control::draw() {
   snake.draw();
   out->present();
 }
+
+bool game_control::game_over() const { return expired; }
 }

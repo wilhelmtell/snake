@@ -9,6 +9,7 @@ struct event {
     keydown_right,
     keydown_up,
     keydown_down,
+    keydown_esc,
   };
 
   event(type_t const& t);
