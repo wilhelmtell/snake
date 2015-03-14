@@ -146,6 +146,19 @@ TEST_CASE("snake moving right can move up") {
   REQUIRE(out->pos == snk::position(2, 0));
 }
 
+TEST_CASE("moving right is a no-op when snake is already moving right") {
+  auto control_out = std::make_unique<snk::test::mock_snake_output>();
+  auto out = control_out.get();
+  snk::snake_control control{std::move(control_out), snk::position{1, 1}};
+  control.handle_event(snk::event::keydown_right);
+  control.update();
+  control.draw();
+  control.handle_event(snk::event::keydown_right);
+  control.update();
+  control.draw();
+  REQUIRE(out->pos == snk::position(3, 1));
+}
+
 TEST_CASE("snake moving left can move down") {
   auto control_out = std::make_unique<snk::test::mock_snake_output>();
   auto out = control_out.get();
