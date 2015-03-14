@@ -6,6 +6,7 @@
 #include "snake_output.hh"
 #include "event_fwd.hh"
 #include "position.hh"
+#include "rectangle.hh"
 
 namespace snk {
 struct snake_control {
@@ -21,7 +22,7 @@ private:
   std::unique_ptr<snake_output> out;
   int direction;  // still = -1, 0=up, 1=right, 2=down, 3=left
   position pos;
-  int w, h;
+  rectangle rect;
 };
 }
 
