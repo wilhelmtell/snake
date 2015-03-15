@@ -5,8 +5,9 @@
 #include "mock_factory.hh"
 
 TEST_CASE("esc quits the game") {
+  snk::test::mock_factory factory;
   snk::game_control control{std::make_unique<snk::test::mock_game_output>(),
-                            snk::test::mock_factory()};
+                            &factory};
   control.handle_event(snk::event::keydown_esc);
   control.update();
   control.draw();

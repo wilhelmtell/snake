@@ -5,8 +5,8 @@
 #include "rectangle.hh"
 
 namespace snk {
-snake_control::snake_control(abstract_factory const& factory)
-: snake_control{factory.make_snake_output()} {}
+snake_control::snake_control(abstract_factory* factory)
+: snake_control{factory->make_snake_output()} {}
 
 snake_control::snake_control(std::unique_ptr<snake_output> out)
 : snake_control{std::move(out), position{0, 0}} {}
