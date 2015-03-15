@@ -8,15 +8,15 @@
 
 namespace snk {
 struct sdl_snake_output : snake_output {
-  sdl_snake_output(SDL_Renderer* r, SDL_Window* w);
+  sdl_snake_output(SDL_Window* w, SDL_Renderer* r);
 
   rectangle get_drawable_size() const override;
   void set_colour(int r, int g, int b, int a) override;
   void draw_rect(position const& pos, rectangle const& rect) override;
 
 private:
-  SDL_Renderer* r;
   SDL_Window* w;
+  SDL_Renderer* r;
 };
 }
 

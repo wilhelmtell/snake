@@ -4,8 +4,8 @@
 #include <SDL2/SDL.h>
 
 namespace snk {
-sdl_snake_output::sdl_snake_output(SDL_Renderer* r, SDL_Window* w)
-: r{r}, w{w} {}
+sdl_snake_output::sdl_snake_output(SDL_Window* w, SDL_Renderer* r)
+: w{w}, r{r} {}
 
 rectangle sdl_snake_output::get_drawable_size() const {
   rectangle rect;
