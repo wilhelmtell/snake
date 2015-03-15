@@ -10,9 +10,9 @@
 
 namespace snk {
 struct game_control {
-  explicit game_control(abstract_factory const& factory);
+  explicit game_control(abstract_factory* factory);
   game_control(std::unique_ptr<game_output> out,
-               abstract_factory const& factory);
+               abstract_factory* factory);
 
   void handle_event(event const& e);
   void update();

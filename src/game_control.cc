@@ -5,12 +5,14 @@
 #include "event.hh"
 
 namespace snk {
-game_control::game_control(abstract_factory const& factory)
-: game_control{factory.make_game_output(), factory} {}
+game_control::game_control(abstract_factory* factory)
+: game_control{factory->make_game_output(), factory} {}
 
 game_control::game_control(std::unique_ptr<game_output> out,
-                           abstract_factory const& factory)
-: out{std::move(out)}, snake{factory}, expired{false} {}
+                           abstract_factory* factory)
+: out{std::move(out)}
+, snake{factory}
+, expired{false} {}
 
 void game_control::handle_event(event const& e) {
   if(e.type == event::keydown_esc) expired = true;
