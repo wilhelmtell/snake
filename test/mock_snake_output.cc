@@ -14,7 +14,7 @@ bool mock_snake_output::at_position(snk::position const& pos) const {
   return position_initialized && this->pos == pos;
 }
 
-snk::rectangle mock_snake_output::get_drawable_size() {
+snk::rectangle mock_snake_output::get_drawable_size() const {
   return drawable_rect;
 }
 
