@@ -6,6 +6,7 @@
 #include "snake_output.hh"
 #include "event_fwd.hh"
 #include "snake_segment.hh"
+#include "direction.hh"
 
 namespace snk {
 struct snake_control {
@@ -21,8 +22,8 @@ struct snake_control {
 
 private:
   std::unique_ptr<snake_output> out;
-  int arrow_key_press;  // none = -1, 0=up, 1=right, 2=down, 3=left
-  int direction;  // still = -1, 0=up, 1=right, 2=down, 3=left
+  direction arrow_key_press;
+  direction next_move;
   snake_segment seg;
   bool expired;
 };

@@ -6,23 +6,27 @@
 #include "snake_segment.hh"
 
 namespace {
-int to_arrow_key_press(snk::event const& e, int default_value) {
+snk::direction to_arrow_key_press(snk::event const& e,
+                                  snk::direction default_value) {
+  using dir = snk::direction;
   switch(e.type) {
-  case snk::event::keydown_up: return 0;
-  case snk::event::keydown_right: return 1;
-  case snk::event::keydown_down: return 2;
-  case snk::event::keydown_left: return 3;
+  case snk::event::keydown_up: return dir::up;
+  case snk::event::keydown_right: return dir::right;
+  case snk::event::keydown_down: return dir::down;
+  case snk::event::keydown_left: return dir::left;
   default: return default_value;
   }
 }
 
-int direction_from_arrow_key_press(int previous_direction, int arrow_key) {
-  switch(arrow_key) {
-  case 0: return previous_direction == 2 ? 2 : 0;
-  case 1: return previous_direction == 3 ? 3 : 1;
-  case 2: return previous_direction == 0 ? 0 : 2;
-  case 3: return previous_direction == 1 ? 1 : 3;
-  default: return -1;
+snk::direction next_move_from_arrow_key_press(snk::direction previous,
+                                              snk::direction arrow_key) {
+  using dir = snk::direction;
+  switch(arrow_key.type) {
+  case dir::up: return previous == dir::down ? dir::down : dir::up;
+  case dir::right: return previous == dir::left ? dir::left : dir::right;
+  case dir::down: return previous == dir::up ? dir::up : dir::down;
+  case dir::left: return previous == dir::right ? dir::right : dir::left;
+  default: return dir::nil;
   }
 }
 }
@@ -38,8 +42,8 @@ snake_control::snake_control(std::unique_ptr<snake_output> out)
 snake_control::snake_control(std::unique_ptr<snake_output> out,
                              snake_segment seg)
 : out{std::move(out)}
-, arrow_key_press{-1}
-, direction{-1}
+, arrow_key_press{direction::nil}
+, next_move{direction::nil}
 , seg{std::move(seg)}
 , expired{false} {}
 
@@ -49,23 +53,26 @@ void snake_control::handle_event(event const& e) {
 
 void snake_control::update() {
   if(dead()) return;
-  direction = direction_from_arrow_key_press(direction, arrow_key_press);
+  next_move = next_move_from_arrow_key_press(next_move, arrow_key_press);
   auto const drawable_rect = out->get_drawable_size();
-  if(direction == 1 && seg.pos.x + seg.rect.w < drawable_rect.w)
+  if(next_move == direction::right && seg.pos.x + seg.rect.w < drawable_rect.w)
     ++seg.pos.x;
-  else if(direction == 1 && seg.pos.x + seg.rect.w == drawable_rect.w)
+  else if(next_move == direction::right
+          && seg.pos.x + seg.rect.w == drawable_rect.w)
     expired = true;
-  else if(direction == 3 && seg.pos.x > 0)
+  else if(next_move == direction::left && seg.pos.x > 0)
     --seg.pos.x;
-  else if(direction == 3 && seg.pos.x == 0)
+  else if(next_move == direction::left && seg.pos.x == 0)
     expired = true;  // left turn against the wall: we're dead
-  else if(direction == 0 && seg.pos.y > 0)
+  else if(next_move == direction::up && seg.pos.y > 0)
     --seg.pos.y;
-  else if(direction == 0 && seg.pos.y == 0)
+  else if(next_move == direction::up && seg.pos.y == 0)
     expired = true;  // up turn against the wall: we're dead
-  else if(direction == 2 && seg.pos.y + seg.rect.h < drawable_rect.h)
+  else if(next_move == direction::down
+          && seg.pos.y + seg.rect.h < drawable_rect.h)
     ++seg.pos.y;
-  else if(direction == 2 && seg.pos.y + seg.rect.h == drawable_rect.h)
+  else if(next_move == direction::down
+          && seg.pos.y + seg.rect.h == drawable_rect.h)
     expired = true;
 }
 

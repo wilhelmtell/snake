@@ -10,6 +10,7 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      berry_control.hh berry_control.cc \
                      berry_output.hh \
                      berry_output_fwd.hh \
+                     direction.hh direction.cc \
                      event.hh event.cc \
                      event_fwd.hh \
                      game_control.hh game_control.cc \
