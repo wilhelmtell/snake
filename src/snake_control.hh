@@ -25,6 +25,7 @@ struct snake_control {
 
 private:
   std::unique_ptr<snake_output> out;
+  int arrow_key_press;  // none = -1, 0=up, 1=right, 2=down, 3=left
   int direction;  // still = -1, 0=up, 1=right, 2=down, 3=left
   position pos;
   rectangle rect;
