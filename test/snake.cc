@@ -73,7 +73,7 @@ TEST_CASE("snake moving right won't move left") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out)};
   control.handle_event(snk::event::keydown_right);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_left);
   control.update();
@@ -86,7 +86,7 @@ TEST_CASE("snake moving left won't move right") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{2, 2}};
   control.handle_event(snk::event::keydown_left);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_right);
   control.update();
@@ -99,7 +99,7 @@ TEST_CASE("snake moving down won't move up") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{2, 2}};
   control.handle_event(snk::event::keydown_down);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_up);
   control.update();
@@ -112,7 +112,7 @@ TEST_CASE("snake moving up won't move down") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{2, 2}};
   control.handle_event(snk::event::keydown_up);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_down);
   control.update();
@@ -125,7 +125,7 @@ TEST_CASE("snake moving right can move down") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out)};
   control.handle_event(snk::event::keydown_right);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_down);
   control.update();
@@ -138,7 +138,7 @@ TEST_CASE("snake moving right can move up") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{1, 1}};
   control.handle_event(snk::event::keydown_right);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_up);
   control.update();
@@ -151,7 +151,7 @@ TEST_CASE("moving right is a no-op when snake is already moving right") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{1, 1}};
   control.handle_event(snk::event::keydown_right);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_right);
   control.update();
@@ -164,7 +164,7 @@ TEST_CASE("snake moving left can move down") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{1, 1}};
   control.handle_event(snk::event::keydown_left);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_down);
   control.update();
@@ -177,7 +177,7 @@ TEST_CASE("snake moving left can move up") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{1, 1}};
   control.handle_event(snk::event::keydown_left);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_up);
   control.update();
@@ -190,7 +190,7 @@ TEST_CASE("moving left is a no-op when snake is already moving left") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{2, 2}};
   control.handle_event(snk::event::keydown_left);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_left);
   control.update();
@@ -203,7 +203,7 @@ TEST_CASE("snake moving down can move left") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{1, 1}};
   control.handle_event(snk::event::keydown_down);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_left);
   control.update();
@@ -216,7 +216,7 @@ TEST_CASE("snake moving down can move right") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{1, 1}};
   control.handle_event(snk::event::keydown_down);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_right);
   control.update();
@@ -229,7 +229,7 @@ TEST_CASE("moving down is a no-op when snake is already moving down") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{2, 2}};
   control.handle_event(snk::event::keydown_down);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_down);
   control.update();
@@ -242,7 +242,7 @@ TEST_CASE("snake moving up can move left") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{1, 1}};
   control.handle_event(snk::event::keydown_up);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_left);
   control.update();
@@ -255,7 +255,7 @@ TEST_CASE("snake moving up can move right") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{1, 1}};
   control.handle_event(snk::event::keydown_up);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_right);
   control.update();
@@ -268,7 +268,7 @@ TEST_CASE("moving up is a no-op when snake is already moving up") {
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out), snk::position{2, 2}};
   control.handle_event(snk::event::keydown_up);
-  control.update();
+  control.update();  // must update or else arrow key press is ignored
   control.draw();
   control.handle_event(snk::event::keydown_up);
   control.update();
