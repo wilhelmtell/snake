@@ -22,7 +22,7 @@ struct snake_control {
 
 private:
   std::unique_ptr<snake_output> out;
-  direction arrow_key_press;
+  direction move_requested;
   direction next_move;
   snake_segment seg;
   bool expired;

@@ -6,8 +6,8 @@
 #include "snake_segment.hh"
 
 namespace {
-snk::direction to_arrow_key_press(snk::event const& e,
-                                  snk::direction default_value) {
+snk::direction to_move_request(snk::event const& e,
+                               snk::direction default_value) {
   using dir = snk::direction;
   switch(e.type) {
   case snk::event::keydown_up: return dir::up;
@@ -18,10 +18,10 @@ snk::direction to_arrow_key_press(snk::event const& e,
   }
 }
 
-snk::direction next_move_from_arrow_key_press(snk::direction previous,
-                                              snk::direction arrow_key) {
+snk::direction next_move_from_move_requested(snk::direction previous,
+                                             snk::direction move_requested) {
   using dir = snk::direction;
-  switch(arrow_key.type) {
+  switch(move_requested.type) {
   case dir::up: return previous == dir::down ? dir::down : dir::up;
   case dir::right: return previous == dir::left ? dir::left : dir::right;
   case dir::down: return previous == dir::up ? dir::up : dir::down;
@@ -42,18 +42,18 @@ snake_control::snake_control(std::unique_ptr<snake_output> out)
 snake_control::snake_control(std::unique_ptr<snake_output> out,
                              snake_segment seg)
 : out{std::move(out)}
-, arrow_key_press{direction::nil}
+, move_requested{direction::nil}
 , next_move{direction::nil}
 , seg{std::move(seg)}
 , expired{false} {}
 
 void snake_control::handle_event(event const& e) {
-  arrow_key_press = to_arrow_key_press(e, arrow_key_press);
+  move_requested = to_move_request(e, move_requested);
 }
 
 void snake_control::update() {
   if(dead()) return;
-  next_move = next_move_from_arrow_key_press(next_move, arrow_key_press);
+  next_move = next_move_from_move_requested(next_move, move_requested);
   auto const drawable_rect = out->get_drawable_size();
   if(next_move == direction::right && seg.pos.x + seg.rect.w < drawable_rect.w)
     ++seg.pos.x;
