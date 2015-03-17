@@ -31,15 +31,37 @@ snk::direction next_move_from_move_requested(snk::direction previous,
   }
 }
 
+bool right_wall_hit(snk::snake_segment const& seg,
+                    snk::direction const& next_move,
+                    snk::rectangle const& drawable_rect) {
+  return next_move == snk::direction::right
+         && seg.pos.x + seg.rect.w == drawable_rect.w;
+}
+
+bool left_wall_hit(snk::snake_segment const& seg,
+                   snk::direction const& next_move) {
+  return next_move == snk::direction::left && seg.pos.x == 0;
+}
+
+bool top_wall_hit(snk::snake_segment const& seg,
+                  snk::direction const& next_move) {
+  return next_move == snk::direction::up && seg.pos.y == 0;
+}
+
+bool bottom_wall_hit(snk::snake_segment const& seg,
+                     snk::direction const& next_move,
+                     snk::rectangle const& drawable_rect) {
+  return next_move == snk::direction::down
+         && seg.pos.y + seg.rect.h == drawable_rect.h;
+}
+
 bool update_expired(snk::snake_segment const& seg,
                     snk::direction const& next_move,
                     snk::rectangle const& drawable_rect) {
-  return (next_move == snk::direction::right
-          && seg.pos.x + seg.rect.w == drawable_rect.w)
-         || (next_move == snk::direction::left && seg.pos.x == 0)
-         || (next_move == snk::direction::up && seg.pos.y == 0)
-         || (next_move == snk::direction::down
-             && seg.pos.y + seg.rect.h == drawable_rect.h);
+  return right_wall_hit(seg, next_move, drawable_rect)
+         || left_wall_hit(seg, next_move)
+         || top_wall_hit(seg, next_move)
+         || bottom_wall_hit(seg, next_move, drawable_rect);
 }
 
 snk::snake_segment update_snake_segment(snk::snake_segment seg,
