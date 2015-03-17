@@ -64,18 +64,40 @@ bool update_expired(snk::snake_segment const& seg,
          || bottom_wall_hit(seg, next_move, drawable_rect);
 }
 
+bool want_and_can_move_right(snk::snake_segment const& seg,
+                             snk::direction const& next_move,
+                             snk::rectangle const& drawable_rect) {
+  return next_move == snk::direction::right
+         && seg.pos.x + seg.rect.w < drawable_rect.w;
+}
+
+bool want_and_can_move_left(snk::snake_segment const& seg,
+                            snk::direction const& next_move) {
+  return next_move == snk::direction::left && seg.pos.x > 0;
+}
+
+bool want_and_can_move_up(snk::snake_segment const& seg,
+                          snk::direction const& next_move) {
+  return next_move == snk::direction::up && seg.pos.y > 0;
+}
+
+bool want_and_can_move_down(snk::snake_segment const& seg,
+                            snk::direction const& next_move,
+                            snk::rectangle const& drawable_rect) {
+  return next_move == snk::direction::down
+         && seg.pos.y + seg.rect.h < drawable_rect.h;
+}
+
 snk::snake_segment update_snake_segment(snk::snake_segment seg,
                                         snk::direction const& next_move,
                                         snk::rectangle const& drawable_rect) {
-  if(next_move == snk::direction::right
-     && seg.pos.x + seg.rect.w < drawable_rect.w)
+  if(want_and_can_move_right(seg, next_move, drawable_rect))
     ++seg.pos.x;
-  else if(next_move == snk::direction::left && seg.pos.x > 0)
+  else if(want_and_can_move_left(seg, next_move))
     --seg.pos.x;
-  else if(next_move == snk::direction::up && seg.pos.y > 0)
+  else if(want_and_can_move_up(seg, next_move))
     --seg.pos.y;
-  else if(next_move == snk::direction::down
-          && seg.pos.y + seg.rect.h < drawable_rect.h)
+  else if(want_and_can_move_down(seg, next_move, drawable_rect))
     ++seg.pos.y;
   return seg;
 }
