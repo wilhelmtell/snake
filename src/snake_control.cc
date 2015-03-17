@@ -22,7 +22,7 @@ snk::direction to_move_request(snk::event const& e,
 snk::direction next_move_from_move_requested(snk::direction previous,
                                              snk::direction move_requested) {
   using dir = snk::direction;
-  switch(move_requested.type) {
+  switch(move_requested) {
   case dir::up: return previous == dir::down ? dir::down : dir::up;
   case dir::right: return previous == dir::left ? dir::left : dir::right;
   case dir::down: return previous == dir::up ? dir::up : dir::down;
