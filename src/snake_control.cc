@@ -41,6 +41,22 @@ bool update_expired(snk::snake_segment const& seg,
          || (next_move == snk::direction::down
              && seg.pos.y + seg.rect.h == drawable_rect.h);
 }
+
+snk::snake_segment update_snake_segment(snk::snake_segment seg,
+                                        snk::direction const& next_move,
+                                        snk::rectangle const& drawable_rect) {
+  if(next_move == snk::direction::right
+     && seg.pos.x + seg.rect.w < drawable_rect.w)
+    ++seg.pos.x;
+  else if(next_move == snk::direction::left && seg.pos.x > 0)
+    --seg.pos.x;
+  else if(next_move == snk::direction::up && seg.pos.y > 0)
+    --seg.pos.y;
+  else if(next_move == snk::direction::down
+          && seg.pos.y + seg.rect.h < drawable_rect.h)
+    ++seg.pos.y;
+  return seg;
+}
 }
 
 namespace snk {
@@ -72,16 +88,7 @@ void snake_control::update() {
   if(dead()) return;
   next_move = next_move_from_move_requested(next_move, move_requested);
   expired = update_expired(seg, next_move, out->get_drawable_size());
-  auto const drawable_rect = out->get_drawable_size();
-  if(next_move == direction::right && seg.pos.x + seg.rect.w < drawable_rect.w)
-    ++seg.pos.x;
-  else if(next_move == direction::left && seg.pos.x > 0)
-    --seg.pos.x;
-  else if(next_move == direction::up && seg.pos.y > 0)
-    --seg.pos.y;
-  else if(next_move == direction::down
-          && seg.pos.y + seg.rect.h < drawable_rect.h)
-    ++seg.pos.y;
+  seg = update_snake_segment(seg, next_move, out->get_drawable_size());
 }
 
 void snake_control::draw() {
