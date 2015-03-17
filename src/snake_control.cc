@@ -4,6 +4,7 @@
 #include "position.hh"
 #include "rectangle.hh"
 #include "snake_segment.hh"
+#include <stdexcept>
 
 namespace {
 snk::direction to_move_request(snk::event const& e,
@@ -26,7 +27,7 @@ snk::direction next_move_from_move_requested(snk::direction previous,
   case dir::right: return previous == dir::left ? dir::left : dir::right;
   case dir::down: return previous == dir::up ? dir::up : dir::down;
   case dir::left: return previous == dir::right ? dir::right : dir::left;
-  default: return dir::nil;
+  default: throw std::logic_error("unexpected move request");
   }
 }
 }
@@ -41,13 +42,18 @@ snake_control::snake_control(std::unique_ptr<snake_output> out)
 
 snake_control::snake_control(std::unique_ptr<snake_output> out,
                              snake_segment seg)
+: snake_control{std::move(out), std::move(seg), direction::right} {}
+
+snake_control::snake_control(std::unique_ptr<snake_output> out,
+                             snake_segment seg,
+                             direction first_move)
 : out{std::move(out)}
-, move_requested{direction::nil}
-, next_move{direction::nil}
 , seg{std::move(seg)}
+, move_requested{std::move(first_move)}
+, next_move{std::move(first_move)}
 , expired{false} {}
 
-void snake_control::handle_event(event const& e) {
+  void snake_control::handle_event(event const& e) {
   move_requested = to_move_request(e, move_requested);
 }
 

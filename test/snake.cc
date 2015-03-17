@@ -7,26 +7,16 @@
 #include "../src/snake_segment.hh"
 #include "position_to_string.hh"
 
-TEST_CASE("snake by default is initially at origin") {
+TEST_CASE("snake initially move right") {
   auto control_out = std::make_unique<snk::test::mock_snake_output>();
   auto out = control_out.get();
   snk::snake_control control{std::move(control_out)};
   control.update();
   control.draw();
-  REQUIRE(out->position_initialized);
-  REQUIRE(out->pos == snk::position(0, 0));
-}
-
-TEST_CASE("snake originally doesn't move") {
-  auto control_out = std::make_unique<snk::test::mock_snake_output>();
-  auto out = control_out.get();
-  snk::snake_control control{std::move(control_out)};
+  auto const previous_pos = out->pos;
   control.update();
   control.draw();
-  REQUIRE(out->pos == snk::position(0, 0));
-  control.update();
-  control.draw();
-  REQUIRE(out->pos == snk::position(0, 0));
+  REQUIRE(out->pos.x == previous_pos.x + 1);
 }
 
 TEST_CASE("pressing left-arrow key moves snake left") {
@@ -34,7 +24,8 @@ TEST_CASE("pressing left-arrow key moves snake left") {
   auto out = control_out.get();
   snk::snake_control control{
     std::move(control_out),
-    snk::snake_segment{snk::position{1, 1}, snk::rectangle{25, 25}}};
+    snk::snake_segment{snk::position{1, 1}, snk::rectangle{25, 25}},
+    snk::direction::left};
   control.handle_event(snk::event::keydown_left);
   control.update();
   control.draw();
@@ -95,7 +86,8 @@ TEST_CASE("snake moving left won't move right") {
   auto out = control_out.get();
   snk::snake_control control{
     std::move(control_out),
-    snk::snake_segment{snk::position{2, 2}, snk::rectangle{25, 25}}};
+    snk::snake_segment{snk::position{2, 2}, snk::rectangle{25, 25}},
+    snk::direction::left};
   control.handle_event(snk::event::keydown_left);
   control.update();  // must update or else arrow key press is ignored
   control.draw();
@@ -183,7 +175,8 @@ TEST_CASE("snake moving left can move down") {
   auto out = control_out.get();
   snk::snake_control control{
     std::move(control_out),
-    snk::snake_segment{snk::position{1, 1}, snk::rectangle{25, 25}}};
+    snk::snake_segment{snk::position{1, 1}, snk::rectangle{25, 25}},
+    snk::direction::left};
   control.handle_event(snk::event::keydown_left);
   control.update();  // must update or else arrow key press is ignored
   control.draw();
@@ -198,7 +191,8 @@ TEST_CASE("snake moving left can move up") {
   auto out = control_out.get();
   snk::snake_control control{
     std::move(control_out),
-    snk::snake_segment{snk::position{1, 1}, snk::rectangle{25, 25}}};
+    snk::snake_segment{snk::position{1, 1}, snk::rectangle{25, 25}},
+    snk::direction::left};
   control.handle_event(snk::event::keydown_left);
   control.update();  // must update or else arrow key press is ignored
   control.draw();
@@ -213,7 +207,8 @@ TEST_CASE("moving left is a no-op when snake is already moving left") {
   auto out = control_out.get();
   snk::snake_control control{
     std::move(control_out),
-    snk::snake_segment{snk::position{2, 2}, snk::rectangle{25, 25}}};
+    snk::snake_segment{snk::position{2, 2}, snk::rectangle{25, 25}},
+    snk::direction::left};
   control.handle_event(snk::event::keydown_left);
   control.update();  // must update or else arrow key press is ignored
   control.draw();
@@ -316,7 +311,8 @@ TEST_CASE("moving up is a no-op when snake is already moving up") {
 TEST_CASE("left against the wall kills snake") {
   snk::snake_control control{
     std::make_unique<snk::test::mock_snake_output>(),
-    snk::snake_segment{snk::position{0, 0}, snk::rectangle{25, 25}}};
+    snk::snake_segment{snk::position{0, 0}, snk::rectangle{25, 25}},
+    snk::direction::left};
   control.handle_event(snk::event::keydown_left);
   control.update();
   control.draw();

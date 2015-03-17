@@ -13,6 +13,9 @@ struct snake_control {
   explicit snake_control(abstract_factory*);
   explicit snake_control(std::unique_ptr<snake_output> out);
   snake_control(std::unique_ptr<snake_output> out, snake_segment seg);
+  snake_control(std::unique_ptr<snake_output> out,
+                snake_segment seg,
+                direction first_move);
 
   void handle_event(event const& e);
   void update();
@@ -22,9 +25,9 @@ struct snake_control {
 
 private:
   std::unique_ptr<snake_output> out;
+  snake_segment seg;
   direction move_requested;
   direction next_move;
-  snake_segment seg;
   bool expired;
 };
 }

@@ -3,7 +3,7 @@
 
 namespace snk {
 struct direction {
-  enum type_t { nil = 0, up, right, down, left };
+  enum type_t { up, right, down, left };
 
   direction() = default;
   direction(type_t const& type);
