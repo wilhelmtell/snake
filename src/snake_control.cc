@@ -31,39 +31,6 @@ snk::direction next_move_from_move_requested(snk::direction previous,
   }
 }
 
-bool right_wall_hit(snk::snake_segment const& seg,
-                    snk::direction const& next_move,
-                    snk::rectangle const& drawable_rect) {
-  return next_move == snk::direction::right
-         && seg.pos.x + seg.rect.w == drawable_rect.w;
-}
-
-bool left_wall_hit(snk::snake_segment const& seg,
-                   snk::direction const& next_move) {
-  return next_move == snk::direction::left && seg.pos.x == 0;
-}
-
-bool top_wall_hit(snk::snake_segment const& seg,
-                  snk::direction const& next_move) {
-  return next_move == snk::direction::up && seg.pos.y == 0;
-}
-
-bool bottom_wall_hit(snk::snake_segment const& seg,
-                     snk::direction const& next_move,
-                     snk::rectangle const& drawable_rect) {
-  return next_move == snk::direction::down
-         && seg.pos.y + seg.rect.h == drawable_rect.h;
-}
-
-bool update_expired(snk::snake_segment const& seg,
-                    snk::direction const& next_move,
-                    snk::rectangle const& drawable_rect) {
-  return right_wall_hit(seg, next_move, drawable_rect)
-         || left_wall_hit(seg, next_move)
-         || top_wall_hit(seg, next_move)
-         || bottom_wall_hit(seg, next_move, drawable_rect);
-}
-
 bool want_and_can_move_right(snk::snake_segment const& seg,
                              snk::direction const& next_move,
                              snk::rectangle const& drawable_rect) {
@@ -121,17 +88,15 @@ snake_control::snake_control(std::unique_ptr<snake_output> out,
 : out{std::move(out)}
 , seg{std::move(seg)}
 , move_requested{std::move(first_move)}
-, next_move{std::move(first_move)}
-, expired{false} {}
+, next_move{std::move(first_move)} {}
 
-  void snake_control::handle_event(event const& e) {
+void snake_control::handle_event(event const& e) {
   move_requested = to_move_request(e, move_requested);
 }
 
 void snake_control::update() {
-  if(dead()) return;
   next_move = next_move_from_move_requested(next_move, move_requested);
-  expired = update_expired(seg, next_move, out->get_drawable_size());
+  if(dead()) return;
   seg = update_snake_segment(seg, next_move, out->get_drawable_size());
 }
 
@@ -140,5 +105,30 @@ void snake_control::draw() {
   out->draw_rect(seg.pos, seg.rect);
 }
 
-bool snake_control::dead() const { return expired; }
+bool snake_control::dead() const {
+  return west_wall_collision() || east_wall_collision()
+         || north_wall_collision() || south_wall_collision();
+}
+
+bool snake_control::west_wall_collision() const {
+  return seg.pos.x == 0 && next_move == direction::left;
+}
+
+bool snake_control::east_wall_collision() const {
+  auto const x = seg.pos.x;
+  auto const w = seg.rect.w;
+  auto const drawable_w = out->get_drawable_size().w;
+  return x + w == drawable_w && next_move == direction::right;
+}
+
+bool snake_control::north_wall_collision() const {
+  return seg.pos.y == 0 && next_move == direction::up;
+}
+
+bool snake_control::south_wall_collision() const {
+  auto const y = seg.pos.y;
+  auto const h = seg.rect.h;
+  auto const drawable_h = out->get_drawable_size().h;
+  return y + h == drawable_h && next_move == direction::down;
+}
 }
