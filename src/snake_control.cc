@@ -106,17 +106,29 @@ void snake_control::draw() {
 }
 
 bool snake_control::dead() const {
-  using dir = direction;
+  return west_wall_collision() || east_wall_collision()
+         || north_wall_collision() || south_wall_collision();
+}
+
+bool snake_control::west_wall_collision() const {
+  return seg.pos.x == 0 && next_move == direction::left;
+}
+
+bool snake_control::east_wall_collision() const {
   auto const x = seg.pos.x;
-  auto const y = seg.pos.y;
   auto const w = seg.rect.w;
-  auto const h = seg.rect.h;
   auto const drawable_w = out->get_drawable_size().w;
+  return x + w == drawable_w && next_move == direction::right;
+}
+
+bool snake_control::north_wall_collision() const {
+  return seg.pos.y == 0 && next_move == direction::up;
+}
+
+bool snake_control::south_wall_collision() const {
+  auto const y = seg.pos.y;
+  auto const h = seg.rect.h;
   auto const drawable_h = out->get_drawable_size().h;
-  auto const west_wall_hit = x == 0 && next_move == dir::left;
-  auto const east_wall_hit = x + w == drawable_w && next_move == dir::right;
-  auto const north_wall_hit = y == 0 && next_move == dir::up;
-  auto const south_wall_hit = y + h == drawable_h && next_move == dir::down;
-  return west_wall_hit || east_wall_hit || north_wall_hit || south_wall_hit;
+  return y + h == drawable_h && next_move == direction::down;
 }
 }

@@ -24,6 +24,12 @@ struct snake_control {
   bool dead() const;
 
 private:
+  bool west_wall_collision() const;
+  bool east_wall_collision() const;
+  bool north_wall_collision() const;
+  bool south_wall_collision() const;
+
+private:
   std::unique_ptr<snake_output> out;
   snake_segment seg;
   direction move_requested;
