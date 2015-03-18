@@ -28,7 +28,6 @@ private:
   snake_segment seg;
   direction move_requested;
   direction next_move;
-  bool expired;
 };
 }
 
