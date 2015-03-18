@@ -23,7 +23,7 @@ struct game_control {
 private:
   std::unique_ptr<game_output> out;
   snake_control snake;
-  bool expired;
+  bool end_game_requested;
 };
 }
 

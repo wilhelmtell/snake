@@ -12,10 +12,10 @@ game_control::game_control(std::unique_ptr<game_output> out,
                            abstract_factory* factory)
 : out{std::move(out)}
 , snake{factory}
-, expired{false} {}
+, end_game_requested{false} {}
 
 void game_control::handle_event(event const& e) {
-  if(e.type == event::keydown_esc) expired = true;
+  end_game_requested = e.type == event::keydown_esc;
   snake.handle_event(e);
 }
 
@@ -29,5 +29,5 @@ void game_control::draw() {
   out->present();
 }
 
-bool game_control::game_over() const { return expired; }
+bool game_control::game_over() const { return end_game_requested; }
 }
