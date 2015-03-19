@@ -5,8 +5,8 @@ check_snake_SOURCES = berry.cc \
                       mock_berry_output.hh mock_berry_output.cc \
                       mock_factory.hh mock_factory.cc \
                       mock_game_output.hh mock_game_output.cc \
-                      position_to_string.hh position_to_string.cc \
                       mock_snake_output.hh mock_snake_output.cc \
+                      position_to_string.hh position_to_string.cc \
                       snake.cc \
                       window.cc
 check_snake_LDADD = ../src/libsnake.a
