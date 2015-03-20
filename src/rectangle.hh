@@ -8,7 +8,6 @@
 namespace snk {
 struct rectangle {
   rectangle() = default;
-  rectangle(width w, height h);
   rectangle(position const& p, width w, height h);
 
 public:
