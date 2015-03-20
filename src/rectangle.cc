@@ -6,8 +6,8 @@
 
 namespace snk {
 rectangle::rectangle(width w, height h)
-: rectangle{std::move(w), std::move(h), position{0, 0}} {}
+: rectangle{position{0, 0}, std::move(w), std::move(h)} {}
 
-rectangle::rectangle(width w, height h, position const& p)
-: w{w.get()}, h{h.get()}, x{p.x}, y{p.y} {}
+rectangle::rectangle(position const& p, width w, height h)
+: x{p.x}, y{p.y}, w{w.get()}, h{h.get()} {}
 }

@@ -9,13 +9,13 @@ namespace snk {
 struct rectangle {
   rectangle() = default;
   rectangle(width w, height h);
-  rectangle(width w, height h, position const& p);
+  rectangle(position const& p, width w, height h);
 
 public:
-  int w;
-  int h;
   int x;
   int y;
+  int w;
+  int h;
 };
 }
 
