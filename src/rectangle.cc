@@ -1,5 +1,7 @@
 #include "rectangle.hh"
+#include "width.hh"
+#include "height.hh"
 
 namespace snk {
-rectangle::rectangle(int w, int h) : w{w}, h{h} {}
+rectangle::rectangle(width w, height h) : w{w.get()}, h{h.get()} {}
 }
