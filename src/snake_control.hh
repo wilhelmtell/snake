@@ -5,17 +5,12 @@
 #include <memory>
 #include "snake_output.hh"
 #include "event_fwd.hh"
-#include "snake_segment.hh"
-#include "direction.hh"
+#include "snake_body_control.hh"
 
 namespace snk {
 struct snake_control {
-  explicit snake_control(abstract_factory*);
-  explicit snake_control(std::unique_ptr<snake_output> out);
-  snake_control(std::unique_ptr<snake_output> out, snake_segment seg);
-  snake_control(std::unique_ptr<snake_output> out,
-                snake_segment seg,
-                direction first_move);
+  explicit snake_control(abstract_factory* factory);
+  snake_control(abstract_factory* factory, std::unique_ptr<snake_output> out);
 
   void handle_event(event const& e);
   void update();
@@ -24,16 +19,8 @@ struct snake_control {
   bool dead() const;
 
 private:
-  bool west_wall_collision() const;
-  bool east_wall_collision() const;
-  bool north_wall_collision() const;
-  bool south_wall_collision() const;
-
-private:
   std::unique_ptr<snake_output> out;
-  snake_segment seg;
-  direction move_requested;
-  direction next_move;
+  snake_body_control body;
 };
 }
 
