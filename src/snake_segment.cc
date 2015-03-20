@@ -1,7 +1,8 @@
 #include "snake_segment.hh"
-#include <iostream>
+#include <utility>
+#include "rectangle.hh"
 
 namespace snk {
-snake_segment::snake_segment(position pos, rectangle rect)
-: pos{std::move(pos)}, rect{std::move(rect)} {}
+snake_segment::snake_segment(rectangle rect)
+: rect{std::move(rect)} {}
 }
