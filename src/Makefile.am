@@ -44,6 +44,8 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      snake_control_fwd.hh \
                      snake_output.hh \
                      snake_output_fwd.hh \
+                     snake_segment_output.hh \
+                     snake_segment_output_fwd.hh \
                      snake_segment_control.hh snake_segment_control.cc \
                      width.hh width.cc \
                      width_fwd.hh \
