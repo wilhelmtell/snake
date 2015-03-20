@@ -18,6 +18,8 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      game_control_fwd.hh \
                      game_output.hh \
                      game_output_fwd.hh \
+                     height.hh height.cc \
+                     height_fwd.hh \
                      position.hh position.cc \
                      position_fwd.hh \
                      rectangle.hh rectangle.cc \
