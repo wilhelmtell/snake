@@ -7,6 +7,7 @@
 #include "width.hh"
 #include "height.hh"
 #include "position.hh"
+#include "event.hh"
 
 namespace snk {
 snake_segment_control::snake_segment_control(abstract_factory* factory)
@@ -20,4 +21,10 @@ snake_segment_control::snake_segment_control(
 snake_segment_control::snake_segment_control(
   std::unique_ptr<snake_segment_output> out, rectangle rect)
 : out{std::move(out)}, rect{std::move(rect)} {}
+
+void snake_segment_control::handle_event(event const& /*e*/) {}
+
+void snake_segment_control::update() {}
+
+void snake_segment_control::draw() const {}
 }

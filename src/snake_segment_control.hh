@@ -5,6 +5,7 @@
 #include "abstract_factory_fwd.hh"
 #include "snake_segment_output.hh"
 #include "rectangle.hh"
+#include "event_fwd.hh"
 
 namespace snk {
 struct snake_segment_control {
@@ -12,6 +13,10 @@ struct snake_segment_control {
   explicit snake_segment_control(std::unique_ptr<snake_segment_output> out);
   snake_segment_control(std::unique_ptr<snake_segment_output> out,
                         rectangle rect);
+
+  void handle_event(event const& e);
+  void update();
+  void draw() const;
 
 public:
   std::unique_ptr<snake_segment_output> out;
