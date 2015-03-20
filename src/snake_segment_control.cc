@@ -26,5 +26,8 @@ void snake_segment_control::handle_event(event const& /*e*/) {}
 
 void snake_segment_control::update() {}
 
-void snake_segment_control::draw() const {}
+void snake_segment_control::draw() const {
+  out->set_colour(0x7f, 0x7f, 0x7f, 0xff);
+  out->draw_rect(rect);
+}
 }
