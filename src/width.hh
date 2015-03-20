@@ -4,7 +4,7 @@
 namespace snk {
 struct width {
   width() = default;
-  width(int value);
+  explicit width(int value);
 
   int get() const;
 
