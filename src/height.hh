@@ -4,7 +4,7 @@
 namespace snk {
 struct height {
   height() = default;
-  height(int value);
+  explicit height(int value);
 
   int get() const;
 

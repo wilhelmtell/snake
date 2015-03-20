@@ -2,11 +2,12 @@
 #include <cassert>
 #include "rectangle.hh"
 #include "width.hh"
+#include "height.hh"
 
 namespace snk {
 namespace test {
 mock_snake_output::mock_snake_output()
-: mock_snake_output{snk::rectangle{width{640}, 480}} {}
+: mock_snake_output{snk::rectangle{width{640}, height{480}}} {}
 
 mock_snake_output::mock_snake_output(snk::rectangle const& drawable_rect)
 : position_initialized{false}, drawable_rect{drawable_rect} {}
