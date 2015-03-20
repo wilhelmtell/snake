@@ -4,6 +4,7 @@
 #include "sdl_game_output.hh"
 #include "sdl_snake_output.hh"
 #include "sdl_snake_body_output.hh"
+#include "sdl_snake_segment_output.hh"
 #include "sdl_berry_output.hh"
 #include "position.hh"
 
@@ -28,6 +29,11 @@ std::unique_ptr<snake_output> sdl_factory::make_snake_output() const {
 std::unique_ptr<snake_body_output> sdl_factory::make_snake_body_output()
   const {
   return std::make_unique<sdl_snake_body_output>(w.get(), r.get());
+}
+
+std::unique_ptr<snake_segment_output> sdl_factory::make_snake_segment_output()
+  const {
+  return std::make_unique<sdl_snake_segment_output>(w.get(), r.get());
 }
 
 std::unique_ptr<berry_output> sdl_factory::make_berry_output() const {
