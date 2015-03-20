@@ -3,16 +3,15 @@
 
 #include "width.hh"
 #include "height.hh"
-#include "position_fwd.hh"
+#include "position.hh"
 
 namespace snk {
 struct rectangle {
   rectangle() = default;
-  rectangle(position const& p, width w, height h);
+  rectangle(position p, width w, height h);
 
 public:
-  int x;
-  int y;
+  position p;
   int w;
   int h;
 };
