@@ -17,6 +17,7 @@ public:
 };
 
 bool outside(position const& p, rectangle const& b);
+bool intersect(rectangle const& a, rectangle const& b);
 }
 
 #endif

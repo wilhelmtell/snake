@@ -11,4 +11,8 @@ rectangle::rectangle(position p, width w, height h)
 bool outside(position const& p, rectangle const& b) {
   return p.x < b.p.x || p.x > b.w || p.y < b.p.y || p.y > b.h;
 }
+
+bool intersect(rectangle const& a, rectangle const& b) {
+  return !outside(a.p, b) || !outside(position{a.w, a.h}, b);
+}
 }
