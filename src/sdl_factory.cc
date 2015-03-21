@@ -7,14 +7,15 @@
 #include "sdl_snake_segment_output.hh"
 #include "sdl_berry_output.hh"
 #include "point.hh"
+#include "rectangle.hh"
 
 namespace snk {
 sdl_factory::sdl_factory()
 : s{SDL_INIT_VIDEO}
 , w{"Snake",
-    snk::point{SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED},
-    640,
-    480,
+    rectangle{point{SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED},
+              width{640},
+              height{480}},
     SDL_WINDOW_SHOWN}
 , r{this->w, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC} {}
 
