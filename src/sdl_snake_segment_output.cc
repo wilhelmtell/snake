@@ -8,12 +8,6 @@ sdl_snake_segment_output::sdl_snake_segment_output(SDL_Window* window,
                                                    SDL_Renderer* renderer)
 : window{std::move(window)}, renderer{std::move(renderer)} {}
 
-rectangle sdl_snake_segment_output::get_drawable_size() const {
-  rectangle rect;
-  SDL_GL_GetDrawableSize(window, &rect.w, &rect.h);
-  return rect;
-}
-
 void sdl_snake_segment_output::set_colour(int r, int g, int b, int a) {
   SDL_SetRenderDrawColor(renderer, r, g, b, a);
 }

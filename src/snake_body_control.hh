@@ -10,6 +10,8 @@
 
 namespace snk {
 struct snake_body_control {
+  using snake_segments = std::deque<snake_segment_control>;
+
   explicit snake_body_control(abstract_factory* factory);
   snake_body_control(abstract_factory* factory,
                      std::unique_ptr<snake_body_output> out);
@@ -18,12 +20,13 @@ struct snake_body_control {
   void update();
   void draw() const;
 
+  snake_segments::const_reference head() const;
   bool dead() const;
 
 private:
   abstract_factory* factory;
   std::unique_ptr<snake_body_output> out;
-  std::deque<snake_segment_control> segments;
+  snake_segments segments;
 };
 }
 
