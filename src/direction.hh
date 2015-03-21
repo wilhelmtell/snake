@@ -3,6 +3,8 @@
 
 namespace snk {
 enum class direction { up, right, down, left };
+
+bool are_opposite(direction const& a, direction const& b);
 }
 
 #endif
