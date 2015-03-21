@@ -9,14 +9,20 @@
 #include "point.hh"
 #include "event.hh"
 
+namespace {
+snk::width const default_segment_width{10};
+snk::height const default_segment_height{10};
+}
+
 namespace snk {
 snake_segment_control::snake_segment_control(abstract_factory* factory)
 : snake_segment_control{factory->make_snake_segment_output()} {}
 
 snake_segment_control::snake_segment_control(
   std::unique_ptr<snake_segment_output> out)
-: snake_segment_control{std::move(out),
-                        rectangle{point{0, 0}, width{10}, height{10}}} {}
+: snake_segment_control{
+    std::move(out),
+    rectangle{point{0, 0}, default_segment_width, default_segment_height}} {}
 
 snake_segment_control::snake_segment_control(
   std::unique_ptr<snake_segment_output> out, rectangle rect)
