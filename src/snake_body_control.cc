@@ -32,6 +32,6 @@ snake_body_control::snake_segments::const_reference snake_body_control::head()
 }
 
 bool snake_body_control::dead() const {
-  return head().intersect(out->get_drawable_size());
+  return head().intersect(out->bounds());
 }
 }

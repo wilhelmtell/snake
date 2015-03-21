@@ -7,12 +7,12 @@
 namespace snk {
 namespace test {
 struct mock_snake_body_output : snk::snake_body_output {
-  explicit mock_snake_body_output(rectangle bounds);
+  explicit mock_snake_body_output(rectangle bounding_rect);
 
-  rectangle get_drawable_size() const override;
+  rectangle bounds() const override;
 
 private:
-  rectangle bounds;
+  rectangle bounding_rect;
 };
 }
 }

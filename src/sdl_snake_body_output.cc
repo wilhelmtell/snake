@@ -8,7 +8,7 @@ sdl_snake_body_output::sdl_snake_body_output(SDL_Window* window,
                                              SDL_Renderer* renderer)
 : window{std::move(window)}, renderer{std::move(renderer)} {}
 
-rectangle sdl_snake_body_output::get_drawable_size() const {
+rectangle sdl_snake_body_output::bounds() const {
   rectangle rect;
   SDL_GL_GetDrawableSize(window, &rect.w, &rect.h);
   return rect;
