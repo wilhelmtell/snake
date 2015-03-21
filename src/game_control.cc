@@ -29,5 +29,7 @@ void game_control::draw() {
   out->present();
 }
 
-bool game_control::game_over() const { return end_game_requested; }
+bool game_control::game_over() const {
+  return end_game_requested || snake.dead();
+}
 }
