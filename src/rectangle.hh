@@ -15,6 +15,8 @@ public:
   int w;
   int h;
 };
+
+bool outside(position const& p, rectangle const& b);
 }
 
 #endif
