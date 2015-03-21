@@ -26,12 +26,7 @@ void snake_body_control::draw() const {
   for(auto const& segment : segments) segment.draw();
 }
 
-snake_body_control::snake_segments::const_reference snake_body_control::head()
-  const {
-  return segments.front();
-}
-
 bool snake_body_control::dead() const {
-  return head().intersect(out->bounds());
+  return segments.front().intersect(out->bounds());
 }
 }

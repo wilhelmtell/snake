@@ -20,7 +20,6 @@ struct snake_body_control {
   void update();
   void draw() const;
 
-  snake_segments::const_reference head() const;
   bool dead() const;
 
 private:
