@@ -18,6 +18,8 @@ struct snake_segment_control {
   void update();
   void draw() const;
 
+  bool intersect(rectangle const& rect) const;
+
 public:
   std::unique_ptr<snake_segment_output> out;
   rectangle rect;

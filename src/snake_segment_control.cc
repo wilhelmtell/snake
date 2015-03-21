@@ -30,4 +30,8 @@ void snake_segment_control::draw() const {
   out->set_colour(0x7f, 0x7f, 0x7f, 0xff);
   out->draw_rect(rect);
 }
+
+bool snake_segment_control::intersect(rectangle const& rect) const {
+  return snk::intersect(this->rect, rect);
+}
 }
