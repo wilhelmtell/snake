@@ -6,13 +6,13 @@
 #include "sdl_snake_body_output.hh"
 #include "sdl_snake_segment_output.hh"
 #include "sdl_berry_output.hh"
-#include "position.hh"
+#include "point.hh"
 
 namespace snk {
 sdl_factory::sdl_factory()
 : s{SDL_INIT_VIDEO}
 , w{"Snake",
-    snk::position{SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED},
+    snk::point{SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED},
     640,
     480,
     SDL_WINDOW_SHOWN}

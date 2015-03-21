@@ -6,11 +6,11 @@
 #include "../src/rectangle.hh"
 #include "../src/width.hh"
 #include "../src/height.hh"
-#include "../src/position.hh"
+#include "../src/point.hh"
 
 TEST_CASE("esc quits the game") {
   snk::test::mock_factory factory{
-    snk::rectangle{snk::position{0, 0}, snk::width{100}, snk::height{100}}};
+    snk::rectangle{snk::point{0, 0}, snk::width{100}, snk::height{100}}};
   snk::game_control control{std::make_unique<snk::test::mock_game_output>(),
                             &factory};
   control.handle_event(snk::event::keydown_esc);

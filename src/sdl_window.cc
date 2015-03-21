@@ -1,11 +1,11 @@
 #include "sdl_window.hh"
 #include <SDL2/SDL.h>
 #include "window_creation_error.hh"
-#include "position.hh"
+#include "point.hh"
 
 namespace snk {
 sdl_window::sdl_window(char const* const title,
-                       position const& pos,
+                       point const& pos,
                        int const& width,
                        int const& height,
                        int const& flags)
