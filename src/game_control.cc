@@ -10,18 +10,14 @@ game_control::game_control(abstract_factory* factory)
 
 game_control::game_control(std::unique_ptr<game_output> out,
                            abstract_factory* factory)
-: out{std::move(out)}
-, snake{factory}
-, end_game_requested{false} {}
+: out{std::move(out)}, snake{factory}, end_game_requested{false} {}
 
 void game_control::handle_event(event const& e) {
   end_game_requested = e.type == event::keydown_esc;
   snake.handle_event(e);
 }
 
-void game_control::update() {
-  snake.update();
-}
+void game_control::update() { snake.update(); }
 
 void game_control::draw() {
   out->clear(0x00, 0x00, 0x00, 0xff);
