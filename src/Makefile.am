@@ -10,7 +10,7 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      berry_control.hh berry_control.cc \
                      berry_output.hh \
                      berry_output_fwd.hh \
-                     direction.hh \
+                     direction.hh direction.cc \
                      direction_fwd.hh \
                      event.hh event.cc \
                      event_fwd.hh \
@@ -18,8 +18,10 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      game_control_fwd.hh \
                      game_output.hh \
                      game_output_fwd.hh \
-                     position.hh position.cc \
-                     position_fwd.hh \
+                     height.hh height.cc \
+                     height_fwd.hh \
+                     point.hh point.cc \
+                     point_fwd.hh \
                      rectangle.hh rectangle.cc \
                      rectangle_fwd.hh \
                      renderer_creation_error.hh renderer_creation_error.cc \
@@ -28,14 +30,24 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      sdl_factory.hh sdl_factory.cc \
                      sdl_game_output.hh sdl_game_output.cc \
                      sdl_renderer.hh sdl_renderer.cc \
+                     sdl_snake_body_output.hh sdl_snake_body_output.cc \
                      sdl_snake_output.hh sdl_snake_output.cc \
+                     sdl_snake_segment_output.hh sdl_snake_segment_output.cc \
                      sdl_system.hh sdl_system.cc \
                      sdl_system_init_error.hh sdl_system_init_error.cc \
                      sdl_window.hh sdl_window.cc \
                      sdl_window_fwd.hh \
+                     snake_body_control.hh snake_body_control.cc \
+                     snake_body_control_fwd.hh \
+                     snake_body_output.hh \
+                     snake_body_output_fwd.hh \
                      snake_control.hh snake_control.cc \
                      snake_control_fwd.hh \
                      snake_output.hh \
                      snake_output_fwd.hh \
-                     snake_segment.hh snake_segment.cc \
+                     snake_segment_control.hh snake_segment_control.cc \
+                     snake_segment_output.hh \
+                     snake_segment_output_fwd.hh \
+                     width.hh width.cc \
+                     width_fwd.hh \
                      window_creation_error.hh window_creation_error.cc
