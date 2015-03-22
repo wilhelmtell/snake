@@ -7,6 +7,7 @@
 #include "abstract_factory_fwd.hh"
 #include "snake_body_output.hh"
 #include "snake_segment_control.hh"
+#include "direction.hh"
 
 namespace snk {
 struct snake_body_control {
@@ -15,6 +16,9 @@ struct snake_body_control {
   explicit snake_body_control(abstract_factory* factory);
   snake_body_control(abstract_factory* factory,
                      std::unique_ptr<snake_body_output> out);
+  snake_body_control(abstract_factory* factory,
+                     std::unique_ptr<snake_body_output> out,
+                     direction move_request);
 
   void handle_event(event const& e);
   void update();
@@ -25,7 +29,10 @@ struct snake_body_control {
 private:
   abstract_factory* factory;
   std::unique_ptr<snake_body_output> out;
+  direction move_requested;
+  direction move_to;
   snake_segments segments;
+  bool grow;
 };
 }
 

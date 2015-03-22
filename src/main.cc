@@ -15,5 +15,6 @@ int main(int /*argc*/, char* /*argv*/ []) {
     }
     control.update();
     control.draw();
+    SDL_Delay(100);
   }
 }
