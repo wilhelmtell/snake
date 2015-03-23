@@ -6,7 +6,7 @@
 
 namespace snk {
 struct sdl_snake_output : snake_output {
-  sdl_snake_output(SDL_Window* w, SDL_Renderer* r);
+  sdl_snake_output(SDL_Window* window, SDL_Renderer* renderer);
 };
 }
 
