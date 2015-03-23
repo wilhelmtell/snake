@@ -41,10 +41,6 @@ void snake_segment_control::draw() const {
 
 point snake_segment_control::position() const { return rect.p; }
 
-bool snake_segment_control::intersect(rectangle const& rect) const {
-  return snk::intersect(this->rect, rect);
-}
-
 bool snake_segment_control::outside(rectangle const& bounds) const {
   return snk::outside(rect, bounds);
 }

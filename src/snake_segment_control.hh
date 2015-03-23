@@ -24,7 +24,6 @@ struct snake_segment_control {
   void draw() const;
 
   point position() const;
-  bool intersect(rectangle const& rect) const;
   bool outside(rectangle const& bounds) const;
 
 public:
