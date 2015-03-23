@@ -13,7 +13,7 @@ game_control::game_control(std::unique_ptr<game_output> out,
 : out{std::move(out)}, snake{factory}, end_game_requested{false} {}
 
 void game_control::handle_event(event const& e) {
-  end_game_requested = e.type == event::keydown_esc;
+  end_game_requested = e == event::keydown_esc;
   snake.handle_event(e);
 }
 
