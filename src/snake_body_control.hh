@@ -8,6 +8,7 @@
 #include "snake_body_output.hh"
 #include "snake_segment_control.hh"
 #include "direction.hh"
+#include "point_fwd.hh"
 
 namespace snk {
 struct snake_body_control {
@@ -24,7 +25,10 @@ struct snake_body_control {
   void update();
   void draw() const;
 
+  void grow();
+
   bool dead() const;
+  point head_position() const;
 
 private:
   bool wall_hit() const;
@@ -36,7 +40,7 @@ private:
   direction move_requested;
   direction move_to;
   snake_segments segments;
-  bool grow;
+  bool grow_requested;
 };
 }
 

@@ -6,6 +6,7 @@
 #include "snake_output.hh"
 #include "event_fwd.hh"
 #include "snake_body_control.hh"
+#include "point_fwd.hh"
 
 namespace snk {
 struct snake_control {
@@ -16,7 +17,10 @@ struct snake_control {
   void update();
   void draw();
 
+  void grow();
+
   bool dead() const;
+  point position() const;
 
 private:
   std::unique_ptr<snake_output> out;

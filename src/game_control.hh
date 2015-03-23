@@ -22,6 +22,7 @@ struct game_control {
 
 private:
   std::unique_ptr<game_output> out;
+  berry_control berry;
   snake_control snake;
   bool end_game_requested;
 };

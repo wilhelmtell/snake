@@ -20,7 +20,7 @@ sdl_factory::sdl_factory()
 , r{this->w, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC} {}
 
 std::unique_ptr<game_output> sdl_factory::make_game_output() const {
-  return std::make_unique<sdl_game_output>(r.get());
+  return std::make_unique<sdl_game_output>(w.get(), r.get());
 }
 
 std::unique_ptr<snake_output> sdl_factory::make_snake_output() const {
@@ -38,6 +38,6 @@ std::unique_ptr<snake_segment_output> sdl_factory::make_snake_segment_output()
 }
 
 std::unique_ptr<berry_output> sdl_factory::make_berry_output() const {
-  return std::make_unique<sdl_berry_output>(r.get());
+  return std::make_unique<sdl_berry_output>(w.get(), r.get());
 }
 }

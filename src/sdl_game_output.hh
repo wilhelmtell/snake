@@ -3,15 +3,19 @@
 
 #include "game_output.hh"
 #include <SDL2/SDL.h>
+#include "rectangle_fwd.hh"
 
 namespace snk {
 struct sdl_game_output : game_output {
-  explicit sdl_game_output(SDL_Renderer* r);
+  sdl_game_output(SDL_Window* w, SDL_Renderer* r);
 
   void clear(int r, int g, int b, int a) override;
   void present() override;
 
+  rectangle bounds() const override;
+
 private:
+  SDL_Window* w;
   SDL_Renderer* r;
 };
 }

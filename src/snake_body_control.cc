@@ -64,7 +64,7 @@ snake_body_control::snake_body_control(abstract_factory* factory,
 , move_requested{move_request}
 , move_to{std::move(move_request)}
 , segments{}
-, grow{false} {
+, grow_requested{false} {
   segments.emplace_back(this->factory,
                         default_segment_position,
                         default_segment_width,
@@ -82,8 +82,8 @@ void snake_body_control::update() {
                          moved(segments.front().position(), move_to),
                          default_segment_width,
                          default_segment_height);
-  if(!grow) segments.pop_back();
-  grow = false;
+  if(!grow_requested) segments.pop_back();
+  grow_requested = false;
   for(auto& segment : segments) segment.update();
 }
 
@@ -103,5 +103,11 @@ bool snake_body_control::self_hit() const {
          }) != end(segs);
 }
 
+void snake_body_control::grow() { grow_requested = true; }
+
 bool snake_body_control::dead() const { return wall_hit() || self_hit(); }
+
+point snake_body_control::head_position() const {
+  return segments.front().position();
+}
 }
