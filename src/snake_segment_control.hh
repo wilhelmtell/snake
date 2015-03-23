@@ -25,6 +25,7 @@ struct snake_segment_control {
 
   point position() const;
   bool intersect(rectangle const& rect) const;
+  bool outside(rectangle const& bounds) const;
 
 public:
   std::unique_ptr<snake_segment_output> out;
