@@ -12,7 +12,7 @@ struct event {
     keydown_esc,
   };
 
-  event(type_t const& t);
+  event(type_t const& type);
 
 public:
   type_t type;
