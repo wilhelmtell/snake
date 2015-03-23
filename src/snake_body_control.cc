@@ -31,7 +31,7 @@ snk::point moved(snk::point const& position, snk::direction const& towards) {
 
 snk::direction to_direction(snk::event const& e,
                             snk::direction const& otherwise) {
-  switch(e.type) {
+  switch(e) {
   case snk::event::keydown_left:
     return snk::direction::left;
   case snk::event::keydown_right:

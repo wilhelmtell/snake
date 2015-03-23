@@ -2,7 +2,7 @@
 #define SNK_EVENT_FWD_HH_
 
 namespace snk {
-struct event;
+enum class event;
 }
 
 #endif
