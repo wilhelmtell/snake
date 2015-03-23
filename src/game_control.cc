@@ -32,7 +32,8 @@ game_control::game_control(abstract_factory* factory)
 
 game_control::game_control(std::unique_ptr<game_output> out,
                            abstract_factory* factory)
-: out{std::move(out)}
+: factory{factory}
+, out{std::move(out)}
 , berry{factory,
         random_position(this->out->bounds(),
                         default_berry_width.get(),
@@ -51,7 +52,15 @@ void game_control::handle_event(event const& e) {
 void game_control::update() {
   berry.update();
   snake.update();
-  if(snake.position() == berry.position()) snake.grow();
+  if(snake.position() == berry.position()) {
+    snake.grow();
+    berry = berry_control{factory,
+                          random_position(this->out->bounds(),
+                                          default_berry_width.get(),
+                                          default_berry_height.get()),
+                          default_berry_width,
+                          default_berry_height};
+  }
 }
 
 void game_control::draw() {

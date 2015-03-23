@@ -21,6 +21,7 @@ struct game_control {
   bool game_over() const;
 
 private:
+  abstract_factory* factory;
   std::unique_ptr<game_output> out;
   berry_control berry;
   snake_control snake;
