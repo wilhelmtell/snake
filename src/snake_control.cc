@@ -19,5 +19,9 @@ void snake_control::update() {
 
 void snake_control::draw() { body.draw(); }
 
+void snake_control::grow() { body.grow(); }
+
 bool snake_control::dead() const { return body.dead(); }
+
+point snake_control::position() const { return body.head_position(); }
 }

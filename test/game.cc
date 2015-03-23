@@ -9,10 +9,11 @@
 #include "../src/point.hh"
 
 TEST_CASE("esc quits the game") {
-  snk::test::mock_factory factory{
-    snk::rectangle{snk::point{0, 0}, snk::width{100}, snk::height{100}}};
-  snk::game_control control{std::make_unique<snk::test::mock_game_output>(),
-                            &factory};
+  snk::point const origin{0, 0};
+  snk::rectangle const bounds{origin, snk::width{100}, snk::height{100}};
+  snk::test::mock_factory factory{bounds};
+  snk::game_control control{
+    std::make_unique<snk::test::mock_game_output>(bounds), &factory};
   control.handle_event(snk::event::keydown_esc);
   control.update();
   control.draw();

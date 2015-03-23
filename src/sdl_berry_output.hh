@@ -3,10 +3,18 @@
 
 #include "berry_output.hh"
 #include <SDL2/SDL.h>
+#include "rectangle_fwd.hh"
 
 namespace snk {
 struct sdl_berry_output : berry_output {
-  explicit sdl_berry_output(SDL_Renderer* renderer);
+  sdl_berry_output(SDL_Window* window, SDL_Renderer* renderer);
+
+  void set_colour(int r, int g, int b, int a) override;
+  void draw_rect(rectangle const& rect) override;
+
+private:
+  SDL_Window* window;
+  SDL_Renderer* renderer;
 };
 }
 
