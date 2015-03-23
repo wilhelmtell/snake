@@ -7,7 +7,7 @@
 
 namespace snk {
 struct sdl_game_output : game_output {
-  sdl_game_output(SDL_Window* w, SDL_Renderer* r);
+  sdl_game_output(SDL_Window* window, SDL_Renderer* renderer);
 
   void clear(int r, int g, int b, int a) override;
   void present() override;
@@ -15,8 +15,8 @@ struct sdl_game_output : game_output {
   rectangle bounds() const override;
 
 private:
-  SDL_Window* w;
-  SDL_Renderer* r;
+  SDL_Window* window;
+  SDL_Renderer* renderer;
 };
 }
 
