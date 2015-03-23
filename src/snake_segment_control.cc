@@ -44,4 +44,10 @@ point snake_segment_control::position() const { return rect.p; }
 bool snake_segment_control::outside(rectangle const& bounds) const {
   return snk::outside(rect, bounds);
 }
+
+bool snake_segment_control::hit(snake_segment_control const& seg) const {
+  return rect.p == seg.rect.p
+         || point{rect.p.x + rect.w, rect.p.y + rect.h}
+            == point{seg.rect.p.x + seg.rect.w, seg.rect.p.y + seg.rect.h};
+}
 }

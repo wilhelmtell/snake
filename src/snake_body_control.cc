@@ -5,6 +5,8 @@
 #include "snake_segment_control.hh"
 #include "direction.hh"
 #include <stdexcept>
+#include <algorithm>
+#include <iterator>
 
 namespace {
 snk::point const default_segment_position{0, 0};
@@ -89,7 +91,17 @@ void snake_body_control::draw() const {
   for(auto const& segment : segments) segment.draw();
 }
 
-bool snake_body_control::dead() const {
+bool snake_body_control::wall_hit() const {
   return segments.front().outside(out->bounds());
 }
+
+bool snake_body_control::self_hit() const {
+  auto const& segs = segments;
+  auto const& head = segs.front();
+  return std::find_if(next(begin(segs)), end(segs), [&](auto const& seg) {
+           return head.hit(seg);
+         }) != end(segs);
+}
+
+bool snake_body_control::dead() const { return wall_hit() || self_hit(); }
 }

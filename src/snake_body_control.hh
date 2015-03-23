@@ -27,6 +27,10 @@ struct snake_body_control {
   bool dead() const;
 
 private:
+  bool wall_hit() const;
+  bool self_hit() const;
+
+private:
   abstract_factory* factory;
   std::unique_ptr<snake_body_output> out;
   direction move_requested;
