@@ -24,9 +24,9 @@ struct sdl_factory : abstract_factory {
   std::unique_ptr<berry_output> make_berry_output() const override;
 
 private:
-  sdl_system s;
-  sdl_window w;
-  sdl_renderer r;
+  sdl_system sdl;
+  sdl_window window;
+  sdl_renderer renderer;
 };
 }
 
