@@ -90,6 +90,6 @@ void snake_body_control::draw() const {
 }
 
 bool snake_body_control::dead() const {
-  return segments.front().intersect(out->bounds());
+  return segments.front().outside(out->bounds());
 }
 }

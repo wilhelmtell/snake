@@ -11,4 +11,8 @@ rectangle::rectangle(point p, width w, height h)
 bool intersect(rectangle const& a, rectangle const& b) {
   return outside(a.p, b) || outside(point{a.w, a.h}, b);
 }
+
+bool outside(rectangle const& a, rectangle const& b) {
+  return outside(a.p, b) || outside(point{a.p.x + a.w, a.p.y + a.h}, b);
+}
 }
