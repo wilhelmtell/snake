@@ -22,7 +22,10 @@ struct game_control {
 
 private:
   void on_keydown_esc();
+  void on_keydown_p();
   void on_berry_eaten(point const& position);
+  void on_pause_game();
+  void on_resume_game();
 
 private:
   abstract_factory* factory;
@@ -31,6 +34,7 @@ private:
   berry_control berry;
   snake_control snake;
   bool end_game_requested;
+  bool game_paused;
 };
 }
 

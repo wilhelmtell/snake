@@ -8,6 +8,7 @@ void handle_keydown_event(snk::event_dispatch const& dispatch,
                           SDL_Event const& e) {
   assert(e.type == SDL_KEYDOWN);
   if(e.key.keysym.sym == SDLK_ESCAPE) dispatch.keydown_esc();
+  else if(e.key.keysym.sym == SDLK_p) dispatch.keydown_p();
   else if(e.key.keysym.sym == SDLK_LEFT) dispatch.keydown_left();
   else if(e.key.keysym.sym == SDLK_RIGHT) dispatch.keydown_right();
   else if(e.key.keysym.sym == SDLK_UP) dispatch.keydown_up();
