@@ -89,11 +89,12 @@ bool snake_body_control::wall_hit() const {
 }
 
 bool snake_body_control::self_hit() const {
-  auto const& segs = segments;
-  auto const& head = segs.front();
-  return std::find_if(next(begin(segs)), end(segs), [&](auto const& seg) {
-           return head.hit(seg);
-         }) != end(segs);
+  auto const& head = segments.front();
+  auto const min = 5;  // minimum length necessary for self collision
+  if(segments.size() < min) return false;
+  auto const b = next(begin(segments), min - 1);
+  auto const e = end(segments);
+  return std::find_if(b, e, [&](auto const& s) { return head.hit(s); }) != e;
 }
 
 bool snake_body_control::dead() const { return wall_hit() || self_hit(); }
