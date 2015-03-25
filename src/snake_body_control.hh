@@ -34,6 +34,10 @@ private:
   bool wall_hit() const;
   bool self_hit() const;
   void on_berry_eaten(point const& position);
+  void on_keydown_left();
+  void on_keydown_right();
+  void on_keydown_up();
+  void on_keydown_down();
 
 private:
   abstract_factory* factory;
