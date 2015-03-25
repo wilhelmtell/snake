@@ -24,6 +24,8 @@ struct event_dispatch {
   using keydown_esc_slot_t = keydown_esc_signal_t::slot_type;
   using berry_eaten_signal_t = signal<void(point const& position)>;
   using berry_eaten_slot_t = berry_eaten_signal_t::slot_type;
+  using berry_spawned_signal_t = signal<void(point const& position)>;
+  using berry_spawned_slot_t = berry_spawned_signal_t::slot_type;
 
   void quit() const;
   connection on_quit(quit_signal_t::slot_type const& op);
@@ -39,6 +41,8 @@ struct event_dispatch {
   connection on_keydown_down(keydown_down_slot_t const& op);
   void berry_eaten(point const& position) const;
   connection on_berry_eaten(berry_eaten_slot_t const& op);
+  void berry_spawned(point const& position) const;
+  connection on_berry_spawned(berry_spawned_slot_t const& op);
 
 private:
   quit_signal_t quit_signal;
@@ -48,6 +52,7 @@ private:
   keydown_up_signal_t keydown_up_signal;
   keydown_down_signal_t keydown_down_signal;
   berry_eaten_signal_t berry_eaten_signal;
+  berry_spawned_signal_t berry_spawned_signal;
 };
 }
 

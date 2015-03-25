@@ -51,4 +51,13 @@ event_dispatch::connection event_dispatch::on_berry_eaten(
   berry_eaten_slot_t const& op) {
   return berry_eaten_signal.connect(op);
 }
+
+void event_dispatch::berry_spawned(point const& position) const {
+  berry_spawned_signal(position);
+}
+
+event_dispatch::connection event_dispatch::on_berry_spawned(
+  berry_spawned_slot_t const& op) {
+  return berry_spawned_signal.connect(op);
+}
 }
