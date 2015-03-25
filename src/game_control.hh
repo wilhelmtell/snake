@@ -22,8 +22,10 @@ struct game_control {
 
 private:
   void on_keydown_esc();
+  void on_berry_eaten(point const& position);
 
 private:
+  abstract_factory* factory;
   std::unique_ptr<game_output> out;
   event_dispatch* dispatch;
   berry_control berry;

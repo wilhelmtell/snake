@@ -19,17 +19,15 @@ game_control::game_control(abstract_factory* factory, event_dispatch* dispatch)
 game_control::game_control(std::unique_ptr<game_output> out,
                            abstract_factory* factory,
                            event_dispatch* dispatch)
-: out{std::move(out)}
+: factory{factory}
+, out{std::move(out)}
 , dispatch{dispatch}
 , berry{make_randomly_positioned_berry(
     factory, dispatch, default_berry_width, default_berry_height)}
 , snake{factory, dispatch}
 , end_game_requested{false} {
   dispatch->on_keydown_esc([&]() { on_keydown_esc(); });
-  dispatch->on_berry_eaten([=](point const& /*position*/) {
-    berry = make_randomly_positioned_berry(
-      factory, dispatch, default_berry_width, default_berry_height);
-  });
+  dispatch->on_berry_eaten([&](auto const& p) { on_berry_eaten(p); });
 }
 
 void game_control::update() {
@@ -51,4 +49,9 @@ bool game_control::game_over() const {
 }
 
 void game_control::on_keydown_esc() { end_game_requested = true; }
+
+void game_control::on_berry_eaten(point const& /*position*/) {
+  berry = make_randomly_positioned_berry(
+    factory, dispatch, default_berry_width, default_berry_height);
+}
 }
