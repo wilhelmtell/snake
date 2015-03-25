@@ -11,6 +11,7 @@ struct sdl_berry_output : berry_output {
 
   void set_colour(int r, int g, int b, int a) override;
   void draw_rect(rectangle const& rect) override;
+  rectangle bounds() const override;
 
 private:
   SDL_Window* window;

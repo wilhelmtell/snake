@@ -13,6 +13,8 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      direction.hh direction.cc \
                      direction_fwd.hh \
                      event.hh \
+                     event_dispatch.hh event_dispatch.cc \
+                     event_dispatch_fwd.hh \
                      event_fwd.hh \
                      game_control.hh game_control.cc \
                      game_control_fwd.hh \
@@ -26,7 +28,7 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      rectangle_fwd.hh \
                      renderer_creation_error.hh renderer_creation_error.cc \
                      sdl_berry_output.hh sdl_berry_output.cc \
-                     sdl_event_to_event.hh sdl_event_to_event.cc \
+                     sdl_event_dispatch.hh sdl_event_dispatch.cc \
                      sdl_factory.hh sdl_factory.cc \
                      sdl_game_output.hh sdl_game_output.cc \
                      sdl_renderer.hh sdl_renderer.cc \

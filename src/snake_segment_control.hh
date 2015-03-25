@@ -4,22 +4,23 @@
 #include <memory>
 #include "abstract_factory_fwd.hh"
 #include "snake_segment_output.hh"
+#include "event_dispatch_fwd.hh"
 #include "rectangle.hh"
-#include "event_fwd.hh"
 
 namespace snk {
 struct snake_segment_control {
   snake_segment_control(abstract_factory* factory,
+                        event_dispatch* dispatch,
                         point position,
                         width segment_width,
                         height segment_height);
 
   snake_segment_control(std::unique_ptr<snake_segment_output> out,
+                        event_dispatch* dispatch,
                         point position,
                         width segment_width,
                         height segment_height);
 
-  void handle_event(event const& e);
   void update();
   void draw() const;
 

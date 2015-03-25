@@ -2,16 +2,17 @@
 #include "sdl_factory.hh"
 #include "game_control.hh"
 #include <SDL2/SDL.h>
-#include "sdl_event_to_event.hh"
-#include "event.hh"
+#include "event_dispatch.hh"
+#include "sdl_event_dispatch.hh"
 
 int main(int /*argc*/, char* /*argv*/ []) {
+  snk::event_dispatch dispatch;
   snk::sdl_factory factory;
-  snk::game_control control{&factory};
+  snk::game_control control{&factory, &dispatch};
   while(!control.game_over()) {
     for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
+      handle_event(dispatch, e);
       if(e.type == SDL_QUIT) return 0;
-      control.handle_event(snk::to_event(e));
     }
     control.update();
     control.draw();

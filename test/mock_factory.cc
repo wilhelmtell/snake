@@ -30,7 +30,7 @@ std::unique_ptr<snake_segment_output> mock_factory::make_snake_segment_output()
 }
 
 std::unique_ptr<snk::berry_output> mock_factory::make_berry_output() const {
-  return std::make_unique<mock_berry_output>();
+  return std::make_unique<mock_berry_output>(bounds);
 }
 }
 }

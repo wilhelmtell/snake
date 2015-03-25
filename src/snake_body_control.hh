@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <deque>
-#include "event_fwd.hh"
+#include "event_dispatch_fwd.hh"
 #include "abstract_factory_fwd.hh"
 #include "snake_body_output.hh"
 #include "snake_segment_control.hh"
@@ -14,29 +14,31 @@ namespace snk {
 struct snake_body_control {
   using snake_segments = std::deque<snake_segment_control>;
 
-  explicit snake_body_control(abstract_factory* factory);
   snake_body_control(abstract_factory* factory,
-                     std::unique_ptr<snake_body_output> out);
+                              event_dispatch* dispatch);
   snake_body_control(abstract_factory* factory,
                      std::unique_ptr<snake_body_output> out,
+                     event_dispatch* dispatch);
+  snake_body_control(abstract_factory* factory,
+                     std::unique_ptr<snake_body_output> out,
+                     event_dispatch* dispatch,
                      direction move_request);
 
-  void handle_event(event const& e);
   void update();
   void draw() const;
-
-  void grow();
 
   bool dead() const;
   point head_position() const;
 
 private:
+  void grow();
   bool wall_hit() const;
   bool self_hit() const;
 
 private:
   abstract_factory* factory;
   std::unique_ptr<snake_body_output> out;
+  event_dispatch* dispatch;
   direction move_requested;
   direction move_to;
   snake_segments segments;

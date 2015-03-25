@@ -1,16 +1,17 @@
 #include "snake_control.hh"
 #include "abstract_factory.hh"
-#include "event.hh"
+#include "event_dispatch.hh"
 
 namespace snk {
-snake_control::snake_control(abstract_factory* factory)
-: snake_control{factory, factory->make_snake_output()} {}
-
 snake_control::snake_control(abstract_factory* factory,
-                             std::unique_ptr<snake_output> out)
-: out{std::move(out)}, body{std::move(factory)} {}
+                             event_dispatch* dispatch)
+: snake_control{factory->make_snake_output(), factory, dispatch} {}
 
-void snake_control::handle_event(event const& e) { body.handle_event(e); }
+snake_control::snake_control(std::unique_ptr<snake_output> out,
+                             abstract_factory* factory,
+                             event_dispatch* dispatch)
+: out{std::move(out)}, body{std::move(factory), dispatch} {
+}
 
 void snake_control::update() {
   if(dead()) return;
@@ -18,8 +19,6 @@ void snake_control::update() {
 }
 
 void snake_control::draw() { body.draw(); }
-
-void snake_control::grow() { body.grow(); }
 
 bool snake_control::dead() const { return body.dead(); }
 
