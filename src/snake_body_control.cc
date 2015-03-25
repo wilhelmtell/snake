@@ -54,9 +54,14 @@ snake_body_control::snake_body_control(abstract_factory* factory,
 , dispatch{dispatch}
 , move_requested{move_request}
 , move_to{std::move(move_request)}
-, segments{}
-, grow_requested{false} {
-  dispatch->on_berry_eaten([&](point const& /*position*/) { grow(); });
+, segments{} {
+  dispatch->on_berry_eaten([=](point const& /*position*/) {
+    segments.emplace_back(factory,
+                          dispatch,
+                          segments.back().position(),
+                          default_segment_width,
+                          default_segment_height);
+  });
   dispatch->on_keydown_left([&]() { move_requested = direction::left; });
   dispatch->on_keydown_right([&]() { move_requested = direction::right; });
   dispatch->on_keydown_up([&]() { move_requested = direction::up; });
@@ -75,8 +80,7 @@ void snake_body_control::update() {
                          moved(segments.front().position(), move_to),
                          default_segment_width,
                          default_segment_height);
-  if(!grow_requested) segments.pop_back();
-  grow_requested = false;
+  segments.pop_back();
   for(auto& segment : segments) segment.update();
 }
 
@@ -102,6 +106,4 @@ bool snake_body_control::dead() const { return wall_hit() || self_hit(); }
 point snake_body_control::head_position() const {
   return segments.front().position();
 }
-
-void snake_body_control::grow() { grow_requested = true; }
 }

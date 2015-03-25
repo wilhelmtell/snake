@@ -31,7 +31,6 @@ struct snake_body_control {
   point head_position() const;
 
 private:
-  void grow();
   bool wall_hit() const;
   bool self_hit() const;
 
@@ -42,7 +41,6 @@ private:
   direction move_requested;
   direction move_to;
   snake_segments segments;
-  bool grow_requested;
 };
 }
 
