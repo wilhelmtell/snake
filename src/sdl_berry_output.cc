@@ -1,6 +1,7 @@
 #include "sdl_berry_output.hh"
 #include <utility>
 #include "rectangle.hh"
+#include "point.hh"
 #include <SDL2/SDL.h>
 
 namespace snk {
@@ -14,5 +15,11 @@ void sdl_berry_output::set_colour(int r, int g, int b, int a) {
 void sdl_berry_output::draw_rect(rectangle const& rect) {
   SDL_Rect sdl_rect{rect.p.x, rect.p.y, rect.w, rect.h};
   SDL_RenderFillRect(renderer, &sdl_rect);
+}
+
+rectangle sdl_berry_output::bounds() const {
+  rectangle rect{point{0, 0}, width{0}, height{0}};
+  SDL_GL_GetDrawableSize(window, &rect.w, &rect.h);
+  return rect;
 }
 }

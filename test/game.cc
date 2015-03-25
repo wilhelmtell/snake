@@ -3,6 +3,7 @@
 #include <memory>
 #include "mock_game_output.hh"
 #include "mock_factory.hh"
+#include "../src/event_dispatch.hh"
 #include "../src/rectangle.hh"
 #include "../src/width.hh"
 #include "../src/height.hh"
@@ -12,9 +13,12 @@ TEST_CASE("esc quits the game") {
   snk::point const origin{0, 0};
   snk::rectangle const bounds{origin, snk::width{100}, snk::height{100}};
   snk::test::mock_factory factory{bounds};
+  snk::event_dispatch dispatch;
   snk::game_control control{
-    std::make_unique<snk::test::mock_game_output>(bounds), &factory};
-  control.handle_event(snk::event::keydown_esc);
+    std::make_unique<snk::test::mock_game_output>(bounds),
+    &factory,
+    &dispatch};
+  dispatch.keydown_esc();
   control.update();
   control.draw();
   REQUIRE(control.game_over());

@@ -4,20 +4,19 @@
 #include "abstract_factory_fwd.hh"
 #include <memory>
 #include "snake_output.hh"
-#include "event_fwd.hh"
+#include "event_dispatch_fwd.hh"
 #include "snake_body_control.hh"
 #include "point_fwd.hh"
 
 namespace snk {
 struct snake_control {
-  explicit snake_control(abstract_factory* factory);
-  snake_control(abstract_factory* factory, std::unique_ptr<snake_output> out);
+  snake_control(abstract_factory* factory, event_dispatch* dispatch);
+  snake_control(std::unique_ptr<snake_output> out,
+                abstract_factory* factory,
+                event_dispatch* dispatch);
 
-  void handle_event(event const& e);
   void update();
   void draw();
-
-  void grow();
 
   bool dead() const;
   point position() const;
