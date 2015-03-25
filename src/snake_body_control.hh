@@ -33,6 +33,7 @@ struct snake_body_control {
 private:
   bool wall_hit() const;
   bool self_hit() const;
+  void on_berry_eaten(point const& position);
 
 private:
   abstract_factory* factory;
