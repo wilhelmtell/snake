@@ -5,7 +5,6 @@
 #include "snake_segment_control.hh"
 #include "direction.hh"
 #include "point.hh"
-#include <stdexcept>
 #include <algorithm>
 #include <iterator>
 
@@ -24,11 +23,8 @@ snk::point moved(snk::point const& position, snk::direction const& towards) {
     return snk::point{position.x + default_segment_width.get(), position.y};
   case snk::direction::up:
     return snk::point{position.x, position.y - default_segment_height.get()};
-  case snk::direction::down:
-    return snk::point{position.x, position.y + default_segment_height.get()};
   default:
-    throw std::logic_error{
-      "unexpected direction in computing near() position"};
+    return snk::point{position.x, position.y + default_segment_height.get()};
   }
 }
 }
