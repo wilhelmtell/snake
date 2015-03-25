@@ -21,6 +21,9 @@ struct game_control {
   bool game_over() const;
 
 private:
+  void on_keydown_esc();
+
+private:
   std::unique_ptr<game_output> out;
   event_dispatch* dispatch;
   berry_control berry;
