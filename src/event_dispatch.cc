@@ -15,6 +15,13 @@ event_dispatch::connection event_dispatch::on_keydown_esc(
   return keydown_esc_signal.connect(op);
 }
 
+void event_dispatch::keydown_p() const { keydown_p_signal(); }
+
+event_dispatch::connection event_dispatch::on_keydown_p(
+  keydown_p_slot_t const& op) {
+  return keydown_p_signal.connect(op);
+}
+
 void event_dispatch::keydown_left() const { keydown_left_signal(); }
 
 event_dispatch::connection event_dispatch::on_keydown_left(
@@ -59,5 +66,19 @@ void event_dispatch::berry_spawned(point const& position) const {
 event_dispatch::connection event_dispatch::on_berry_spawned(
   berry_spawned_slot_t const& op) {
   return berry_spawned_signal.connect(op);
+}
+
+void event_dispatch::pause_game() const { pause_game_signal(); }
+
+event_dispatch::connection event_dispatch::on_pause_game(
+  pause_game_slot_t const& op) {
+  return pause_game_signal.connect(op);
+}
+
+void event_dispatch::resume_game() const { resume_game_signal(); }
+
+event_dispatch::connection event_dispatch::on_resume_game(
+  resume_game_slot_t const& op) {
+  return resume_game_signal.connect(op);
 }
 }
