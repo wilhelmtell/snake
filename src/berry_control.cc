@@ -32,17 +32,12 @@ snk::rectangle randomly_positioned_rectangle(snk::rectangle const& bounds,
 
 namespace snk {
 berry_control::berry_control(abstract_factory* factory,
-                             event_dispatch* dispatch,
+                             event_dispatch* /*dispatch*/,
                              point position,
                              width berry_width,
                              height berry_height)
 : out{factory->make_berry_output()}
-, rect{std::move(position), std::move(berry_width), std::move(berry_height)} {
-  dispatch->on_berry_eaten([&](point const& /*position*/) {
-    rect = randomly_positioned_rectangle(
-      out->bounds(), width{rect.w}, height{rect.h});
-  });
-}
+, rect{std::move(position), std::move(berry_width), std::move(berry_height)} {}
 
 void berry_control::update() {}
 
