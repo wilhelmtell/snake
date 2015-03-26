@@ -5,7 +5,7 @@
 #include <SDL2/SDL.h>
 
 namespace snk {
-void handle_event(event_dispatch const& dispatch, SDL_Event const& e);
+void handle_sdl_event(event_dispatch const& dispatch, SDL_Event const& e);
 }
 
 #endif

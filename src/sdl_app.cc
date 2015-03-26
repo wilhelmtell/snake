@@ -7,7 +7,7 @@ sdl_app::sdl_app()
 : dispatch{}, sdl{&dispatch}, factory{}, game{&factory, &dispatch} {}
 
 void sdl_app::handle_event(SDL_Event const& e) {
-  snk::handle_event(dispatch, e);
+  handle_sdl_event(dispatch, e);
 }
 
 void sdl_app::update() { game.update(); }
