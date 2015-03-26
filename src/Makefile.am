@@ -27,6 +27,7 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      rectangle.hh rectangle.cc \
                      rectangle_fwd.hh \
                      renderer_creation_error.hh renderer_creation_error.cc \
+                     sdl.hh sdl.cc \
                      sdl_berry_output.hh sdl_berry_output.cc \
                      sdl_event_dispatch.hh sdl_event_dispatch.cc \
                      sdl_factory.hh sdl_factory.cc \
