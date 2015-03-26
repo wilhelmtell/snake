@@ -19,7 +19,7 @@ struct berry_control {
                 height berry_height);
 
   void update();
-  void draw();
+  void draw() const;
 
   point position() const;
 

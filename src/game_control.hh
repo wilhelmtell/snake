@@ -16,7 +16,7 @@ struct game_control {
                event_dispatch* dispatch);
 
   void update();
-  void draw();
+  void draw() const;
 
   bool game_over() const;
 

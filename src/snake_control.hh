@@ -16,7 +16,7 @@ struct snake_control {
                 event_dispatch* dispatch);
 
   void update();
-  void draw();
+  void draw() const;
 
   bool dead() const;
   point position() const;

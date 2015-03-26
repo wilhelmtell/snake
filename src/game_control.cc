@@ -42,7 +42,7 @@ void game_control::update() {
   snake.update();
 }
 
-void game_control::draw() {
+void game_control::draw() const {
   out->clear(0x00, 0x00, 0x00, 0xff);
   berry.draw();
   snake.draw();

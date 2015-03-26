@@ -18,7 +18,7 @@ void snake_control::update() {
   body.update();
 }
 
-void snake_control::draw() { body.draw(); }
+void snake_control::draw() const { body.draw(); }
 
 bool snake_control::dead() const { return body.dead(); }
 

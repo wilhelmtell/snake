@@ -43,7 +43,7 @@ berry_control::berry_control(abstract_factory* factory,
 
 void berry_control::update() {}
 
-void berry_control::draw() {
+void berry_control::draw() const {
   out->set_colour(0x70, 0x20, 0x00, 0xff);
   out->draw_rect(rect);
 }
