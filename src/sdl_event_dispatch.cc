@@ -18,9 +18,7 @@ void handle_keydown_event(snk::event_dispatch const& dispatch,
 
 namespace snk {
 void handle_event(event_dispatch const& dispatch, SDL_Event const& e) {
-  if(e.type == SDL_QUIT)
-    dispatch.quit();
-  else if(e.type == SDL_KEYDOWN)
+  if(e.type == SDL_KEYDOWN)
     handle_keydown_event(dispatch, e);
 }
 }
