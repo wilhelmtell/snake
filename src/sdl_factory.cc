@@ -1,4 +1,5 @@
 #include "sdl_factory.hh"
+#include "event_dispatch.hh"
 #include "sdl_window.hh"
 #include <memory>
 #include "sdl_game_output.hh"
@@ -9,8 +10,17 @@
 #include "point.hh"
 #include "rectangle.hh"
 
+namespace {
+void quit() {
+  SDL_Event sdl_quit_event;
+  SDL_zero(sdl_quit_event);
+  sdl_quit_event.type = SDL_QUIT;
+  SDL_PushEvent(&sdl_quit_event);
+}
+}
+
 namespace snk {
-sdl_factory::sdl_factory()
+sdl_factory::sdl_factory(event_dispatch* dispatch)
 : sdl{SDL_INIT_VIDEO}
 , window{"Snake",
          rectangle{point{SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED},
@@ -18,7 +28,9 @@ sdl_factory::sdl_factory()
                    height{480}},
          SDL_WINDOW_SHOWN}
 , renderer{
-    this->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC} {}
+    this->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC} {
+  dispatch->on_quit(quit);
+}
 
 std::unique_ptr<game_output> sdl_factory::make_game_output() const {
   return std::make_unique<sdl_game_output>(window.get(), renderer.get());

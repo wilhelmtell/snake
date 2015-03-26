@@ -18,8 +18,6 @@ struct game_control {
   void update();
   void draw() const;
 
-  bool game_over() const;
-
 private:
   void on_keydown_esc();
   void on_keydown_p();
@@ -33,7 +31,6 @@ private:
   event_dispatch* dispatch;
   berry_control berry;
   snake_control snake;
-  bool end_game_requested;
   bool game_paused;
 };
 }

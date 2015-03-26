@@ -18,8 +18,10 @@ struct snake_control {
   void update();
   void draw() const;
 
-  bool dead() const;
   point position() const;
+
+private:
+  bool dead() const;
 
 private:
   std::unique_ptr<snake_output> out;

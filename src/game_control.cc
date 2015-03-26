@@ -25,7 +25,6 @@ game_control::game_control(std::unique_ptr<game_output> out,
 , berry{make_randomly_positioned_berry(
     factory, dispatch, default_berry_width, default_berry_height)}
 , snake{factory, dispatch}
-, end_game_requested{false}
 , game_paused{false} {
   dispatch->on_keydown_esc([&]() { on_keydown_esc(); });
   dispatch->on_keydown_p([&]() { on_keydown_p(); });
@@ -49,11 +48,7 @@ void game_control::draw() const {
   out->present();
 }
 
-bool game_control::game_over() const {
-  return end_game_requested || snake.dead();
-}
-
-void game_control::on_keydown_esc() { end_game_requested = true; }
+void game_control::on_keydown_esc() { dispatch->quit(); }
 
 void game_control::on_keydown_p() {
   if(game_paused)

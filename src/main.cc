@@ -7,9 +7,9 @@
 
 int main(int /*argc*/, char* /*argv*/ []) {
   snk::event_dispatch dispatch;
-  snk::sdl_factory factory;
+  snk::sdl_factory factory{&dispatch};
   snk::game_control control{&factory, &dispatch};
-  while(!control.game_over()) {
+  while(true) {
     for(SDL_Event e; SDL_PollEvent(&e) != 0;) {
       handle_event(dispatch, e);
       if(e.type == SDL_QUIT) return 0;

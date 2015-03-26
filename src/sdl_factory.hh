@@ -2,6 +2,7 @@
 #define SNK_SDL_FACTORY_HH_
 
 #include "abstract_factory.hh"
+#include "event_dispatch_fwd.hh"
 #include <memory>
 #include "game_output.hh"
 #include "snake_output.hh"
@@ -14,7 +15,7 @@
 
 namespace snk {
 struct sdl_factory : abstract_factory {
-  sdl_factory();
+  explicit sdl_factory(event_dispatch* dispatch);
 
   std::unique_ptr<game_output> make_game_output() const override;
   std::unique_ptr<snake_output> make_snake_output() const override;

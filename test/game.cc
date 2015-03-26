@@ -14,6 +14,8 @@ TEST_CASE("esc quits the game") {
   snk::rectangle const bounds{origin, snk::width{100}, snk::height{100}};
   snk::test::mock_factory factory{bounds};
   snk::event_dispatch dispatch;
+  bool quit = false;
+  dispatch.on_quit([&]() { quit = true; });
   snk::game_control control{
     std::make_unique<snk::test::mock_game_output>(bounds),
     &factory,
@@ -21,5 +23,5 @@ TEST_CASE("esc quits the game") {
   dispatch.keydown_esc();
   control.update();
   control.draw();
-  REQUIRE(control.game_over());
+  REQUIRE(quit);
 }
