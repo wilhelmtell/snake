@@ -1,4 +1,4 @@
-#include "sdl_event_dispatch.hh"
+#include "handle_sdl_event.hh"
 #include "event_dispatch.hh"
 #include <SDL2/SDL.h>
 #include <cassert>

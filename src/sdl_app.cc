@@ -1,6 +1,6 @@
 #include "sdl_app.hh"
 #include <SDL2/SDL.h>
-#include "sdl_event_dispatch.hh"
+#include "handle_sdl_event.hh"
 
 namespace snk {
 sdl_app::sdl_app()

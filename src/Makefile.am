@@ -20,6 +20,7 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      game_control_fwd.hh \
                      game_output.hh \
                      game_output_fwd.hh \
+                     handle_sdl_event.hh handle_sdl_event.cc \
                      height.hh height.cc \
                      height_fwd.hh \
                      point.hh point.cc \
@@ -30,7 +31,6 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      sdl.hh sdl.cc \
                      sdl_app.hh sdl_app.cc \
                      sdl_berry_output.hh sdl_berry_output.cc \
-                     sdl_event_dispatch.hh sdl_event_dispatch.cc \
                      sdl_factory.hh sdl_factory.cc \
                      sdl_game_output.hh sdl_game_output.cc \
                      sdl_renderer.hh sdl_renderer.cc \
