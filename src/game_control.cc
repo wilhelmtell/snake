@@ -2,7 +2,6 @@
 #include <memory>
 #include "abstract_factory.hh"
 #include "game_output.hh"
-#include "event.hh"
 #include "event_dispatch.hh"
 #include "width.hh"
 #include "height.hh"
