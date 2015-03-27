@@ -3,6 +3,7 @@
 
 #include "abstract_factory_fwd.hh"
 #include <memory>
+#include <chrono>
 #include "snake_output.hh"
 #include "event_dispatch_fwd.hh"
 #include "snake_body_control.hh"
@@ -25,6 +26,8 @@ private:
 
 private:
   std::unique_ptr<snake_output> out;
+  std::chrono::system_clock::time_point last_timestamp;
+  int speed;
   snake_body_control body;
 };
 }
