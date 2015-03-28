@@ -39,6 +39,9 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      sdl_surface_fwd.hh \
                      sdl_system.hh sdl_system.cc \
                      sdl_system_init_error.hh sdl_system_init_error.cc \
+                     sdl_texture.hh sdl_texture.cc \
+                     sdl_texture_creation_error.hh sdl_texture_creation_error.cc \
+                     sdl_texture_fwd.hh \
                      sdl_ttf_font.hh sdl_ttf_font.cc \
                      sdl_ttf_font_fwd.hh \
                      sdl_ttf_font_open_error.hh sdl_ttf_font_open_error.cc \
