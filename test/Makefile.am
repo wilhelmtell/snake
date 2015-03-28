@@ -13,8 +13,8 @@ check_snake_SOURCES = berry.cc \
                       snake.cc \
                       width.cc
 check_snake_LDADD = ../src/libsnake.a
-AM_CXXFLAGS = ${SDL2_CFLAGS}
-AM_LDFLAGS = ${SDL2_LIBS}
+AM_CXXFLAGS = ${SDL2_CFLAGS} ${SDL2_TTF_CFLAGS}
+AM_LDFLAGS = ${SDL2_LIBS} ${SDL2_TTF_LIBS}
 
 check: check-am
 	./$(check_PROGRAMS) --reporter=compact

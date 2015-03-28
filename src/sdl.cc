@@ -12,7 +12,8 @@ void quit() {
 }
 
 namespace snk {
-sdl::sdl(event_dispatch* dispatch) : subsystem{SDL_INIT_VIDEO} {
+sdl::sdl(event_dispatch* dispatch)
+: subsystem{SDL_INIT_VIDEO}, ttf_subsystem{} {
   dispatch->on_quit(quit);
 }
 }
