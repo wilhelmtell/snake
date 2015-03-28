@@ -7,6 +7,12 @@ namespace test {
 mock_game_output::mock_game_output(rectangle bounds)
 : bounding_rect{std::move(bounds)} {}
 
+void mock_game_output::draw_score(int /*score*/,
+                                  unsigned char /*r*/,
+                                  unsigned char /*g*/,
+                                  unsigned char /*b*/,
+                                  unsigned char /*a*/) {}
+
 void mock_game_output::clear(int /*r*/, int /*g*/, int /*b*/, int /*a*/) {}
 
 void mock_game_output::present() {}

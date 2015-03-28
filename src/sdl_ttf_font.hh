@@ -5,6 +5,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <string>
 #include <cstddef>
+#include "sdl_surface_fwd.hh"
 
 namespace snk {
 struct sdl_ttf_font {

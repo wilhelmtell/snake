@@ -9,6 +9,11 @@ namespace test {
 struct mock_game_output : snk::game_output {
   explicit mock_game_output(rectangle bounds);
 
+  void draw_score(int score,
+                  unsigned char r,
+                  unsigned char g,
+                  unsigned char b,
+                  unsigned char a) override;
   void clear(int r, int g, int b, int a) override;
   void present() override;
   rectangle bounds() const override;

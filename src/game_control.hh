@@ -24,6 +24,7 @@ private:
   void on_berry_eaten(point const& position);
   void on_pause_game();
   void on_resume_game();
+  void on_game_restarted();
 
 private:
   event_dispatch* dispatch;
