@@ -81,4 +81,11 @@ event_dispatch::connection event_dispatch::on_resume_game(
   resume_game_slot_t const& op) {
   return resume_game_signal.connect(op);
 }
+
+void event_dispatch::keydown_return() const { keydown_return_signal(); }
+
+event_dispatch::connection event_dispatch::on_keydown_return(
+  keydown_return_slot_t const& op) {
+  return keydown_return_signal.connect(op);
+}
 }

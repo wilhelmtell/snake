@@ -14,7 +14,9 @@ snake_control::snake_control(std::unique_ptr<snake_output> out,
 : out{std::move(out)}
 , last_timestamp{std::chrono::system_clock::now()}
 , speed{10}
-, body{std::move(factory), dispatch} {}
+, body{std::move(factory), dispatch} {
+  dispatch->on_keydown_return([&]() { on_keydown_return(); });
+}
 
 void snake_control::update() {
   if(dead()) return;
@@ -29,5 +31,11 @@ void snake_control::draw() const { body.draw(); }
 
 bool snake_control::dead() const { return body.dead(); }
 
+void snake_control::restart() { body.restart(); }
+
 point snake_control::position() const { return body.head_position(); }
+
+void snake_control::on_keydown_return() {
+  if(dead()) restart();
+}
 }

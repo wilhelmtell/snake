@@ -23,6 +23,8 @@ struct snake_control {
 
 private:
   bool dead() const;
+  void restart();
+  void on_keydown_return();
 
 private:
   std::unique_ptr<snake_output> out;

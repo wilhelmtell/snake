@@ -78,6 +78,16 @@ void snake_body_control::draw() const {
   for(auto const& segment : segments) segment.draw();
 }
 
+void snake_body_control::restart() {
+  segments.clear();
+  segments.emplace_front(factory,
+                         dispatch,
+                         default_segment_position,
+                         default_segment_width,
+                         default_segment_height);
+  move_requested = move_to = direction::right;
+}
+
 bool snake_body_control::wall_hit() const {
   return segments.front().outside(out->bounds());
 }

@@ -32,6 +32,8 @@ struct event_dispatch {
   using resume_game_slot_t = resume_game_signal_t::slot_type;
   using keydown_p_signal_t = signal<void()>;
   using keydown_p_slot_t = keydown_p_signal_t::slot_type;
+  using keydown_return_signal_t = signal<void()>;
+  using keydown_return_slot_t = keydown_return_signal_t::slot_type;
 
   void quit() const;
   connection on_quit(quit_signal_t::slot_type const& op);
@@ -55,6 +57,8 @@ struct event_dispatch {
   connection on_pause_game(pause_game_slot_t const& op);
   void resume_game() const;
   connection on_resume_game(resume_game_slot_t const& op);
+  void keydown_return() const;
+  connection on_keydown_return(keydown_return_slot_t const& op);
 
 private:
   quit_signal_t quit_signal;
@@ -68,6 +72,7 @@ private:
   berry_spawned_signal_t berry_spawned_signal;
   pause_game_signal_t pause_game_signal;
   resume_game_signal_t resume_game_signal;
+  keydown_return_signal_t keydown_return_signal;
 };
 }
 

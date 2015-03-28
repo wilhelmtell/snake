@@ -27,6 +27,8 @@ struct snake_body_control {
   void update();
   void draw() const;
 
+  void restart();
+
   bool dead() const;
   point head_position() const;
 
