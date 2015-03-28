@@ -3,8 +3,10 @@
 #include "abstract_factory.hh"
 #include "game_output.hh"
 #include "event_dispatch.hh"
+#include "rectangle.hh"
 #include "width.hh"
 #include "height.hh"
+#include <boost/lexical_cast.hpp>
 
 namespace {
 snk::width const default_berry_width{10};
@@ -46,7 +48,14 @@ void game_control::draw() const {
   out->clear(0x00, 0x00, 0x00, 0xff);
   berry.draw();
   snake.draw();
-  out->draw_score(score, 0x70, 0x90, 0x00, 0xff);
+  out->draw_text(boost::lexical_cast<std::string>(score),
+                 0x70,
+                 0x90,
+                 0x00,
+                 0xff,
+                 [&](width const& w, height const& h) {
+    return rectangle{point{10, out->bounds().h - h - 10}, w, h};
+  });
   out->present();
 }
 
