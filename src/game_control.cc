@@ -24,7 +24,8 @@ game_control::game_control(event_dispatch* dispatch,
 , berry{make_randomly_positioned_berry(
     factory, dispatch, default_berry_width, default_berry_height)}
 , snake{factory, dispatch}
-, game_paused{false} {
+, game_paused{false}
+, score{0} {
   dispatch->on_keydown_esc([&]() { on_keydown_esc(); });
   dispatch->on_keydown_p([&]() { on_keydown_p(); });
   dispatch->on_berry_eaten([&](auto const& p) { on_berry_eaten(p); });
@@ -57,6 +58,7 @@ void game_control::on_keydown_p() {
 }
 
 void game_control::on_berry_eaten(point const& /*position*/) {
+  ++score;
   berry = make_randomly_positioned_berry(
     factory, dispatch, default_berry_width, default_berry_height);
 }

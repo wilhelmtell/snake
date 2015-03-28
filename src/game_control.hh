@@ -32,6 +32,7 @@ private:
   berry_control berry;
   snake_control snake;
   bool game_paused;
+  int score;
 };
 }
 
