@@ -16,9 +16,7 @@ sdl_factory::sdl_factory()
                    width{640},
                    height{480}},
          SDL_WINDOW_SHOWN}
-, renderer{
-    this->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC} {
-}
+, renderer{window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC} {}
 
 std::unique_ptr<game_output> sdl_factory::make_game_output() const {
   return std::make_unique<sdl_game_output>(window.get(), renderer.get());
