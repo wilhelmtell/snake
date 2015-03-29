@@ -10,10 +10,10 @@
 
 namespace snk {
 struct game_control {
-  game_control(abstract_factory* factory, event_dispatch* dispatch);
-  game_control(std::unique_ptr<game_output> out,
+  game_control(event_dispatch* dispatch, abstract_factory* factory);
+  game_control(event_dispatch* dispatch,
                abstract_factory* factory,
-               event_dispatch* dispatch);
+               std::unique_ptr<game_output> out);
 
   void update();
   void draw() const;
@@ -26,9 +26,9 @@ private:
   void on_resume_game();
 
 private:
+  event_dispatch* dispatch;
   abstract_factory* factory;
   std::unique_ptr<game_output> out;
-  event_dispatch* dispatch;
   berry_control berry;
   snake_control snake;
   bool game_paused;

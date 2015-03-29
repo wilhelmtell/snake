@@ -4,7 +4,7 @@
 
 namespace snk {
 sdl_app::sdl_app()
-: dispatch{}, sdl{&dispatch}, factory{}, game{&factory, &dispatch} {}
+: dispatch{}, sdl{&dispatch}, factory{}, game{&dispatch, &factory} {}
 
 void sdl_app::handle_event(SDL_Event const& e) {
   handle_sdl_event(dispatch, e);

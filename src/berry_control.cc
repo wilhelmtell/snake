@@ -31,8 +31,8 @@ snk::rectangle randomly_positioned_rectangle(snk::rectangle const& bounds,
 }
 
 namespace snk {
-berry_control::berry_control(abstract_factory* factory,
-                             event_dispatch* dispatch,
+berry_control::berry_control(event_dispatch* dispatch,
+                             abstract_factory* factory,
                              point position,
                              width berry_width,
                              height berry_height)
@@ -58,6 +58,6 @@ berry_control make_randomly_positioned_berry(abstract_factory* factory,
   auto const rect
     = randomly_positioned_rectangle(out->bounds(), berry_width, berry_height);
   return berry_control{
-    factory, dispatch, rect.p, width{rect.w}, height{rect.h}};
+    dispatch, factory, rect.p, width{rect.w}, height{rect.h}};
 }
 }

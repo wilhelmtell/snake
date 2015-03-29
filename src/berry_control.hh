@@ -12,8 +12,8 @@
 
 namespace snk {
 struct berry_control {
-  berry_control(abstract_factory* factory,
-                event_dispatch* dispatch,
+  berry_control(event_dispatch* dispatch,
+                abstract_factory* factory,
                 point position,
                 width berry_width,
                 height berry_height);

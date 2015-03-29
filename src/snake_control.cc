@@ -6,15 +6,15 @@
 namespace snk {
 snake_control::snake_control(abstract_factory* factory,
                              event_dispatch* dispatch)
-: snake_control{factory->make_snake_output(), factory, dispatch} {}
+: snake_control{dispatch, factory, factory->make_snake_output()} {}
 
-snake_control::snake_control(std::unique_ptr<snake_output> out,
+snake_control::snake_control(event_dispatch* dispatch,
                              abstract_factory* factory,
-                             event_dispatch* dispatch)
+                             std::unique_ptr<snake_output> out)
 : out{std::move(out)}
 , last_timestamp{std::chrono::system_clock::now()}
 , speed{10}
-, body{std::move(factory), dispatch} {
+, body{dispatch, std::move(factory)} {
   dispatch->on_keydown_return([&]() { on_keydown_return(); });
 }
 

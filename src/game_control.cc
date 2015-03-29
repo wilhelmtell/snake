@@ -12,15 +12,15 @@ snk::height const default_berry_height{10};
 }
 
 namespace snk {
-game_control::game_control(abstract_factory* factory, event_dispatch* dispatch)
-: game_control{factory->make_game_output(), factory, dispatch} {}
+game_control::game_control(event_dispatch* dispatch, abstract_factory* factory)
+: game_control{dispatch, factory, factory->make_game_output()} {}
 
-game_control::game_control(std::unique_ptr<game_output> out,
+game_control::game_control(event_dispatch* dispatch,
                            abstract_factory* factory,
-                           event_dispatch* dispatch)
-: factory{factory}
+                           std::unique_ptr<game_output> out)
+: dispatch{dispatch}
+, factory{factory}
 , out{std::move(out)}
-, dispatch{dispatch}
 , berry{make_randomly_positioned_berry(
     factory, dispatch, default_berry_width, default_berry_height)}
 , snake{factory, dispatch}
