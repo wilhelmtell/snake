@@ -9,14 +9,15 @@
 
 namespace snk {
 struct snake_segment_control {
-  snake_segment_control(abstract_factory* factory,
-                        event_dispatch* dispatch,
+  snake_segment_control(event_dispatch* dispatch,
+                        abstract_factory* factory,
                         point position,
                         width segment_width,
                         height segment_height);
 
-  snake_segment_control(std::unique_ptr<snake_segment_output> out,
-                        event_dispatch* dispatch,
+  snake_segment_control(event_dispatch* dispatch,
+                        abstract_factory* factory,
+                        std::unique_ptr<snake_segment_output> out,
                         point position,
                         width segment_width,
                         height segment_height);

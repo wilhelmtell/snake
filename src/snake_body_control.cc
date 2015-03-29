@@ -56,8 +56,8 @@ snake_body_control::snake_body_control(event_dispatch* dispatch,
   dispatch->on_keydown_right([&]() { on_keydown_right(); });
   dispatch->on_keydown_up([&]() { on_keydown_up(); });
   dispatch->on_keydown_down([&]() { on_keydown_down(); });
-  segments.emplace_back(this->factory,
-                        dispatch,
+  segments.emplace_back(dispatch,
+                        this->factory,
                         default_segment_position,
                         default_segment_width,
                         default_segment_height);
@@ -65,8 +65,9 @@ snake_body_control::snake_body_control(event_dispatch* dispatch,
 
 void snake_body_control::update() {
   move_to = are_opposite(move_to, move_requested) ? move_to : move_requested;
-  segments.emplace_front(factory->make_snake_segment_output(),
-                         dispatch,
+  segments.emplace_front(dispatch,
+                         factory,
+                         factory->make_snake_segment_output(),
                          moved(segments.front().position(), move_to),
                          default_segment_width,
                          default_segment_height);
@@ -80,8 +81,8 @@ void snake_body_control::draw() const {
 
 void snake_body_control::restart() {
   segments.clear();
-  segments.emplace_front(factory,
-                         dispatch,
+  segments.emplace_front(dispatch,
+                         factory,
                          default_segment_position,
                          default_segment_width,
                          default_segment_height);
@@ -108,8 +109,8 @@ point snake_body_control::head_position() const {
 }
 
 void snake_body_control::on_berry_eaten(point const& /*position*/) {
-  segments.emplace_back(factory,
-                        dispatch,
+  segments.emplace_back(dispatch,
+                        factory,
                         segments.back().position(),
                         default_segment_width,
                         default_segment_height);
