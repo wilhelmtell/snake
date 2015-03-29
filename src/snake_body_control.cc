@@ -30,24 +30,24 @@ snk::point moved(snk::point const& position, snk::direction const& towards) {
 }
 
 namespace snk {
-snake_body_control::snake_body_control(abstract_factory* factory,
-                                       event_dispatch* dispatch)
+snake_body_control::snake_body_control(event_dispatch* dispatch,
+                                       abstract_factory* factory)
 : snake_body_control{
-    std::move(factory), factory->make_snake_body_output(), dispatch} {}
+    dispatch, std::move(factory), factory->make_snake_body_output()} {}
 
-snake_body_control::snake_body_control(abstract_factory* factory,
-                                       std::unique_ptr<snake_body_output> out,
-                                       event_dispatch* dispatch)
+snake_body_control::snake_body_control(event_dispatch* dispatch,
+                                       abstract_factory* factory,
+                                       std::unique_ptr<snake_body_output> out)
 : snake_body_control{
-    std::move(factory), std::move(out), dispatch, direction::right} {}
+    dispatch, std::move(factory), std::move(out), direction::right} {}
 
-snake_body_control::snake_body_control(abstract_factory* factory,
+snake_body_control::snake_body_control(event_dispatch* dispatch,
+                                       abstract_factory* factory,
                                        std::unique_ptr<snake_body_output> out,
-                                       event_dispatch* dispatch,
                                        direction move_request)
-: factory{std::move(factory)}
+: dispatch{dispatch}
+, factory{std::move(factory)}
 , out{std::move(out)}
-, dispatch{dispatch}
 , move_requested{move_request}
 , move_to{std::move(move_request)}
 , segments{} {

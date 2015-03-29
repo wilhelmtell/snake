@@ -14,7 +14,7 @@ snake_control::snake_control(std::unique_ptr<snake_output> out,
 : out{std::move(out)}
 , last_timestamp{std::chrono::system_clock::now()}
 , speed{10}
-, body{std::move(factory), dispatch} {
+, body{dispatch, std::move(factory)} {
   dispatch->on_keydown_return([&]() { on_keydown_return(); });
 }
 

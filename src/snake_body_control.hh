@@ -14,14 +14,13 @@ namespace snk {
 struct snake_body_control {
   using snake_segments = std::deque<snake_segment_control>;
 
-  snake_body_control(abstract_factory* factory,
-                              event_dispatch* dispatch);
-  snake_body_control(abstract_factory* factory,
+  snake_body_control(event_dispatch* dispatch, abstract_factory* factory);
+  snake_body_control(event_dispatch* dispatch,
+                     abstract_factory* factory,
+                     std::unique_ptr<snake_body_output> out);
+  snake_body_control(event_dispatch* dispatch,
+                     abstract_factory* factory,
                      std::unique_ptr<snake_body_output> out,
-                     event_dispatch* dispatch);
-  snake_body_control(abstract_factory* factory,
-                     std::unique_ptr<snake_body_output> out,
-                     event_dispatch* dispatch,
                      direction move_request);
 
   void update();
@@ -42,9 +41,9 @@ private:
   void on_keydown_down();
 
 private:
+  event_dispatch* dispatch;
   abstract_factory* factory;
   std::unique_ptr<snake_body_output> out;
-  event_dispatch* dispatch;
   direction move_requested;
   direction move_to;
   snake_segments segments;
