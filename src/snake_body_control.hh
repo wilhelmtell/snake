@@ -32,6 +32,8 @@ struct snake_body_control {
   point head_position() const;
 
 private:
+  direction fetch_next_move_request();
+  direction fetch_next_move();
   bool wall_hit() const;
   bool self_hit() const;
   void on_berry_eaten(point const& position);
@@ -44,7 +46,7 @@ private:
   event_dispatch* dispatch;
   abstract_factory* factory;
   std::unique_ptr<snake_body_output> out;
-  direction move_requested;
+  std::deque<direction> moves_requested;
   direction move_to;
   snake_segments segments;
 };
