@@ -17,8 +17,8 @@ void sdl_game_output::clear(int r, int g, int b, int a) {
 void sdl_game_output::present() { SDL_RenderPresent(renderer); }
 
 rectangle sdl_game_output::bounds() const {
-  rectangle rect;
-  SDL_GL_GetDrawableSize(window, &rect.w, &rect.h);
-  return rect;
+  int w, h;
+  SDL_GL_GetDrawableSize(window, &w, &h);
+  return rectangle{point{0, 0}, width{w}, height{h}};
 }
 }

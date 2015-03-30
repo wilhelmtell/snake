@@ -1,7 +1,7 @@
 #include "height.hh"
 
 namespace snk {
-height::height(int value) : value{value} {}
+height::height(height::value_type value) : value{value} {}
 
-int height::get() const { return value; }
+height::operator value_type() const { return value; }
 }

@@ -3,13 +3,15 @@
 
 namespace snk {
 struct width {
-  width() = default;
-  explicit width(int value);
+  using value_type = int;
 
-  int get() const;
+  width() = default;
+  explicit width(value_type value);
+
+  operator value_type() const;
 
 private:
-  int value;
+  value_type value;
 };
 }
 

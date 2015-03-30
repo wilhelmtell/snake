@@ -3,13 +3,15 @@
 
 namespace snk {
 struct height {
-  height() = default;
-  explicit height(int value);
+  using value_type = int;
 
-  int get() const;
+  height() = default;
+  explicit height(value_type value);
+
+  operator value_type() const;
 
 private:
-  int value;
+  value_type value;
 };
 }
 
