@@ -22,9 +22,9 @@ snk::point moved(snk::point const& position, snk::direction const& towards) {
   case snk::direction::right:
     return snk::point{position.x + default_segment_width, position.y};
   case snk::direction::up:
-    return snk::point{position.x, position.y - default_segment_height.get()};
+    return snk::point{position.x, position.y - default_segment_height};
   default:
-    return snk::point{position.x, position.y + default_segment_height.get()};
+    return snk::point{position.x, position.y + default_segment_height};
   }
 }
 }

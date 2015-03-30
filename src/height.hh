@@ -8,7 +8,7 @@ struct height {
   height() = default;
   explicit height(value_type value);
 
-  value_type get() const;
+  operator value_type() const;
 
 private:
   value_type value;

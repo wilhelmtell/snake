@@ -24,7 +24,7 @@ snk::rectangle randomly_positioned_rectangle(snk::rectangle const& bounds,
                                              snk::width berry_width,
                                              snk::height berry_height) {
   return snk::rectangle{
-    random_position(bounds, berry_width, berry_height.get()),
+    random_position(bounds, berry_width, berry_height),
     berry_width,
     berry_height};
 }
