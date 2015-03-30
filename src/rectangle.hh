@@ -18,6 +18,7 @@ public:
 
 bool intersect(rectangle const& a, rectangle const& b);
 bool outside(rectangle const& a, rectangle const& b);
+point bottom_right(rectangle const& r);
 }
 
 #endif
