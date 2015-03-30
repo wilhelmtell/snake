@@ -1,7 +1,7 @@
 #include "width.hh"
 
 namespace snk {
-width::width(int value) : value{value} {}
+width::width(width::value_type value) : value{value} {}
 
-int width::get() const { return value; }
+width::value_type width::get() const { return value; }
 }
