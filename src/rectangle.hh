@@ -12,8 +12,8 @@ struct rectangle {
 
 public:
   point p;
-  int w;
-  int h;
+  width w;
+  height h;
 };
 
 bool intersect(rectangle const& a, rectangle const& b);
