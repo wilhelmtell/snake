@@ -18,9 +18,9 @@ namespace {
 snk::point moved(snk::point const& position, snk::direction const& towards) {
   switch(towards) {
   case snk::direction::left:
-    return snk::point{position.x - default_segment_width.get(), position.y};
+    return snk::point{position.x - default_segment_width, position.y};
   case snk::direction::right:
-    return snk::point{position.x + default_segment_width.get(), position.y};
+    return snk::point{position.x + default_segment_width, position.y};
   case snk::direction::up:
     return snk::point{position.x, position.y - default_segment_height.get()};
   default:

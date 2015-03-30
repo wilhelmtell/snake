@@ -8,7 +8,7 @@ struct width {
   width() = default;
   explicit width(value_type value);
 
-  value_type get() const;
+  operator value_type() const;
 
 private:
   value_type value;

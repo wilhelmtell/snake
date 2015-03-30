@@ -6,7 +6,7 @@
 
 namespace snk {
 rectangle::rectangle(point p, width w, height h)
-: p{std::move(p)}, w{w.get()}, h{h.get()} {}
+: p{std::move(p)}, w{w}, h{h.get()} {}
 
 bool intersect(rectangle const& a, rectangle const& b) {
   return outside(a.p, b) || outside(point{a.w, a.h}, b);
