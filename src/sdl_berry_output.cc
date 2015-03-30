@@ -18,7 +18,7 @@ void sdl_berry_output::draw_rect(rectangle const& rect) {
 }
 
 rectangle sdl_berry_output::bounds() const {
-  rectangle rect{point{0, 0}, width{0}, height{0}};
+  rectangle rect{};
   SDL_GL_GetDrawableSize(window, &rect.w, &rect.h);
   return rect;
 }
