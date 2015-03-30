@@ -13,8 +13,8 @@ std::mt19937 gen{rd()};
 snk::point random_position(snk::rectangle const& bounds,
                            int xgranularity,
                            int ygranularity) {
-  std::uniform_int_distribution<> xdist{bounds.p.x, bounds.w};
-  std::uniform_int_distribution<> ydist{bounds.p.y, bounds.h};
+  std::uniform_int_distribution<> xdist{bounds.p.x, bounds.w - xgranularity};
+  std::uniform_int_distribution<> ydist{bounds.p.y, bounds.h - ygranularity};
   auto const x = xdist(gen);
   auto const y = ydist(gen);
   return snk::point{x - x % xgranularity, y - y % ygranularity};
