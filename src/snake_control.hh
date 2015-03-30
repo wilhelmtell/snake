@@ -25,11 +25,12 @@ private:
   bool dead() const;
   void restart();
   void on_keydown_return();
+  void on_berry_eaten(point const& position);
 
 private:
   std::unique_ptr<snake_output> out;
   std::chrono::system_clock::time_point last_timestamp;
-  int speed;
+  double speed;
   snake_body_control body;
 };
 }

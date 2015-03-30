@@ -16,6 +16,7 @@ snake_control::snake_control(event_dispatch* dispatch,
 , speed{10}
 , body{dispatch, std::move(factory)} {
   dispatch->on_keydown_return([&]() { on_keydown_return(); });
+  dispatch->on_berry_eaten([&](point const& p) { on_berry_eaten(p); });
 }
 
 void snake_control::update() {
@@ -31,11 +32,18 @@ void snake_control::draw() const { body.draw(); }
 
 bool snake_control::dead() const { return body.dead(); }
 
-void snake_control::restart() { body.restart(); }
+void snake_control::restart() {
+  body.restart();
+  speed = 10;
+}
 
 point snake_control::position() const { return body.head_position(); }
 
 void snake_control::on_keydown_return() {
   if(dead()) restart();
+}
+
+void snake_control::on_berry_eaten(point const& /*position*/) {
+  speed += 0.25;
 }
 }
