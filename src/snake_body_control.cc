@@ -87,6 +87,7 @@ void snake_body_control::restart() {
                          default_segment_width,
                          default_segment_height);
   move_requested = move_to = direction::right;
+  dispatch->game_restarted();
 }
 
 bool snake_body_control::wall_hit() const {

@@ -3,8 +3,10 @@
 #include "abstract_factory.hh"
 #include "game_output.hh"
 #include "event_dispatch.hh"
+#include "rectangle.hh"
 #include "width.hh"
 #include "height.hh"
+#include <boost/lexical_cast.hpp>
 
 namespace {
 snk::width const default_berry_width{10};
@@ -24,12 +26,14 @@ game_control::game_control(event_dispatch* dispatch,
 , berry{make_randomly_positioned_berry(
     factory, dispatch, default_berry_width, default_berry_height)}
 , snake{factory, dispatch}
-, game_paused{false} {
+, game_paused{false}
+, score{0} {
   dispatch->on_keydown_esc([&]() { on_keydown_esc(); });
   dispatch->on_keydown_p([&]() { on_keydown_p(); });
   dispatch->on_berry_eaten([&](auto const& p) { on_berry_eaten(p); });
   dispatch->on_pause_game([&]() { on_pause_game(); });
   dispatch->on_resume_game([&]() { on_resume_game(); });
+  dispatch->on_game_restarted([&]() { on_game_restarted(); });
 }
 
 void game_control::update() {
@@ -44,6 +48,14 @@ void game_control::draw() const {
   out->clear(0x00, 0x00, 0x00, 0xff);
   berry.draw();
   snake.draw();
+  out->draw_text(boost::lexical_cast<std::string>(score),
+                 0x70,
+                 0x90,
+                 0x00,
+                 0xff,
+                 [&](width const& w, height const& h) {
+    return rectangle{point{10, out->bounds().h - h - 10}, w, h};
+  });
   out->present();
 }
 
@@ -57,6 +69,7 @@ void game_control::on_keydown_p() {
 }
 
 void game_control::on_berry_eaten(point const& /*position*/) {
+  ++score;
   berry = make_randomly_positioned_berry(
     factory, dispatch, default_berry_width, default_berry_height);
 }
@@ -64,4 +77,6 @@ void game_control::on_berry_eaten(point const& /*position*/) {
 void game_control::on_pause_game() { game_paused = true; }
 
 void game_control::on_resume_game() { game_paused = false; }
+
+void game_control::on_game_restarted() { score = 0; }
 }

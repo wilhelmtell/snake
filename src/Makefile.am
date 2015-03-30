@@ -1,8 +1,8 @@
 bin_PROGRAMS = snake
 snake_SOURCES = main.cc
 snake_LDADD = libsnake.a
-AM_CXXFLAGS = ${SDL2_CFLAGS}
-AM_LDFLAGS = ${SDL2_LIBS}
+AM_CXXFLAGS = ${SDL2_CFLAGS} ${SDL2_TTF_CFLAGS}
+AM_LDFLAGS = ${SDL2_LIBS} ${SDL2_TTF_LIBS}
 
 noinst_LIBRARIES = libsnake.a
 libsnake_a_SOURCES = abstract_factory.hh \
@@ -35,8 +35,19 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      sdl_snake_body_output.hh sdl_snake_body_output.cc \
                      sdl_snake_output.hh sdl_snake_output.cc \
                      sdl_snake_segment_output.hh sdl_snake_segment_output.cc \
+                     sdl_surface.hh sdl_surface.cc \
+                     sdl_surface_fwd.hh \
                      sdl_system.hh sdl_system.cc \
                      sdl_system_init_error.hh sdl_system_init_error.cc \
+                     sdl_texture.hh sdl_texture.cc \
+                     sdl_texture_creation_error.hh sdl_texture_creation_error.cc \
+                     sdl_texture_fwd.hh \
+                     sdl_ttf_font.hh sdl_ttf_font.cc \
+                     sdl_ttf_font_fwd.hh \
+                     sdl_ttf_font_open_error.hh sdl_ttf_font_open_error.cc \
+                     sdl_ttf_system.hh sdl_ttf_system.cc \
+                     sdl_ttf_system_fwd.hh \
+                     sdl_ttf_system_init_error.hh sdl_ttf_system_init_error.cc \
                      sdl_window.hh sdl_window.cc \
                      sdl_window_fwd.hh \
                      snake_body_control.hh snake_body_control.cc \

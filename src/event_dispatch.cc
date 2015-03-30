@@ -88,4 +88,11 @@ event_dispatch::connection event_dispatch::on_keydown_return(
   keydown_return_slot_t const& op) {
   return keydown_return_signal.connect(op);
 }
+
+void event_dispatch::game_restarted() const { game_restarted_signal(); }
+
+event_dispatch::connection event_dispatch::on_game_restarted(
+  game_restarted_slot_t const& op) {
+  return game_restarted_signal.connect(op);
+}
 }
