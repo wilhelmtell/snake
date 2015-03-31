@@ -67,12 +67,18 @@ snake_body_control::snake_body_control(event_dispatch* dispatch,
 , out{std::move(out)}
 , move_requests{}
 , move_to{move_request}
-, segments{initial_snake_segments(dispatch, factory)} {
+, segments{initial_snake_segments(dispatch, factory)}
+, keydown_left_connection{
+    dispatch->on_keydown_left([&]() { on_move(direction::left); })}
+, keydown_right_connection{
+    dispatch->on_keydown_right([&]() { on_move(direction::right); })}
+, keydown_up_connection{
+    dispatch->on_keydown_up([&]() { on_move(direction::up); })}
+, keydown_down_connection{
+    dispatch->on_keydown_down([&]() { on_move(direction::down); })} {
+  dispatch->on_game_paused([&]() { on_game_paused(); });
+  dispatch->on_game_resumed([&]() { on_game_resumed(); });
   dispatch->on_berry_eaten([&](auto const& p) { on_berry_eaten(p); });
-  dispatch->on_keydown_left([&]() { on_move(direction::left); });
-  dispatch->on_keydown_right([&]() { on_move(direction::right); });
-  dispatch->on_keydown_up([&]() { on_move(direction::up); });
-  dispatch->on_keydown_down([&]() { on_move(direction::down); });
   move_requests.push_back(move_request);
 }
 
@@ -140,5 +146,23 @@ void snake_body_control::on_berry_eaten(point const& /*position*/) {
 
 void snake_body_control::on_move(direction const& to) {
   move_requests.push_back(to);
+}
+
+void snake_body_control::on_game_paused() {
+  keydown_left_connection.disconnect();
+  keydown_right_connection.disconnect();
+  keydown_up_connection.disconnect();
+  keydown_down_connection.disconnect();
+}
+
+void snake_body_control::on_game_resumed() {
+  keydown_left_connection
+    = dispatch->on_keydown_left([&]() { on_move(direction::left); });
+  keydown_right_connection
+    = dispatch->on_keydown_right([&]() { on_move(direction::right); });
+  keydown_up_connection
+    = dispatch->on_keydown_up([&]() { on_move(direction::up); });
+  keydown_down_connection
+    = dispatch->on_keydown_down([&]() { on_move(direction::down); });
 }
 }

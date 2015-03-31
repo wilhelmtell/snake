@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <deque>
-#include "event_dispatch_fwd.hh"
+#include "event_dispatch.hh"
 #include "abstract_factory_fwd.hh"
 #include "snake_body_output.hh"
 #include "snake_segment_control.hh"
@@ -38,6 +38,8 @@ private:
   bool self_hit() const;
   void on_berry_eaten(point const& position);
   void on_move(direction const& to);
+  void on_game_paused();
+  void on_game_resumed();
 
 private:
   event_dispatch* dispatch;
@@ -46,6 +48,10 @@ private:
   std::deque<direction> move_requests;
   direction move_to;
   snake_segments segments;
+  event_dispatch::connection keydown_left_connection;
+  event_dispatch::connection keydown_right_connection;
+  event_dispatch::connection keydown_up_connection;
+  event_dispatch::connection keydown_down_connection;
 };
 }
 

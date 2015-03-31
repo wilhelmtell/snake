@@ -88,4 +88,18 @@ event_dispatch::connection event_dispatch::on_toggle_pause(
   toggle_pause_slot_t const& op) {
   return toggle_pause_signal.connect(op);
 }
+
+void event_dispatch::game_paused() const { game_paused_signal(); }
+
+event_dispatch::connection event_dispatch::on_game_paused(
+  game_paused_slot_t const& op) {
+  return game_paused_signal.connect(op);
+}
+
+void event_dispatch::game_resumed() const { game_resumed_signal(); }
+
+event_dispatch::connection event_dispatch::on_game_resumed(
+  game_resumed_slot_t const& op) {
+  return game_resumed_signal.connect(op);
+}
 }
