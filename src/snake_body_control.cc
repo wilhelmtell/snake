@@ -52,10 +52,10 @@ snake_body_control::snake_body_control(event_dispatch* dispatch,
 , move_to{move_request}
 , segments{} {
   dispatch->on_berry_eaten([&](auto const& p) { on_berry_eaten(p); });
-  dispatch->on_keydown_left([&]() { on_keydown_left(); });
-  dispatch->on_keydown_right([&]() { on_keydown_right(); });
-  dispatch->on_keydown_up([&]() { on_keydown_up(); });
-  dispatch->on_keydown_down([&]() { on_keydown_down(); });
+  dispatch->on_keydown_left([&]() { on_move(direction::left); });
+  dispatch->on_keydown_right([&]() { on_move(direction::right); });
+  dispatch->on_keydown_up([&]() { on_move(direction::up); });
+  dispatch->on_keydown_down([&]() { on_move(direction::down); });
   move_requests.push_back(move_request);
   segments.emplace_back(dispatch,
                         this->factory,
@@ -131,19 +131,7 @@ void snake_body_control::on_berry_eaten(point const& /*position*/) {
                         default_segment_height);
 }
 
-void snake_body_control::on_keydown_left() {
-  move_requests.push_back(direction::left);
-}
-
-void snake_body_control::on_keydown_right() {
-  move_requests.push_back(direction::right);
-}
-
-void snake_body_control::on_keydown_up() {
-  move_requests.push_back(direction::up);
-}
-
-void snake_body_control::on_keydown_down() {
-  move_requests.push_back(direction::down);
+void snake_body_control::on_move(direction const& to) {
+  move_requests.push_back(to);
 }
 }
