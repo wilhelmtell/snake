@@ -24,12 +24,12 @@ struct snake_direction_control {
   direction to() const;
 
 private:
-  void restart();
   direction fetch_next_move_request();
   direction fetch_next_move();
   void on_move(direction const& to);
   void on_game_paused();
   void on_game_resumed();
+  void on_restart();
 
 private:
   event_dispatch* dispatch;

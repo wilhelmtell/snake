@@ -34,6 +34,7 @@ snake_direction_control::snake_direction_control(
     dispatch->on_keydown_down([&]() { on_move(direction::down); })} {
   dispatch->on_game_paused([&]() { on_game_paused(); });
   dispatch->on_game_resumed([&]() { on_game_resumed(); });
+  dispatch->on_restart([&]() { on_restart(); });
 }
 
 void snake_direction_control::update() {
@@ -44,11 +45,6 @@ void snake_direction_control::update() {
 void snake_direction_control::draw() const {}
 
 direction snake_direction_control::to() const { return move_to; }
-
-void snake_direction_control::restart() {
-  move_requests.assign({direction::right});
-  move_to = direction::right;
-}
 
 direction snake_direction_control::fetch_next_move_request() {
   auto const move_requested = move_requests.front();
@@ -80,5 +76,10 @@ void snake_direction_control::on_game_resumed() {
     = dispatch->on_keydown_up([&]() { on_move(direction::up); });
   keydown_down_connection
     = dispatch->on_keydown_down([&]() { on_move(direction::down); });
+}
+
+void snake_direction_control::on_restart() {
+  move_requests.assign({direction::right});
+  move_to = direction::right;
 }
 }

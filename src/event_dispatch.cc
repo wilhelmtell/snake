@@ -75,13 +75,6 @@ event_dispatch::connection event_dispatch::on_keydown_return(
   return keydown_return_signal.connect(op);
 }
 
-void event_dispatch::game_restarted() const { game_restarted_signal(); }
-
-event_dispatch::connection event_dispatch::on_game_restarted(
-  game_restarted_slot_t const& op) {
-  return game_restarted_signal.connect(op);
-}
-
 void event_dispatch::toggle_pause() const { toggle_pause_signal(); }
 
 event_dispatch::connection event_dispatch::on_toggle_pause(
@@ -101,5 +94,12 @@ void event_dispatch::game_resumed() const { game_resumed_signal(); }
 event_dispatch::connection event_dispatch::on_game_resumed(
   game_resumed_slot_t const& op) {
   return game_resumed_signal.connect(op);
+}
+
+void event_dispatch::restart() const { restart_signal(); }
+
+event_dispatch::connection event_dispatch::on_restart(
+  restart_slot_t const& op) {
+  return restart_signal.connect(op);
 }
 }

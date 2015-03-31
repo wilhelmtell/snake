@@ -32,7 +32,7 @@ game_control::game_control(event_dispatch* dispatch,
   dispatch->on_keydown_p([&]() { on_keydown_p(); });
   dispatch->on_berry_eaten([&](auto const& p) { on_berry_eaten(p); });
   dispatch->on_toggle_pause([&]() { on_toggle_pause(); });
-  dispatch->on_game_restarted([&]() { on_game_restarted(); });
+  dispatch->on_restart([&]() { on_restart(); });
 }
 
 void game_control::update() {
@@ -75,5 +75,5 @@ void game_control::on_toggle_pause() {
     dispatch->game_resumed();
 }
 
-void game_control::on_game_restarted() { score = 0; }
+void game_control::on_restart() { score = 0; }
 }

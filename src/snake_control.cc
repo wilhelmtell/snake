@@ -15,12 +15,14 @@ snake_control::snake_control(abstract_factory* factory,
 snake_control::snake_control(event_dispatch* dispatch,
                              abstract_factory* factory,
                              std::unique_ptr<snake_output> out)
-: out{std::move(out)}
+: dispatch{dispatch}
+, out{std::move(out)}
 , last_timestamp{std::chrono::system_clock::now()}
 , speed{default_snake_speed}
 , body{dispatch, std::move(factory)} {
   dispatch->on_keydown_return([&]() { on_keydown_return(); });
   dispatch->on_berry_eaten([&](point const& p) { on_berry_eaten(p); });
+  dispatch->on_restart([&]() { on_restart(); });
 }
 
 void snake_control::update() {
@@ -36,16 +38,13 @@ void snake_control::draw() const { body.draw(); }
 
 bool snake_control::dead() const { return body.dead(); }
 
-void snake_control::restart() {
-  body.restart();
-  speed = default_snake_speed;
-}
-
 point snake_control::position() const { return body.head_position(); }
 
 void snake_control::on_keydown_return() {
-  if(dead()) restart();
+  if(dead()) dispatch->restart();
 }
+
+void snake_control::on_restart() { speed = default_snake_speed; }
 
 void snake_control::on_berry_eaten(point const& /*position*/) {
   speed += 0.0625;

@@ -23,11 +23,12 @@ struct snake_control {
 
 private:
   bool dead() const;
-  void restart();
   void on_keydown_return();
+  void on_restart();
   void on_berry_eaten(point const& position);
 
 private:
+  event_dispatch* dispatch;
   std::unique_ptr<snake_output> out;
   std::chrono::system_clock::time_point last_timestamp;
   double speed;
