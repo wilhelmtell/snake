@@ -68,7 +68,12 @@ void game_control::on_berry_eaten(point const& /*position*/) {
     factory, dispatch, default_berry_width, default_berry_height);
 }
 
-void game_control::on_toggle_pause() { game_paused = !game_paused; }
+void game_control::on_toggle_pause() {
+  if((game_paused = !game_paused))
+    dispatch->game_paused();
+  else
+    dispatch->game_resumed();
+}
 
 void game_control::on_game_restarted() { score = 0; }
 }
