@@ -68,20 +68,6 @@ event_dispatch::connection event_dispatch::on_berry_spawned(
   return berry_spawned_signal.connect(op);
 }
 
-void event_dispatch::pause_game() const { pause_game_signal(); }
-
-event_dispatch::connection event_dispatch::on_pause_game(
-  pause_game_slot_t const& op) {
-  return pause_game_signal.connect(op);
-}
-
-void event_dispatch::resume_game() const { resume_game_signal(); }
-
-event_dispatch::connection event_dispatch::on_resume_game(
-  resume_game_slot_t const& op) {
-  return resume_game_signal.connect(op);
-}
-
 void event_dispatch::keydown_return() const { keydown_return_signal(); }
 
 event_dispatch::connection event_dispatch::on_keydown_return(
@@ -94,5 +80,12 @@ void event_dispatch::game_restarted() const { game_restarted_signal(); }
 event_dispatch::connection event_dispatch::on_game_restarted(
   game_restarted_slot_t const& op) {
   return game_restarted_signal.connect(op);
+}
+
+void event_dispatch::toggle_pause() const { toggle_pause_signal(); }
+
+event_dispatch::connection event_dispatch::on_toggle_pause(
+  toggle_pause_slot_t const& op) {
+  return toggle_pause_signal.connect(op);
 }
 }

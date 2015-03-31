@@ -22,8 +22,7 @@ private:
   void on_keydown_esc();
   void on_keydown_p();
   void on_berry_eaten(point const& position);
-  void on_pause_game();
-  void on_resume_game();
+  void on_toggle_pause();
   void on_game_restarted();
 
 private:
