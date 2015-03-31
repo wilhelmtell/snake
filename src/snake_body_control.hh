@@ -46,7 +46,7 @@ private:
   event_dispatch* dispatch;
   abstract_factory* factory;
   std::unique_ptr<snake_body_output> out;
-  std::deque<direction> moves_requested;
+  std::deque<direction> move_requests;
   direction move_to;
   snake_segments segments;
 };

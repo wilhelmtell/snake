@@ -48,7 +48,7 @@ snake_body_control::snake_body_control(event_dispatch* dispatch,
 : dispatch{dispatch}
 , factory{std::move(factory)}
 , out{std::move(out)}
-, moves_requested{}
+, move_requests{}
 , move_to{move_request}
 , segments{} {
   dispatch->on_berry_eaten([&](auto const& p) { on_berry_eaten(p); });
@@ -56,7 +56,7 @@ snake_body_control::snake_body_control(event_dispatch* dispatch,
   dispatch->on_keydown_right([&]() { on_keydown_right(); });
   dispatch->on_keydown_up([&]() { on_keydown_up(); });
   dispatch->on_keydown_down([&]() { on_keydown_down(); });
-  moves_requested.push_back(move_request);
+  move_requests.push_back(move_request);
   segments.emplace_back(dispatch,
                         this->factory,
                         default_segment_position,
@@ -88,20 +88,20 @@ void snake_body_control::restart() {
                          default_segment_position,
                          default_segment_width,
                          default_segment_height);
-  moves_requested.clear();
-  moves_requested.push_back(direction::right);
+  move_requests.clear();
+  move_requests.push_back(direction::right);
   move_to = direction::right;
   dispatch->game_restarted();
 }
 
 direction snake_body_control::fetch_next_move_request() {
-  auto const move_requested = moves_requested.front();
-  moves_requested.pop_front();
+  auto const move_requested = move_requests.front();
+  move_requests.pop_front();
   return move_requested;
 }
 
 direction snake_body_control::fetch_next_move() {
-  return moves_requested.empty() ? move_to : fetch_next_move_request();
+  return move_requests.empty() ? move_to : fetch_next_move_request();
 }
 
 bool snake_body_control::wall_hit() const {
@@ -132,18 +132,18 @@ void snake_body_control::on_berry_eaten(point const& /*position*/) {
 }
 
 void snake_body_control::on_keydown_left() {
-  moves_requested.push_back(direction::left);
+  move_requests.push_back(direction::left);
 }
 
 void snake_body_control::on_keydown_right() {
-  moves_requested.push_back(direction::right);
+  move_requests.push_back(direction::right);
 }
 
 void snake_body_control::on_keydown_up() {
-  moves_requested.push_back(direction::up);
+  move_requests.push_back(direction::up);
 }
 
 void snake_body_control::on_keydown_down() {
-  moves_requested.push_back(direction::down);
+  move_requests.push_back(direction::down);
 }
 }
