@@ -6,6 +6,7 @@
 #include "mock_snake_body_output.hh"
 #include "mock_snake_segment_output.hh"
 #include "mock_berry_output.hh"
+#include "mock_snake_direction_output.hh"
 
 namespace snk {
 namespace test {
@@ -31,6 +32,11 @@ std::unique_ptr<snake_segment_output> mock_factory::make_snake_segment_output()
 
 std::unique_ptr<snk::berry_output> mock_factory::make_berry_output() const {
   return std::make_unique<mock_berry_output>(bounds);
+}
+
+std::unique_ptr<snk::snake_direction_output>
+mock_factory::make_snake_direction_output() const {
+  return std::make_unique<mock_snake_direction_output>();
 }
 }
 }

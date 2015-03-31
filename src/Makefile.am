@@ -33,6 +33,7 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      sdl_game_output.hh sdl_game_output.cc \
                      sdl_renderer.hh sdl_renderer.cc \
                      sdl_snake_body_output.hh sdl_snake_body_output.cc \
+                     sdl_snake_direction_output.hh sdl_snake_direction_output.cc \
                      sdl_snake_output.hh sdl_snake_output.cc \
                      sdl_snake_segment_output.hh sdl_snake_segment_output.cc \
                      sdl_surface.hh sdl_surface.cc \
@@ -56,6 +57,9 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      snake_body_output_fwd.hh \
                      snake_control.hh snake_control.cc \
                      snake_control_fwd.hh \
+                     snake_direction_control.hh snake_direction_control.cc \
+                     snake_direction_output.hh \
+                     snake_direction_output_fwd.hh \
                      snake_output.hh \
                      snake_output_fwd.hh \
                      snake_segment_control.hh snake_segment_control.cc \
