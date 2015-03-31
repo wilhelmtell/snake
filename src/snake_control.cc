@@ -48,6 +48,6 @@ void snake_control::on_keydown_return() {
 }
 
 void snake_control::on_berry_eaten(point const& /*position*/) {
-  speed += 0.25;
+  speed += 0.0625;
 }
 }
