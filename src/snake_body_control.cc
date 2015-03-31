@@ -12,7 +12,7 @@ namespace {
 snk::point const default_segment_position{0, 0};
 snk::width const default_segment_width{10};
 snk::height const default_segment_height{10};
-auto const default_initial_snake_length = 1;
+auto const default_initial_snake_length = 3;
 }
 
 namespace {
