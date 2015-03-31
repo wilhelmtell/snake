@@ -3,6 +3,10 @@
 #include "event_dispatch.hh"
 #include <chrono>
 
+namespace {
+auto const default_snake_speed = 10.;
+}
+
 namespace snk {
 snake_control::snake_control(abstract_factory* factory,
                              event_dispatch* dispatch)
@@ -13,7 +17,7 @@ snake_control::snake_control(event_dispatch* dispatch,
                              std::unique_ptr<snake_output> out)
 : out{std::move(out)}
 , last_timestamp{std::chrono::system_clock::now()}
-, speed{10}
+, speed{default_snake_speed}
 , body{dispatch, std::move(factory)} {
   dispatch->on_keydown_return([&]() { on_keydown_return(); });
   dispatch->on_berry_eaten([&](point const& p) { on_berry_eaten(p); });
@@ -34,7 +38,7 @@ bool snake_control::dead() const { return body.dead(); }
 
 void snake_control::restart() {
   body.restart();
-  speed = 10;
+  speed = default_snake_speed;
 }
 
 point snake_control::position() const { return body.head_position(); }
