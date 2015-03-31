@@ -31,8 +31,7 @@ game_control::game_control(event_dispatch* dispatch,
   dispatch->on_keydown_esc([&]() { on_keydown_esc(); });
   dispatch->on_keydown_p([&]() { on_keydown_p(); });
   dispatch->on_berry_eaten([&](auto const& p) { on_berry_eaten(p); });
-  dispatch->on_pause_game([&]() { on_pause_game(); });
-  dispatch->on_resume_game([&]() { on_resume_game(); });
+  dispatch->on_toggle_pause([&]() { on_toggle_pause(); });
   dispatch->on_game_restarted([&]() { on_game_restarted(); });
 }
 
@@ -61,12 +60,7 @@ void game_control::draw() const {
 
 void game_control::on_keydown_esc() { dispatch->quit(); }
 
-void game_control::on_keydown_p() {
-  if(game_paused)
-    dispatch->resume_game();
-  else
-    dispatch->pause_game();
-}
+void game_control::on_keydown_p() { dispatch->toggle_pause(); }
 
 void game_control::on_berry_eaten(point const& /*position*/) {
   ++score;
@@ -74,9 +68,7 @@ void game_control::on_berry_eaten(point const& /*position*/) {
     factory, dispatch, default_berry_width, default_berry_height);
 }
 
-void game_control::on_pause_game() { game_paused = true; }
-
-void game_control::on_resume_game() { game_paused = false; }
+void game_control::on_toggle_pause() { game_paused = !game_paused; }
 
 void game_control::on_game_restarted() { score = 0; }
 }
