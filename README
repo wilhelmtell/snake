@@ -1,0 +1,11 @@
+snake - eat all the berries!
+
+Use the arrow keys to direct the snake's move. Once directed, the snake will
+keep crawling in the same direction, until directed in a new direction. The
+snake won't move in an opposite direction; to head back, turn it, and then turn
+it again.
+
+If (when) the snake dies, press Enter to decompose the poor thing and spawn a
+new living snake to keep at the forefathers' aspiration.
+
+Esc quits the game.
