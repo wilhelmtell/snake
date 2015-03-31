@@ -12,6 +12,7 @@ namespace {
 snk::point const default_segment_position{0, 0};
 snk::width const default_segment_width{10};
 snk::height const default_segment_height{10};
+auto const default_initial_snake_length = 1;
 }
 
 namespace {
@@ -26,6 +27,22 @@ snk::point moved(snk::point const& position, snk::direction const& towards) {
   default:
     return snk::point{position.x, position.y + default_segment_height};
   }
+}
+
+std::deque<snk::snake_segment_control> initial_snake_segments(
+  snk::event_dispatch* dispatch, snk::abstract_factory* factory) {
+  std::deque<snk::snake_segment_control> segments;
+  for(int i = 0; i != default_initial_snake_length; ++i) {
+    segments.emplace_back(
+      dispatch,
+      factory,
+      snk::point{default_segment_width * (default_initial_snake_length - i
+                                          - default_segment_position.x - 1),
+                 default_segment_position.y},
+      default_segment_width,
+      default_segment_height);
+  }
+  return segments;
 }
 }
 
@@ -50,18 +67,13 @@ snake_body_control::snake_body_control(event_dispatch* dispatch,
 , out{std::move(out)}
 , move_requests{}
 , move_to{move_request}
-, segments{} {
+, segments{initial_snake_segments(dispatch, factory)} {
   dispatch->on_berry_eaten([&](auto const& p) { on_berry_eaten(p); });
   dispatch->on_keydown_left([&]() { on_move(direction::left); });
   dispatch->on_keydown_right([&]() { on_move(direction::right); });
   dispatch->on_keydown_up([&]() { on_move(direction::up); });
   dispatch->on_keydown_down([&]() { on_move(direction::down); });
   move_requests.push_back(move_request);
-  segments.emplace_back(dispatch,
-                        this->factory,
-                        default_segment_position,
-                        default_segment_width,
-                        default_segment_height);
 }
 
 void snake_body_control::update() {
@@ -82,12 +94,7 @@ void snake_body_control::draw() const {
 }
 
 void snake_body_control::restart() {
-  segments.clear();
-  segments.emplace_front(dispatch,
-                         factory,
-                         default_segment_position,
-                         default_segment_width,
-                         default_segment_height);
+  segments = initial_snake_segments(dispatch, factory);
   move_requests.clear();
   move_requests.push_back(direction::right);
   move_to = direction::right;
