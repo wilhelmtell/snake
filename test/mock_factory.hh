@@ -9,6 +9,7 @@
 #include "../src/snake_segment_output.hh"
 #include "../src/berry_output.hh"
 #include "../src/snake_direction_output.hh"
+#include "../src/score_output.hh"
 #include "../src/rectangle.hh"
 
 namespace snk {
@@ -22,6 +23,7 @@ struct mock_factory : snk::abstract_factory {
   std::unique_ptr<snake_segment_output> make_snake_segment_output()
     const override;
   std::unique_ptr<snk::berry_output> make_berry_output() const override;
+  std::unique_ptr<snk::score_output> make_score_output() const override;
   std::unique_ptr<snk::snake_direction_output> make_snake_direction_output()
     const override;
 
