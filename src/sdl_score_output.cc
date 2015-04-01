@@ -30,8 +30,7 @@ void sdl_score_output::draw_text(
   auto const box
     = bounding_box(width{surface.get()->w}, height{surface.get()->h});
   SDL_Rect const quad{box.p.x, box.p.y, box.w, box.h};
-  SDL_RenderCopyEx(
-    renderer, texture.get(), nullptr, &quad, 0, nullptr, SDL_FLIP_NONE);
+  SDL_RenderCopy(renderer, texture.get(), nullptr, &quad);
 }
 
 rectangle sdl_score_output::bounds() const {
