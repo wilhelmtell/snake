@@ -25,7 +25,7 @@ game_control::game_control(event_dispatch* dispatch,
 , out{std::move(out)}
 , berry{make_randomly_positioned_berry(
     factory, dispatch, default_berry_width, default_berry_height)}
-, snake{factory, dispatch}
+, snake{dispatch, factory}
 , game_paused{false}
 , score{0} {
   dispatch->on_keydown_esc([&]() { on_keydown_esc(); });

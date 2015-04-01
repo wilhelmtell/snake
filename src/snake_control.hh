@@ -11,7 +11,7 @@
 
 namespace snk {
 struct snake_control {
-  snake_control(abstract_factory* factory, event_dispatch* dispatch);
+  snake_control(event_dispatch* dispatch, abstract_factory* factory);
   snake_control(event_dispatch* dispatch,
                 abstract_factory* factory,
                 std::unique_ptr<snake_output> out);

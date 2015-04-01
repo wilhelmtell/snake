@@ -8,8 +8,8 @@ auto const default_snake_speed = 10.;
 }
 
 namespace snk {
-snake_control::snake_control(abstract_factory* factory,
-                             event_dispatch* dispatch)
+snake_control::snake_control(event_dispatch* dispatch,
+                             abstract_factory* factory)
 : snake_control{dispatch, factory, factory->make_snake_output()} {}
 
 snake_control::snake_control(event_dispatch* dispatch,
