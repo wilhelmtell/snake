@@ -26,12 +26,16 @@ libsnake_a_SOURCES = abstract_factory.hh \
                      rectangle.hh rectangle.cc \
                      rectangle_fwd.hh \
                      renderer_creation_error.hh renderer_creation_error.cc \
+                     score_control.hh score_control.cc \
+                     score_output.hh \
+                     score_output_fwd.hh \
                      sdl.hh sdl.cc \
                      sdl_app.hh sdl_app.cc \
                      sdl_berry_output.hh sdl_berry_output.cc \
                      sdl_factory.hh sdl_factory.cc \
                      sdl_game_output.hh sdl_game_output.cc \
                      sdl_renderer.hh sdl_renderer.cc \
+                     sdl_score_output.hh sdl_score_output.cc \
                      sdl_snake_body_output.hh sdl_snake_body_output.cc \
                      sdl_snake_direction_output.hh sdl_snake_direction_output.cc \
                      sdl_snake_output.hh sdl_snake_output.cc \

@@ -7,13 +7,14 @@
 #include "mock_snake_segment_output.hh"
 #include "mock_berry_output.hh"
 #include "mock_snake_direction_output.hh"
+#include "mock_score_output.hh"
 
 namespace snk {
 namespace test {
 mock_factory::mock_factory(rectangle bounds) : bounds{std::move(bounds)} {}
 
 std::unique_ptr<snk::game_output> mock_factory::make_game_output() const {
-  return std::make_unique<mock_game_output>(bounds);
+  return std::make_unique<mock_game_output>();
 }
 
 std::unique_ptr<snk::snake_output> mock_factory::make_snake_output() const {
@@ -37,6 +38,10 @@ std::unique_ptr<snk::berry_output> mock_factory::make_berry_output() const {
 std::unique_ptr<snk::snake_direction_output>
 mock_factory::make_snake_direction_output() const {
   return std::make_unique<mock_snake_direction_output>();
+}
+
+std::unique_ptr<snk::score_output> mock_factory::make_score_output() const {
+  return std::make_unique<mock_score_output>();
 }
 }
 }

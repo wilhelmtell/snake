@@ -19,7 +19,7 @@ TEST_CASE("esc quits the game") {
   snk::game_control control{
     &dispatch,
     &factory,
-    std::make_unique<snk::test::mock_game_output>(bounds)};
+    std::make_unique<snk::test::mock_game_output>()};
   dispatch.keydown_esc();
   control.update();
   control.draw();

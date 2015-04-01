@@ -8,6 +8,7 @@
 #include "snake_segment_output_fwd.hh"
 #include "berry_output_fwd.hh"
 #include "snake_direction_output_fwd.hh"
+#include "score_output_fwd.hh"
 
 namespace snk {
 struct abstract_factory {
@@ -19,6 +20,7 @@ struct abstract_factory {
   virtual std::unique_ptr<snake_segment_output> make_snake_segment_output()
     const = 0;
   virtual std::unique_ptr<berry_output> make_berry_output() const = 0;
+  virtual std::unique_ptr<score_output> make_score_output() const = 0;
   virtual std::unique_ptr<snake_direction_output> make_snake_direction_output()
     const = 0;
 };

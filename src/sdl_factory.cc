@@ -7,6 +7,7 @@
 #include "sdl_snake_segment_output.hh"
 #include "sdl_berry_output.hh"
 #include "sdl_snake_direction_output.hh"
+#include "sdl_score_output.hh"
 #include "point.hh"
 #include "rectangle.hh"
 
@@ -46,5 +47,9 @@ std::unique_ptr<snake_direction_output>
 sdl_factory::make_snake_direction_output() const {
   return std::make_unique<sdl_snake_direction_output>(window.get(),
                                                       renderer.get());
+}
+
+std::unique_ptr<score_output> sdl_factory::make_score_output() const {
+  return std::make_unique<sdl_score_output>(window.get(), renderer.get());
 }
 }
