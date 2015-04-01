@@ -1,6 +1,6 @@
 check_PROGRAMS = check_snake
 check_snake_SOURCES = berry.cc \
-                      					  mock_score_output.hh mock_score_output.cc \
+                      mock_score_output.hh mock_score_output.cc \
                       game.cc \
                       height.cc \
                       main.cc \
