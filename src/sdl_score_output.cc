@@ -23,7 +23,7 @@ void sdl_score_output::draw_text(
   unsigned char b,
   unsigned char a,
   std::function<rectangle(width const&, height const&)> bounding_box) {
-  sdl_surface const surface{TTF_RenderText_Solid(
+  sdl_surface const surface{TTF_RenderText_Blended(
     score_font.get(), text.c_str(), SDL_Color{r, g, b, a})};
   sdl_texture const texture{
     SDL_CreateTextureFromSurface(renderer, surface.get())};
