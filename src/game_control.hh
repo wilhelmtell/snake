@@ -7,6 +7,7 @@
 #include "event_dispatch_fwd.hh"
 #include "snake_control.hh"
 #include "berry_control.hh"
+#include "score_control.hh"
 
 namespace snk {
 struct game_control {
@@ -23,7 +24,6 @@ private:
   void on_keydown_p();
   void on_berry_eaten(point const& position);
   void on_toggle_pause();
-  void on_restart();
 
 private:
   event_dispatch* dispatch;
@@ -31,8 +31,8 @@ private:
   std::unique_ptr<game_output> out;
   berry_control berry;
   snake_control snake;
+  score_control score;
   bool game_paused;
-  int score;
 };
 }
 

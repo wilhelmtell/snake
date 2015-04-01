@@ -5,6 +5,7 @@
 #include "event_dispatch_fwd.hh"
 #include "abstract_factory_fwd.hh"
 #include "score_output.hh"
+#include "point_fwd.hh"
 
 namespace snk {
 struct score_control {
@@ -17,7 +18,12 @@ struct score_control {
   void draw() const;
 
 private:
+  void on_berry_eaten(point const& position);
+  void on_restart();
+
+private:
   std::unique_ptr<score_output> out;
+  int value;
 };
 }
 

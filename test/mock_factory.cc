@@ -14,7 +14,7 @@ namespace test {
 mock_factory::mock_factory(rectangle bounds) : bounds{std::move(bounds)} {}
 
 std::unique_ptr<snk::game_output> mock_factory::make_game_output() const {
-  return std::make_unique<mock_game_output>(bounds);
+  return std::make_unique<mock_game_output>();
 }
 
 std::unique_ptr<snk::snake_output> mock_factory::make_snake_output() const {
