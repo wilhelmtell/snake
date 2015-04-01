@@ -7,14 +7,11 @@
 
 namespace snk {
 namespace test {
-void mock_score_output::draw_text(
-  std::string const& /*text*/,
-  unsigned char /*r*/,
-  unsigned char /*g*/,
-  unsigned char /*b*/,
-  unsigned char /*a*/,
-  std::function<rectangle(width const&, height const&)>
-  /*bounding_box*/) {}
+void mock_score_output::draw_text(std::string const& /*text*/,
+                                  unsigned char /*r*/,
+                                  unsigned char /*g*/,
+                                  unsigned char /*b*/,
+                                  unsigned char /*a*/) {}
 
 rectangle mock_score_output::bounds() const { return {}; }
 }

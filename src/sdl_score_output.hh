@@ -5,9 +5,6 @@
 #include <SDL2/SDL.h>
 #include "sdl_ttf_font.hh"
 #include "rectangle_fwd.hh"
-#include "width_fwd.hh"
-#include "height_fwd.hh"
-#include <functional>
 #include <string>
 
 namespace snk {
@@ -18,9 +15,7 @@ struct sdl_score_output : score_output {
                  unsigned char r,
                  unsigned char g,
                  unsigned char b,
-                 unsigned char a,
-                 std::function<rectangle(width const&, height const&)>
-                   bounding_box) override;
+                 unsigned char a) override;
   rectangle bounds() const override;
 
 private:

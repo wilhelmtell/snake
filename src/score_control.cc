@@ -26,14 +26,8 @@ score_control::score_control(event_dispatch* dispatch,
 void score_control::update() {}
 
 void score_control::draw() const {
-  out->draw_text(boost::lexical_cast<std::string>(value),
-                 0x70,
-                 0x90,
-                 0x00,
-                 0xff,
-                 [&](width const& w, height const& h) {
-    return rectangle{point{10, out->bounds().h - h - 10}, w, h};
-  });
+  out->draw_text(
+    boost::lexical_cast<std::string>(value), 0x70, 0x90, 0x00, 0xff);
 }
 
 void score_control::on_berry_eaten(point const& /*position*/) { ++value; }
