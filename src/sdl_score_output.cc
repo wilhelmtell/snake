@@ -14,7 +14,7 @@ namespace snk {
 sdl_score_output::sdl_score_output(SDL_Window* window, SDL_Renderer* renderer)
 : window{std::move(window)}
 , renderer{std::move(renderer)}
-, score_font{"data/Arial.ttf", 18} {}
+, score_font{"data/Arial.ttf", 28} {}
 
 void sdl_score_output::draw_text(
   std::string const& text,
