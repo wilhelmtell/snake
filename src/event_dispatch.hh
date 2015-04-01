@@ -30,14 +30,14 @@ struct event_dispatch {
   using keydown_p_slot_t = keydown_p_signal_t::slot_type;
   using keydown_return_signal_t = signal<void()>;
   using keydown_return_slot_t = keydown_return_signal_t::slot_type;
-  using game_restarted_signal_t = signal<void()>;
-  using game_restarted_slot_t = game_restarted_signal_t::slot_type;
   using toggle_pause_signal_t = signal<void()>;
   using toggle_pause_slot_t = toggle_pause_signal_t::slot_type;
   using game_paused_signal_t = signal<void()>;
   using game_paused_slot_t = game_paused_signal_t::slot_type;
   using game_resumed_signal_t = signal<void()>;
   using game_resumed_slot_t = game_resumed_signal_t::slot_type;
+  using restart_signal_t = signal<void()>;
+  using restart_slot_t = restart_signal_t::slot_type;
 
   void quit() const;
   connection on_quit(quit_signal_t::slot_type const& op);
@@ -59,14 +59,14 @@ struct event_dispatch {
   connection on_berry_spawned(berry_spawned_slot_t const& op);
   void keydown_return() const;
   connection on_keydown_return(keydown_return_slot_t const& op);
-  void game_restarted() const;
-  connection on_game_restarted(game_restarted_slot_t const& op);
   void toggle_pause() const;
   connection on_toggle_pause(toggle_pause_slot_t const& op);
   void game_paused() const;
   connection on_game_paused(game_paused_slot_t const& op);
   void game_resumed() const;
   connection on_game_resumed(game_resumed_slot_t const& op);
+  void restart() const;
+  connection on_restart(restart_slot_t const& op);
 
 private:
   quit_signal_t quit_signal;
@@ -79,10 +79,10 @@ private:
   berry_eaten_signal_t berry_eaten_signal;
   berry_spawned_signal_t berry_spawned_signal;
   keydown_return_signal_t keydown_return_signal;
-  game_restarted_signal_t game_restarted_signal;
   toggle_pause_signal_t toggle_pause_signal;
   game_paused_signal_t game_paused_signal;
   game_resumed_signal_t game_resumed_signal;
+  restart_signal_t restart_signal;
 };
 }
 

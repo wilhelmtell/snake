@@ -68,6 +68,7 @@ snake_body_control::snake_body_control(event_dispatch* dispatch,
 , direction_control{dispatch, factory, move_request}
 , segments{initial_snake_segments(dispatch, factory)} {
   dispatch->on_berry_eaten([&](auto const& p) { on_berry_eaten(p); });
+  dispatch->on_restart([&]() { on_restart(); });
 }
 
 void snake_body_control::update() {
@@ -86,11 +87,6 @@ void snake_body_control::update() {
 void snake_body_control::draw() const {
   direction_control.draw();
   for(auto const& segment : segments) segment.draw();
-}
-
-void snake_body_control::restart() {
-  segments = initial_snake_segments(dispatch, factory);
-  dispatch->game_restarted();
 }
 
 bool snake_body_control::wall_hit() const {
@@ -118,5 +114,9 @@ void snake_body_control::on_berry_eaten(point const& /*position*/) {
                         segments.back().position(),
                         default_segment_width,
                         default_segment_height);
+}
+
+void snake_body_control::on_restart() {
+  segments = initial_snake_segments(dispatch, factory);
 }
 }

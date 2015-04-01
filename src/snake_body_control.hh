@@ -27,8 +27,6 @@ struct snake_body_control {
   void update();
   void draw() const;
 
-  void restart();
-
   bool dead() const;
   point head_position() const;
 
@@ -36,6 +34,7 @@ private:
   bool wall_hit() const;
   bool self_hit() const;
   void on_berry_eaten(point const& position);
+  void on_restart();
 
 private:
   event_dispatch* dispatch;

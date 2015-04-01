@@ -23,7 +23,7 @@ private:
   void on_keydown_p();
   void on_berry_eaten(point const& position);
   void on_toggle_pause();
-  void on_game_restarted();
+  void on_restart();
 
 private:
   event_dispatch* dispatch;
