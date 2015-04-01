@@ -8,6 +8,7 @@
 #include "snake_body_output.hh"
 #include "snake_segment_output.hh"
 #include "berry_output.hh"
+#include "snake_direction_output.hh"
 #include "sdl_window.hh"
 #include "sdl_renderer.hh"
 
@@ -21,6 +22,8 @@ struct sdl_factory : abstract_factory {
   std::unique_ptr<snake_segment_output> make_snake_segment_output()
     const override;
   std::unique_ptr<berry_output> make_berry_output() const override;
+  std::unique_ptr<snake_direction_output> make_snake_direction_output()
+    const override;
 
 private:
   sdl_window window;

@@ -6,8 +6,9 @@
 #include "event_dispatch.hh"
 #include "abstract_factory_fwd.hh"
 #include "snake_body_output.hh"
+#include "snake_direction_control.hh"
 #include "snake_segment_control.hh"
-#include "direction.hh"
+#include "direction_fwd.hh"
 #include "point_fwd.hh"
 
 namespace snk {
@@ -32,26 +33,16 @@ struct snake_body_control {
   point head_position() const;
 
 private:
-  direction fetch_next_move_request();
-  direction fetch_next_move();
   bool wall_hit() const;
   bool self_hit() const;
   void on_berry_eaten(point const& position);
-  void on_move(direction const& to);
-  void on_game_paused();
-  void on_game_resumed();
 
 private:
   event_dispatch* dispatch;
   abstract_factory* factory;
   std::unique_ptr<snake_body_output> out;
-  std::deque<direction> move_requests;
-  direction move_to;
+  snake_direction_control direction_control;
   snake_segments segments;
-  event_dispatch::connection keydown_left_connection;
-  event_dispatch::connection keydown_right_connection;
-  event_dispatch::connection keydown_up_connection;
-  event_dispatch::connection keydown_down_connection;
 };
 }
 

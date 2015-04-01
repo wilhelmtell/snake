@@ -1,5 +1,6 @@
 check_PROGRAMS = check_snake
 check_snake_SOURCES = berry.cc \
+                      					  mock_snake_direction_output.hh mock_snake_direction_output.cc \
                       game.cc \
                       height.cc \
                       main.cc \
@@ -11,6 +12,7 @@ check_snake_SOURCES = berry.cc \
                       mock_snake_segment_output.hh mock_snake_segment_output.cc \
                       point_to_string.hh point_to_string.cc \
                       snake.cc \
+                      snake_direction.cc \
                       width.cc
 check_snake_LDADD = ../src/libsnake.a
 AM_CXXFLAGS = ${SDL2_CFLAGS} ${SDL2_TTF_CFLAGS}

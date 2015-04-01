@@ -63,58 +63,34 @@ snake_body_control::snake_body_control(event_dispatch* dispatch,
                                        std::unique_ptr<snake_body_output> out,
                                        direction move_request)
 : dispatch{dispatch}
-, factory{std::move(factory)}
+, factory{factory}
 , out{std::move(out)}
-, move_requests{}
-, move_to{move_request}
-, segments{initial_snake_segments(dispatch, factory)}
-, keydown_left_connection{
-    dispatch->on_keydown_left([&]() { on_move(direction::left); })}
-, keydown_right_connection{
-    dispatch->on_keydown_right([&]() { on_move(direction::right); })}
-, keydown_up_connection{
-    dispatch->on_keydown_up([&]() { on_move(direction::up); })}
-, keydown_down_connection{
-    dispatch->on_keydown_down([&]() { on_move(direction::down); })} {
-  dispatch->on_game_paused([&]() { on_game_paused(); });
-  dispatch->on_game_resumed([&]() { on_game_resumed(); });
+, direction_control{dispatch, factory, move_request}
+, segments{initial_snake_segments(dispatch, factory)} {
   dispatch->on_berry_eaten([&](auto const& p) { on_berry_eaten(p); });
-  move_requests.push_back(move_request);
 }
 
 void snake_body_control::update() {
-  auto const next_move = fetch_next_move();
-  move_to = are_opposite(move_to, next_move) ? move_to : next_move;
-  segments.emplace_front(dispatch,
-                         factory,
-                         factory->make_snake_segment_output(),
-                         moved(segments.front().position(), move_to),
-                         default_segment_width,
-                         default_segment_height);
+  direction_control.update();
+  segments.emplace_front(
+    dispatch,
+    factory,
+    factory->make_snake_segment_output(),
+    moved(segments.front().position(), direction_control.to()),
+    default_segment_width,
+    default_segment_height);
   segments.pop_back();
   for(auto& segment : segments) segment.update();
 }
 
 void snake_body_control::draw() const {
+  direction_control.draw();
   for(auto const& segment : segments) segment.draw();
 }
 
 void snake_body_control::restart() {
   segments = initial_snake_segments(dispatch, factory);
-  move_requests.clear();
-  move_requests.push_back(direction::right);
-  move_to = direction::right;
   dispatch->game_restarted();
-}
-
-direction snake_body_control::fetch_next_move_request() {
-  auto const move_requested = move_requests.front();
-  move_requests.pop_front();
-  return move_requested;
-}
-
-direction snake_body_control::fetch_next_move() {
-  return move_requests.empty() ? move_to : fetch_next_move_request();
 }
 
 bool snake_body_control::wall_hit() const {
@@ -142,27 +118,5 @@ void snake_body_control::on_berry_eaten(point const& /*position*/) {
                         segments.back().position(),
                         default_segment_width,
                         default_segment_height);
-}
-
-void snake_body_control::on_move(direction const& to) {
-  move_requests.push_back(to);
-}
-
-void snake_body_control::on_game_paused() {
-  keydown_left_connection.disconnect();
-  keydown_right_connection.disconnect();
-  keydown_up_connection.disconnect();
-  keydown_down_connection.disconnect();
-}
-
-void snake_body_control::on_game_resumed() {
-  keydown_left_connection
-    = dispatch->on_keydown_left([&]() { on_move(direction::left); });
-  keydown_right_connection
-    = dispatch->on_keydown_right([&]() { on_move(direction::right); });
-  keydown_up_connection
-    = dispatch->on_keydown_up([&]() { on_move(direction::up); });
-  keydown_down_connection
-    = dispatch->on_keydown_down([&]() { on_move(direction::down); });
 }
 }
