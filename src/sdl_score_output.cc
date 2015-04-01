@@ -2,6 +2,7 @@
 #include <utility>
 #include <SDL2/SDL.h>
 #include <string>
+#include <algorithm>
 #include "rectangle.hh"
 #include "point.hh"
 #include "width.hh"
@@ -24,9 +25,11 @@ void sdl_score_output::draw_text(std::string const& text,
     score_font.get(), text.c_str(), SDL_Color{r, g, b, a})};
   sdl_texture const texture{
     SDL_CreateTextureFromSurface(renderer, surface.get())};
-  auto const box = rectangle{point{10, bounds().h - surface.get()->h - 10},
-                             width{surface.get()->w},
-                             height{surface.get()->h}};
+  auto const margin = 10;
+  auto const box
+    = rectangle{point{margin, bounds().h - surface.get()->h - margin},
+                width{surface.get()->w},
+                height{surface.get()->h}};
   SDL_Rect const quad{box.p.x, box.p.y, box.w, box.h};
   SDL_RenderCopy(renderer, texture.get(), nullptr, &quad);
 }
