@@ -9,3 +9,42 @@ If (when) the snake dies, press Enter to decompose the poor thing and spawn a
 new living snake to keep at the forefathers' aspiration.
 
 Esc quits the game.
+
+
+ BUILDING
+
+You will need
+
+ * a C++14 compiler
+ * Boost
+ * SDL
+ * a TTF font
+
+installed. Sorry about the TTF font point... I haven't taken the time to find a
+font I'm positive is okay to distribute with the game.
+
+Okay, let's build this thing:
+
+ 0  Make sure you have the prerequisites above covered.
+
+ 1  If you fetched the source from a repository then you'll need to run
+    autoreconf first:
+
+     $ autoreconf -if
+
+ 2  I made an effort to distribute this package as a good autoconf netizen. If
+    the usual configure && make don't do the trick, you might try placing a
+    config.site of your liking somewhere. Here's an example content of the
+    file:
+
+     $ cat ~/.config.site.clang
+     CXX=clang++-3.6
+     CPPFLAGS="-DNDEBUG"
+     CXXFLAGS="-Wall -Wextra -pedantic -stdlib=libc++ -O2"
+
+    With that, build the source with configure and make:
+
+     $ CONFIG_SITE=$HOME/.config.site.clang ./configure &&
+     ` make -skj2 V=0
+
+    This should build the program without errors and without warnings.
