@@ -20,8 +20,8 @@ You will need
  * SDL
  * a TTF font
 
-installed. Sorry about the TTF font point... I haven't taken the time to find a
-font I'm positive is okay to distribute with the game.
+Sorry about the TTF font point... I haven't taken the time to find a font I'm
+positive is okay to distribute with the game.
 
 Okay, let's build this thing:
 
