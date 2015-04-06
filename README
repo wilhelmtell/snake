@@ -40,7 +40,7 @@ Okay, let's build this thing:
      $ cat ~/.config.site.clang
      CXX=clang++-3.6
      CPPFLAGS="-DNDEBUG"
-     CXXFLAGS="-Wall -Wextra -pedantic -stdlib=libc++ -O2"
+     CXXFLAGS="-stdlib=libc++ -O2"
 
     With that, build the source with configure and make:
 
