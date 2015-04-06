@@ -48,3 +48,7 @@ Okay, let's build this thing:
      ` make -skj2 V=0
 
     This should build the program without errors and without warnings.
+
+ 3  Find a true-type font of your liking, create a directory data/ where you
+    plan to run the executable, and copy the font in there. Rename the file to
+    Arial.ttf.
